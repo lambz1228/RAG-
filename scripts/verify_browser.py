@@ -262,6 +262,7 @@ def verify(output: Path, snapshot_data: Path | None = None) -> dict:
                 page.get_by_role("button", name="检索知识库", exact=True).click()
                 expect(page.locator("#search-status")).to_contain_text("找到 0 个片段")
                 page.locator('[data-view="ask"]').click()
+                page.locator("#ask-form .ask-advanced > summary").click()
                 page.locator("#ask-year").select_option("2025")
                 page.locator("#ask-topic").select_option("测试主题")
                 page.locator("#ask-query").fill("线粒体 ATP")

@@ -1,0 +1,2 @@
+# 冻结题库按原始字节保存；不能由 Git 自动改变换行而使 SHA-256 失效。
+questionbank/**/questions.jsonl -text whitespace=trailing-space,space-before-tab,cr-at-eol

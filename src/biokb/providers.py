@@ -16,6 +16,7 @@ from .errors import ProviderError
 from .text import tokenize
 
 PROMPT_VERSION = "evidence-v4-format-repair-1"
+UNGROUNDED_PROMPT_VERSION = "no-retrieval-v1"
 
 
 def post_json(url: str, payload: dict, api_key: str, timeout: int) -> dict:
@@ -161,8 +162,14 @@ class LanguageModel:
             ).encode()
         ).hexdigest()[:24]
 
-    def answer(self, question: str, evidence: list[dict], history: list[dict] | None = None) -> dict:
+    def answer(
+        self, question: str, evidence: list[dict], history: list[dict] | None = None
+    ) -> dict:
         return self._answer(question, evidence, history=history)
+
+    def answer_without_retrieval(self, question: str) -> dict:
+        """仅用于无检索对照，不接收文献、标准答案或历史对话。"""
+        return self._answer(question, [], grounded=False)
 
     def repair_answer(
         self,
@@ -183,6 +190,7 @@ class LanguageModel:
         evidence: list[dict],
         correction: dict | None = None,
         history: list[dict] | None = None,
+        grounded: bool = True,
     ) -> dict:
         if self.settings.llm_backend == "disabled":
             raise ProviderError("当前未启用生成模型")
@@ -198,6 +206,13 @@ class LanguageModel:
             "输出前检查：answer 字符串内实际出现的[数字]与 citations 数组必须完全对应。"
             "不能只在 citations 字段填写编号而在 answer 正文中省略编号。"
         )
+        if not grounded:
+            system = (
+                "你是生物领域问答助手，请仅凭模型已有知识回答问题，不使用工具。"
+                "不知道时明确说明，不要编造文献引用。不要输出诊疗处方。"
+                "只返回 JSON 对象：status 为 answered、partial 或 insufficient；"
+                "answer 为中文回答；citations 必须为空数组。"
+            )
         if history:
             # 会话记忆只用于理解指代与承接话题，事实仍必须由本次证据支持。
             system += "存在历史对话时，可用它理解代词与省略的指代，但回答中的每项事实仍必须由本次证据支持。"
@@ -206,6 +221,8 @@ class LanguageModel:
             for i, row in enumerate(evidence)
         ]
         user_payload: dict = {"question": question, "evidence": context}
+        if not grounded:
+            user_payload = {"question": question}
         if history:
             user_payload["history"] = [
                 {

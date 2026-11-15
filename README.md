@@ -1,109 +1,93 @@
-# 基于 RAG 技术的生物领域知识库系统研发
+# BioKB · 细胞生物学知识库
 
-BioKB 是毕业设计项目，围绕生物领域文献的管理、检索、带引用的知识问答与实验评估展开。主线代码采用 Python、Flask、SQLite 和原生 JavaScript，支持本地运行。
+**毕业设计：基于 RAG 技术的生物领域知识库系统研发。**
 
-## 已实现能力
+BioKB 面向细胞生物学的文献发现、知识管理与带证据问答。围绕线粒体、自噬与溶酶体、细胞信号、内质网、细胞周期和过氧化物酶体组织研究资料。界面与使用流程参考 [MimirQ](https://github.com/skygazer42/MimirQ)，后端沿用并改进本项目的 Python / Flask / SQLite 实现。
 
-- 文献入库：TXT、Markdown、PDF、DOCX、CSV、结构化 JSON；原始文件 SHA-256 去重与归档。
-- 文本处理：规范化、带重叠分块、原文位置保存与来源元数据。
-- 科研论文目录：按一致的 PMID、PMCID、DOI 关联摘要与全文；按论文筛选，选择单篇或多篇限定研究范围，返回每个资料版本的原文入口。
-- 知识检索：BM25、向量余弦相似度、RRF 混合检索、混合召回后重排序；支持主题、年份与资料类型筛选。
-- 模型接口：离线哈希向量，以及可配置的 Ollama / OpenAI 兼容 embedding 与生成接口。
-- 证据问答：原文摘录、生成回答、部分支持、证据不足和失败降级分别标记；支持相邻分块扩展，保留召回中心、原文偏移、论文范围与证据快照。
-- 工程能力：异步入库/问答/索引任务、进度与错误状态持久化、重启中断标记与重新提交、问答历史和 JSON 导出。
-- 实验能力：文档级 Hit@K、Recall@K、AllHit@K、MRR@K、Precision@K、nDCG@K 与延迟分位数；记录数据集摘要和索引配置。可对冻结候选排名另行复算论文级指标，保留两种口径。
-- 双语工作台：功能导航、文献树、可关闭标签页与页面目录；中文/English 即时切换并记住选择，支持手机折叠导航。最左侧独立图标栏已移除。
+![知识工作台](docs/images/overview.png)
 
-默认不需要在线模型即可验证文献与检索流程。默认哈希向量属于离线基线，原文摘录不属于 LLM 生成。正式语义检索与生成式 RAG 实验需配置并验证真实模型。
+## 核心流程
 
-本工作区的 2.1 真实模型联调使用独立的 `data/biokb-v21-semantic/`，模型为 Qwen3-Embedding-8B、Qwen2.5-72B-Instruct 和 bge-reranker-v2-m3；默认 `hybrid_rerank` 由开发集选定。当前 2.2 工程版本增加论文与证据工作流，原有语义库未覆盖。2026-11-05 的 v22 独立库补充 38 篇开放全文，v23 补充 33 篇 2021—2024 年全文；v24、v25 再为 15 个缺口组合各补充一篇，v26 独立修复 47 篇全文的作者字段。当前扩充版有 221 篇归并论文、89 篇有全文，另有 132 篇仅摘要。来源、许可、版本及科研限制见[文献扩充记录](docs/文献扩充记录.md)、[历史文献扩充记录](docs/历史文献扩充记录.md)和[缺口文献扩充记录](docs/缺口文献扩充记录.md)。密钥只引用系统变量，分发模板仍默认离线模式。既有实验结果与局限分别见 [2.1 优化验收](docs/2.1优化验收.md)和[科研证据整改验收](docs/科研证据整改验收.md)。
+1. **发现文献**：在 Europe PMC / PubMed 官方记录中按主题、标题摘要关键词和年份检索。
+2. **建立知识库**：选择论文后核对 PMID、PMCID 与全文许可；支持开放全文、摘要和本地 TXT / PDF / DOCX / CSV / JSON。
+3. **检索调试**：比较 BM25、向量、RRF 混合及重排序，查看原文片段和分数。
+4. **证据问答**：多轮对话、论文范围限定、相邻证据扩展、出处定位与问答导出。
+5. **实验评估**：冻结题库、检索指标、固定配置消融、匿名盲评表。人工评分保持待填写。
 
-2026-11-05 的[v26 科研质量机器审计与实验报告](docs/科研质量验收报告_v26.md)记录了正式 v26 库的来源链核验、检索与真实模型问答诊断，以及 132 篇仅摘要论文的逐篇获取状态；科研质量尚未放行，独立领域题集和人工复核仍缺失。[v21 历史验收报告](docs/科研质量验收报告.md)仅用于旧索引对照。整改依赖和建议门槛见[科研质量优化计划](docs/科研质量优化计划.md)。
+## 安装与启动
 
-## 快速启动
+需要 Python 3.10 或更高版本。
 
-```powershell
+```bash
 python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -e ".[dev]"
-# 仅首次创建，已有 .env 时不要覆盖：
-Copy-Item .env.example .env
-.\.venv\Scripts\python.exe app.py
+# Windows PowerShell
+.venv\Scripts\Activate.ps1
+# macOS / Linux：source .venv/bin/activate
+python -m pip install -e ".[dev]"
+python app.py
 ```
 
-访问 http://127.0.0.1:5000 。也可使用 `start.bat`。新安装默认将数据保存到 `data/biokb/`；本机已有 `.env` 时以其中配置为准，不覆盖原库。
+浏览器访问 **http://127.0.0.1:5000**。Windows 安装依赖后也可运行 `start.bat`。首次启动为空库，在“文献采集”选择主题，再按需导入论文；在线检索需要网络，不需要模型密钥。
 
-使用已扩充的独立语义库时运行 `.\start-expanded.bat`；脚本只在当前进程选择 `data/biokb-v26-authors-20261105/`，并先检查数据库是否存在，不修改 `.env`。v22 至 v25 均保留，可通过 `python -m biokb --data-dir <独立库目录> serve` 单独启动。
+## 没有生物学资料时从哪里开始
 
-已有生物语料迁移：
+**在线采集**：页面提供六个主题，可补充 `mitophagy`、`ATP`、`EGFR` 等英文关键词。优先选择题名和摘要与课题直接相关的综述，再补原始研究；搜索命中不等于人工确认相关。
 
-```powershell
-.\.venv\Scripts\python.exe -m biokb import-legacy
-.\.venv\Scripts\python.exe -m biokb doctor
-.\.venv\Scripts\python.exe -m pytest -q
+也可独立建立一个开发库（每主题最多 2 篇，共最多 12 篇）：
+
+```bash
+python scripts/collect_biology.py --output data/cell-biology-starter --per-topic 2
+python -m biokb --data-dir data/cell-biology-starter/database serve
 ```
 
-迁移只读取旧语料，写入独立新库；已有旧数据库和 GraphRAG 索引保留。
+命令拒绝覆盖已有目录，保存原始响应、XML 与来源摘要。仅在明确 CC BY / CC0 许可时自动导入全文，否则标明仅摘要。它不是专家审定的数据集。
 
-## 目录结构
+**离线演示**：仓库附带两篇许可明确的真实文章正文样例与原始 XML，断网也能验证入库、分块、检索和原文定位：
+
+```bash
+python scripts/reproduce_demo.py --output data/open-demo
+python -m biokb --data-dir data/open-demo/database serve
+```
+
+示例规模与范围仅用于复现流程，不作为论文效果结论。更多来源与筛选建议见[生物知识来源](docs/生物知识来源.md)。
+
+## 配置真实模型
+
+复制 `.env.example` 为 `.env`，配置 embedding、生成模型及可选的重排序接口。支持 Ollama 与 OpenAI 兼容服务。更换 embedding 后需要在独立副本中重建索引。
+
+默认使用 **离线哈希向量 + 原文摘录**，不具备预训练语义模型能力。没有配置生成模型时不会把摘录伪装成大模型回答。配置方法见[开发与部署](docs/开发与部署.md)。
+
+## 验证
+
+```bash
+python -m ruff check src/biokb tests/biokb scripts
+python -m ruff format --check src/biokb tests/biokb scripts
+python -m pytest -q
+python scripts/audit_questionbank.py --output output/questionbank-audit
+```
+
+浏览器验证需先 `pip install -e ".[browser]"`，再 `python -m playwright install chromium`。命令与实际结果见[重构验收](docs/重构验收.md)。
+
+## 目录
 
 ```text
-src/biokb/              主线后端、Web 页面与静态模块
-  config.py            配置与校验
-  storage.py           SQLite 数据访问
-  ingestion.py         文档解析、切分与入库
-  providers.py         向量和生成模型适配
-  quality.py           资料质量与筛选
-  papers.py            论文身份归并与研究范围解析
-  revisions.py         独立版本复制
-  reranking.py         重排序适配
-  retrieval.py         四种检索策略与有界查询向量缓存
-  rag.py               证据问答与引用校验
-  evaluation.py        独立标准出处评测
-  jobs.py              有界后台任务
-  web/                 应用工厂、页面、前端模块
-tests/biokb/           当前主线自动化测试
-docs/                 当前架构、接口、开发、部署和实验文档
-docs/archive/         旧项目 Markdown 原文归档
-scripts/biokb.py       源码 CLI 入口
-data/biokb/            保留的原始 2.0 数据库
-data/biokb-v21/        2.1 同语料哈希对照库
-data/biokb-v21-semantic/  2.1 历史语义索引库（数据均不进入源码包）
-data/biokb-v22-expanded-20261105/  独立扩充版语义库
-data/research_corpus/expansion_20261105/  采集 XML、筛选副本和入库核查清单
-data/biokb-v23-historical-20261105/  2021—2024 年文献扩充版语义库
-data/research_corpus/historical_20261105/  历史文献 XML、元数据快照及核验报告
-data/biokb-v24-gapfill-20261105/  14 篇缺口全文的独立语义库
-data/biokb-v25-peroxisome-20261105/  补齐 2024 年 peroxisome 的独立语义库
-data/biokb-v26-authors-20261105/  作者字段修复后的本机扩充版
-data/research_corpus/gapfill_20261105/  14 篇全文的发现、原文和核验快照
-data/research_corpus/peroxisome_targeted_20261105/  定向补采与核验快照
-sci-illust-system/     原始知识数据及历史 RAG 复现依赖
+src/biokb/       文献采集、入库、检索、问答、评估与 Web 工作台
+tests/biokb/     当前主线测试；临时数据库与受控模型夹具
+scripts/        当前采集、复现、评估和验证入口
+docs/           架构、接口、来源、实验与验收文档
+examples/       带许可与来源摘要的离线样例
+questionbank/   保留的冻结开发题与机器题，尚待人工复核
+deploy/         可选 Docker 部署配置
+data/           运行数据与原文，默认不进入 Git
+output/         本地实验和验证产物，默认不进入 Git
 ```
 
-## 使用与文档
+旧绘图、GraphRAG 研究材料及逐次历史验收已隔离到[归档分支](https://github.com/lambz1228/RAG-/tree/archive/pre-rebuild-20261115)，见[归档说明](docs/归档说明.md)。
 
-- [使用说明书](使用说明书.md)
-- [项目介绍](项目介绍.md)
-- [安装指南](SETUP_GUIDE.md)
-- [架构设计](docs/架构设计.md)
-- [API 说明](docs/API说明.md)
-- [开发说明](docs/开发说明.md)
-- [部署文档](docs/部署文档.md)
-- [实验设计](docs/实验设计.md)
-- [重构迁移说明](docs/重构迁移说明.md)
-- [验证记录](docs/验证记录.md)
-- [双语工作台验收](docs/双语工作台验收.md)
-- [科研证据整改验收](docs/科研证据整改验收.md)
-- [v26 科研质量机器审计与实验报告](docs/科研质量验收报告_v26.md)
-- [v21 历史科研质量验收报告](docs/科研质量验收报告.md)
-- [科研质量优化计划](docs/科研质量优化计划.md)
-- [文献扩充记录](docs/文献扩充记录.md)
-- [历史文献扩充记录](docs/历史文献扩充记录.md)
-- [缺口文献扩充记录](docs/缺口文献扩充记录.md)
-- [文件清理记录](docs/文件清理记录.md)
+## 论文与实现边界
 
-## 实现边界
+当前适合单机、单实例演示；向量保存在 SQLite，进程内执行相似度计算。不是多租户企业平台，也没有宣称实现 MimirQ 的全部能力。
 
-当前面向单机知识库：SQLite 持久化向量，进程内执行相似度计算，最近 100 条任务持久化，重启后未完成任务标记中断，支持重新提交。扫描 PDF 需要先 OCR。本机资料仍以摘要为主，自动质量状态尚未由生物领域专家复核；论文归并、来源编号和引用编号检查均不能证明回答事实正确。旧 GraphRAG 实验保留为历史研究材料，没有冒充当前默认检索策略。
+来源可追溯、引用格式通过和检索命中，均不能单独证明生物学事实正确。82 道现有机器题尚未人工复核；真实模型、人工评分和独立对照实验需要分别记录。相关方法见[实验设计](docs/实验设计.md)。
 
-配置文件和源码包不包含真实模型密钥。对外监听必须配置访问令牌，生产部署还需 TLS 和完整的身份权限管理。旧绘图代码、测试和演示已移出工作区并在项目外备份；当前启动和测试面向新的 RAG 知识库，原始数据与实验结果保持原路径。
+文献与参考设计的归属见[第三方来源声明](THIRD_PARTY_NOTICES.md)。

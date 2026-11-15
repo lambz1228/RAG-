@@ -1,0 +1,45 @@
+{
+  "scope": "仅用于安装、导入、原文定位和检索流程复现；不是正式语料或质量评测",
+  "acquired_at_utc": "2026-11-15",
+  "articles": [
+    {
+      "pmcid": "PMC12142011",
+      "doi": "10.30699/ijp.2025.2030953.3311",
+      "title": "Bioinformatics Analysis of Peroxisomal Biogenesis Factor Proteins in Breast Malignancy for Introducing Potential Prognostic Biomarkers",
+      "authors": [
+        "Mahdei NasirmahallehNima",
+        "HemmatiMina",
+        "ParsamaneshNegin"
+      ],
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12142011/fullTextXML",
+      "transformation": "仅保留 body 内 p 节点的文本，合并段内空白；不包含图表、补充材料和审稿附录",
+      "record_file": "PMC12142011.json",
+      "xml_file": "PMC12142011.xml"
+    },
+    {
+      "pmcid": "PMC13065327",
+      "doi": "10.7554/eLife.110117",
+      "title": "Specialisation of meiotic kinetochores revealed through a synthetic spindle assembly checkpoint strategy",
+      "authors": [
+        "KochLori B",
+        "GhoshTiasha",
+        "SpanosChristos",
+        "MarstonAdèle L",
+        "PinesJon",
+        "CooperJonathan A"
+      ],
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13065327/fullTextXML",
+      "transformation": "仅保留 body 内 p 节点的文本，合并段内空白；不包含图表、补充材料和审稿附录",
+      "record_file": "PMC13065327.json",
+      "xml_file": "PMC13065327.xml"
+    }
+  ],
+  "files": {
+    "PMC12142011.json": "c4c4631f2c7fec27aa54e310a316aa8bdce255f619312c1ce828016da612935f",
+    "PMC12142011.xml": "22ef9f26a9f74f9773774c02dc29d21e894b424fd215511c6386a91fd22266f5",
+    "PMC13065327.json": "8252f11cd0d37a6e79b58f46d8f74b3f808d7e54119f6ccc7e304928d5ca6b4e",
+    "PMC13065327.xml": "29d5eeee1f82450ecebba2d0374654c1a3d32467af90c44bb377a1e12b0ced6d"
+  }
+}

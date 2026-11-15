@@ -14,6 +14,7 @@ from .. import __version__
 from ..config import Settings
 from ..container import Services, build_services
 from ..errors import KnowledgeError
+from ..literature import TOPICS, LiteratureService
 from ..papers import build_catalog, list_papers, resolve_scope
 
 
@@ -32,7 +33,10 @@ def create_app(settings: Settings | None = None, services: Services | None = Non
         if response.mimetype in {"text/html", "application/xhtml+xml"}:
             response.headers["Cache-Control"] = "no-store"
         return response
+
     app.extensions["biokb"] = services
+    literature = LiteratureService(services.ingestion, settings)
+    app.extensions["literature"] = literature
 
     def body() -> dict:
         value = request.get_json(silent=True)
@@ -156,6 +160,49 @@ def create_app(settings: Settings | None = None, services: Services | None = Non
     @app.get("/api/facets")
     def facets():
         return jsonify(success=True, facets=services.repository.facets())
+
+    @app.get("/api/literature/topics")
+    def literature_topics():
+        return jsonify(success=True, topics=TOPICS)
+
+    @app.post("/api/literature/search")
+    def literature_search():
+        data = body()
+        return jsonify(
+            success=True,
+            **literature.search(
+                data.get("topic", "mitochondria"),
+                data.get("keywords", ""),
+                data.get("year_from", 2021),
+                data.get("year_to", 2026),
+                data.get("page", 1),
+                data.get("page_size", 10),
+                data.get("open_access", True),
+            ),
+        )
+
+    @app.post("/api/literature/import")
+    def literature_import():
+        data = body()
+        pmid, topic, fulltext = (
+            data.get("pmid"),
+            data.get("topic", "mitochondria"),
+            data.get("include_fulltext", True),
+        )
+        import re
+
+        if (
+            not isinstance(pmid, str)
+            or not re.fullmatch(r"[0-9]{1,10}", pmid)
+            or topic not in TOPICS
+            or type(fulltext) is not bool
+        ):
+            raise KnowledgeError("论文编号、主题或全文选项不正确")
+        job = services.jobs.submit(
+            "literature",
+            lambda progress: literature.import_article(pmid, topic, fulltext, progress),
+        )
+        return jsonify(success=True, job=job), 202
 
     @app.get("/api/papers")
     def papers():

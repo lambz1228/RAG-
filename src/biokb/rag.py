@@ -11,7 +11,7 @@ from typing import Callable
 
 from .config import Settings
 from .errors import ConflictError, KnowledgeError, ProviderError
-from .providers import LanguageModel, PROMPT_VERSION
+from .providers import PROMPT_VERSION, LanguageModel
 from .retrieval import RetrievalService
 from .storage import Repository
 

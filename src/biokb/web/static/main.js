@@ -1,3 +1,4 @@
+import { initLiterature } from "./literature.js";
 import { msg, setText, serviceText, initI18n, dateText } from "./i18n.js";
 import { initPapers, loadPapers } from "./papers.js";
 import { initShell, selectView, loadTree, readerOpened } from "./shell.js";
@@ -18,6 +19,7 @@ import { initDocuments, loadDocuments, loadRecent, openReader } from "./document
 import { initResearch, loadHistory, loadEvaluations, renderAnswer, renderEvaluation } from "./research.js";
 
 const views = new Set([
+  "sources",
   "papers",
   "overview",
   "documents",
@@ -41,6 +43,7 @@ export function navigate(name) {
       button.dataset.view === name ? "page" : "false",
     );
   });
+  document.body.dataset.activeView = name;
   history.replaceState(null, "", `#${name}`);
   selectView(name);
   const loaders = {
@@ -138,7 +141,7 @@ async function loadJobs() {
   $("jobs-list").replaceChildren();
   for (const job of items) {
     const row = element("div", "job-row");
-    const kind = msg({ingest: "文献入库", answer: "证据问答", evaluation: "检索评估", reindex: "索引维护"}[job.kind] || job.kind);
+    const kind = msg({literature: "文献采集", ingest: "文献入库", answer: "证据问答", evaluation: "检索评估", reindex: "索引维护"}[job.kind] || job.kind);
     row.append(element("p", "", msg("{kind} · {stage} · {date}", {kind, stage: serviceText(job.stage), date: dateText(job.created_at * 1000)})));
     if (job.error) row.append(element("p", "notice", serviceText(job.error)));
     if (["failed", "interrupted"].includes(job.status)) row.append(action(msg("重新提交"), async (event) => {
@@ -184,7 +187,7 @@ document
 document
   .querySelectorAll("[data-go]")
   .forEach((button) =>
-    button.addEventListener("click", () => navigate(button.dataset.go)),
+    button.addEventListener("click", () => { navigate(button.dataset.go); if (button.classList.contains("sidebar-new")) $("ask-new-conversation").click(); }),
   );
 window.addEventListener("hashchange", () => navigate(location.hash.slice(1)));
 document.addEventListener("biokb:unauthorized", () => {
@@ -226,8 +229,11 @@ initShell(navigate);
 initDocuments();
 initResearch(navigate);
 initPapers();
+initLiterature();
 document.addEventListener("biokb:navigate", event => navigate(event.detail));
 for (const key of ["topic", "year", "content_type"]) $(`documents-${key}`).addEventListener("change", guarded(loadDocuments));
 loadFacets().catch(error => { if (error.code !== "unauthorized") notify(serviceText(error.message)); });
 loadTree().catch(error => { if (error.code !== "unauthorized") notify(serviceText(error.message)); });
 navigate(location.hash.slice(1));
+
+document.querySelectorAll("[data-question]").forEach(button => button.addEventListener("click", () => {$("ask-query").value = button.dataset.question; $("ask-query").focus();}));

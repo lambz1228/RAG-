@@ -33,6 +33,10 @@ function renderDocument(doc, content, chunkId = "", prefix = "document", context
   content.replaceChildren(
     keyValues([
       [msg("文件名"), doc.title || doc.filename],
+      [msg("资料类型"), contentTypeLabel(doc.metadata.content_type)],
+      [msg("质量状态"), doc.metadata.quality?.eligible === false
+        ? msg("待补充，未用于检索回答")
+        : msg("未经人工学术审核")],
     ]),
   );
   const links = element("div", "result-actions");

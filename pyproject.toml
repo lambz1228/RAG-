@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "biology-rag-kb"
-version = "2.2.0"
+version = "3.0.0"
 description = "基于 RAG 技术的生物领域知识库系统"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -13,7 +13,6 @@ dependencies = ["Flask>=3.0,<4.0", "requests>=2.31,<3.0", "waitress>=3.0,<4.0", 
 [project.optional-dependencies]
 dev = ["pytest>=8,<10", "ruff>=0.14,<1"]
 browser = ["playwright>=1.50,<2"]
-build = ["pyinstaller>=6,<7"]
 
 [project.scripts]
 biokb = "biokb.cli:main"
