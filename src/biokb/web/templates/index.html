@@ -10,10 +10,25 @@
 </head>
 <body>
 <aside class="sidebar" id="navigation-pane">
-<a class="workspace-brand" href="#overview"><span>BioKB</span><small data-i18n="研究工作空间">研究工作空间</small></a>
+<a class="workspace-brand" href="#overview"><span class="brand-mark">B</span><span class="brand-name">BioKB<small data-i18n="细胞生物学知识库">细胞生物学知识库</small></span></a>
 <div class="tree-search"><span data-icon="search"></span><input aria-label="快速查找文献" data-i18n-aria-label="快速查找文献" data-i18n-placeholder="快速查找文献" id="tree-query" placeholder="快速查找文献" type="search"/><kbd>Ctrl K</kbd></div>
+<button class="sidebar-new" data-go="ask"><span data-icon="plus"></span><span data-i18n="新对话">新对话</span></button>
 <nav aria-label="主导航" data-i18n-aria-label="主导航">
-<details class="navigation-group" open=""><summary data-i18n="知识工作台">知识工作台</summary><div class="navigation-items"><button class="nav-item" data-view="papers"><span data-icon="papers"></span><span data-i18n="科研文献">科研文献</span></button><button class="nav-item" data-view="overview"><span data-icon="overview"></span><span data-i18n="知识库概览">知识库概览</span></button><button class="nav-item" data-view="documents"><span data-icon="documents"></span><span data-i18n="文献管理">文献管理</span></button><button class="nav-item" data-view="search"><span data-icon="search"></span><span data-i18n="知识检索">知识检索</span></button><button class="nav-item" data-view="ask"><span data-icon="ask"></span><span data-i18n="证据问答">证据问答</span></button><button class="nav-item" data-view="history"><span data-icon="history"></span><span data-i18n="问答记录">问答记录</span></button><button class="nav-item" data-view="evaluation"><span data-icon="evaluation"></span><span data-i18n="检索评估">检索评估</span></button><button class="nav-item" data-view="settings"><span data-icon="settings"></span><span data-i18n="运行配置">运行配置</span></button></div></details>
+<details class="navigation-group" open><summary data-i18n="研究空间">研究空间</summary><div class="navigation-items">
+<button class="nav-item" data-view="overview"><span data-icon="overview"></span><span data-i18n="知识库概览">知识库概览</span></button>
+<button class="nav-item" data-view="ask"><span data-icon="ask"></span><span data-i18n="证据问答">证据问答</span></button>
+<button class="nav-item" data-view="history"><span data-icon="history"></span><span data-i18n="问答记录">问答记录</span></button>
+</div></details>
+<details class="navigation-group" open><summary data-i18n="知识库管理">知识库管理</summary><div class="navigation-items">
+<button class="nav-item" data-view="papers"><span data-icon="papers"></span><span data-i18n="科研文献">科研文献</span></button>
+<button class="nav-item" data-view="sources"><span data-icon="search"></span><span data-i18n="文献采集">文献采集</span><span class="nav-new">PMC</span></button>
+<button class="nav-item" data-view="documents"><span data-icon="documents"></span><span data-i18n="文献管理">文献管理</span></button>
+</div></details>
+<details class="navigation-group" open><summary data-i18n="实验与配置">实验与配置</summary><div class="navigation-items">
+<button class="nav-item" data-view="search"><span data-icon="search"></span><span data-i18n="知识检索">知识检索</span></button>
+<button class="nav-item" data-view="evaluation"><span data-icon="evaluation"></span><span data-i18n="检索评估">检索评估</span></button>
+<button class="nav-item" data-view="settings"><span data-icon="settings"></span><span data-i18n="运行配置">运行配置</span></button>
+</div></details>
 </nav>
 <div class="tree-heading"><span data-i18n="文献库">文献库</span><button aria-label="导入文献" class="icon-button" data-go="documents" data-i18n-aria-label="导入文献" data-i18n-title="导入文献" title="导入文献"><span data-icon="plus"></span></button></div>
 <nav aria-label="文献树" data-i18n-aria-label="文献树" id="document-tree"><p class="tree-message" data-i18n="正在读取文献">正在读取文献</p></nav>
@@ -38,12 +53,13 @@
 <section data-panel="overview">
 <div class="page-heading">
 <div>
-<p class="eyebrow">BIOLOGY KNOWLEDGE BASE</p>
+<p class="eyebrow">CELL BIOLOGY · RESEARCH WORKSPACE</p>
 <h1 data-i18n="知识库概览">知识库概览</h1>
 <p data-i18n="管理生物领域文献，检索原文证据，记录每次问答的来源。">管理生物领域文献，检索原文证据，记录每次问答的来源。</p>
 </div>
-<button data-go="documents" data-i18n="导入文献">导入文献</button>
+<button data-go="sources" data-i18n="发现生物文献">发现生物文献</button>
 </div>
+<div class="workflow-strip"><button data-go="sources"><span>01</span><strong data-i18n="发现生物文献">发现生物文献</strong><small>PubMed / Europe PMC</small></button><button data-go="papers"><span>02</span><strong data-i18n="整理研究资料">整理研究资料</strong><small data-i18n="摘要、全文与出处">摘要、全文与出处</small></button><button data-go="ask"><span>03</span><strong data-i18n="向文献提问">向文献提问</strong><small data-i18n="回答与原文证据">回答与原文证据</small></button></div>
 <div aria-live="polite" class="stats-grid" id="stats"></div>
 <div class="two-columns">
 <article class="card">
@@ -75,6 +91,23 @@
 </div>
 <div class="empty" data-i18n="正在读取文献" id="recent-documents">正在读取文献</div>
 </article>
+</section>
+<section data-panel="sources" hidden>
+<div class="page-heading"><div><p class="eyebrow">LITERATURE DISCOVERY</p><h1 data-i18n="文献采集">文献采集</h1><p data-i18n="从官方数据库发现细胞生物学论文，查看来源后再加入知识库。">从官方数据库发现细胞生物学论文，查看来源后再加入知识库。</p></div><span class="badge">Europe PMC / PubMed</span></div>
+<div class="source-layout"><form class="card source-composer" id="literature-form">
+<h2 data-i18n="研究范围">研究范围</h2>
+<label><span data-i18n="生物学主题">生物学主题</span><select id="literature-topic">
+<option value="mitochondria" data-i18n="线粒体与能量代谢">线粒体与能量代谢</option><option value="autophagy" data-i18n="自噬与溶酶体">自噬与溶酶体</option><option value="signaling" data-i18n="细胞信号转导">细胞信号转导</option><option value="endoplasmic_reticulum" data-i18n="内质网与蛋白质稳态">内质网与蛋白质稳态</option><option value="cell_cycle" data-i18n="细胞周期与凋亡">细胞周期与凋亡</option><option value="peroxisome" data-i18n="过氧化物酶体">过氧化物酶体</option></select></label>
+<label><span data-i18n="补充英文关键词">补充英文关键词</span><input id="literature-keywords" placeholder="例如：mitophagy、ATP、EGFR" data-i18n-placeholder="例如：mitophagy、ATP、EGFR" maxlength="200"/></label>
+<div class="year-range"><label><span data-i18n="起始年份">起始年份</span><input id="literature-from" value="2021" type="number" min="1900" max="2026" required/></label><label><span data-i18n="结束年份">结束年份</span><input id="literature-to" value="2026" type="number" min="1900" max="2026" required/></label></div>
+<label class="checkbox-label"><input type="checkbox" id="literature-open" checked/><span data-i18n="仅发现开放获取论文">仅发现开放获取论文</span></label>
+<label class="checkbox-label"><input type="checkbox" id="literature-fulltext" checked/><span data-i18n="许可明确时优先导入全文">许可明确时优先导入全文</span></label>
+<button type="submit" data-i18n="检索生物文献">检索生物文献</button>
+<p class="muted" data-i18n="优先使用英文关键词；全文自动入库要求明确的 CC BY 或 CC0 许可。">优先使用英文关键词；全文自动入库要求明确的 CC BY 或 CC0 许可。</p>
+</form><div><div class="source-result-heading"><h2 data-i18n="发现的论文">发现的论文</h2><span id="literature-status" role="status" class="muted"></span></div>
+<div id="literature-results"><div class="discovery-empty"><span data-icon="papers"></span><h2 data-i18n="从一个研究主题开始">从一个研究主题开始</h2><p data-i18n="选择左侧主题和年份，即可发现真实文献。发现结果不会自动进入知识库。">选择左侧主题和年份，即可发现真实文献。发现结果不会自动进入知识库。</p></div></div>
+<div class="pagination"><button id="literature-prev" class="secondary" disabled data-i18n="上一页">上一页</button><button id="literature-next" class="secondary" disabled data-i18n="下一页">下一页</button></div>
+<details class="search-expression"><summary data-i18n="查看实际检索式">查看实际检索式</summary><code id="literature-query"></code></details></div></div>
 </section>
 <section data-panel="papers" hidden="">
 <div class="page-heading"><div><h1 data-i18n="科研文献">科研文献</h1><p data-i18n="按论文关联摘要与全文，选择研究范围，再查找原文证据。">按论文关联摘要与全文，选择研究范围，再查找原文证据。</p></div></div>
@@ -153,9 +186,13 @@
 <p data-i18n="每次提问独立检索知识库，引用可回到对应文献与原文位置。">每次提问独立检索知识库，引用可回到对应文献与原文位置。</p>
 </div>
 </div>
-<form class="card" id="ask-form">
+<div class="conversation-bar">
+<select id="ask-conversation" aria-label="选择历史对话" data-i18n-aria-label="选择历史对话"><option value="" data-i18n="选择历史对话">选择历史对话</option></select>
+<button type="button" class="secondary" id="ask-new-conversation" data-i18n="新对话">新对话</button>
+<button type="button" class="text-button" id="ask-delete-conversation" disabled="" data-i18n="删除对话">删除对话</button>
+</div><div id="answer-result"><div class="chat-welcome"><span class="welcome-mark">B</span><p class="eyebrow">BIOKB · EVIDENCE FIRST</p><h2 data-i18n="让生物学研究，有据可循">让生物学研究，有据可循</h2><p data-i18n="从你的文献库中检索证据，理解细胞、机制与实验方法。">从你的文献库中检索证据，理解细胞、机制与实验方法。</p><div class="question-suggestions"><button class="secondary" type="button" data-question="线粒体如何参与细胞凋亡？" data-i18n="线粒体如何参与细胞凋亡？">线粒体如何参与细胞凋亡？</button><button class="secondary" type="button" data-question="自噬与溶酶体有什么关系？" data-i18n="自噬与溶酶体有什么关系？">自噬与溶酶体有什么关系？</button></div></div></div><form class="card" id="ask-form">
 <div id="ask-scope" class="research-scope"></div><p class="muted" data-i18n="可在科研文献中选择单篇或多篇论文；下方筛选同时生效。">可在科研文献中选择单篇或多篇论文；下方筛选同时生效。</p>
-<label><span data-i18n="你的问题">你的问题</span><textarea data-i18n-placeholder="例如：EGFR 如何参与细胞信号转导？" id="ask-query" maxlength="4000" minlength="2" placeholder="例如：EGFR 如何参与细胞信号转导？" required="" rows="4"></textarea>
+<label><span data-i18n="你的问题">你的问题</span><textarea data-i18n-placeholder="例如：EGFR 如何参与细胞信号转导？" id="ask-query" maxlength="4000" minlength="2" placeholder="例如：EGFR 如何参与细胞信号转导？" required="" rows="3"></textarea>
 </label>
 <div class="form-options">
 <label><span data-i18n="检索策略">检索策略</span><select id="ask-strategy">
@@ -169,17 +206,11 @@
 <option>10</option>
 </select></label><button data-i18n="依据文献回答" type="submit">依据文献回答</button>
 </div>
-<div class="filter-options"><label><span data-i18n="主题">主题</span><select id="ask-topic"><option data-i18n="全部主题" value="">全部主题</option></select></label><label><span data-i18n="年份">年份</span><select id="ask-year"><option data-i18n="全部年份" value="">全部年份</option></select></label><label><span data-i18n="资料类型">资料类型</span><select id="ask-content_type"><option data-i18n="全部资料类型" value="">全部资料类型</option></select></label></div>
+<details class="ask-advanced"><summary data-i18n="更多研究筛选">更多研究筛选</summary><div class="filter-options"><label><span data-i18n="主题">主题</span><select id="ask-topic"><option data-i18n="全部主题" value="">全部主题</option></select></label><label><span data-i18n="年份">年份</span><select id="ask-year"><option data-i18n="全部年份" value="">全部年份</option></select></label><label><span data-i18n="资料类型">资料类型</span><select id="ask-content_type"><option data-i18n="全部资料类型" value="">全部资料类型</option></select></label></div>
 <label class="checkbox-label"><input type="checkbox" checked="" id="ask-expand-context"/><span data-i18n="补齐命中片段前后的原文">补齐命中片段前后的原文</span></label>
-<p class="muted" id="ask-status" role="status"></p>
+</details><p class="muted" id="ask-status" role="status"></p>
 <progress hidden="" id="ask-progress" max="100" value="0"></progress>
 </form>
-<div class="conversation-bar">
-<select id="ask-conversation" aria-label="选择历史对话"><option value="">选择历史对话</option></select>
-<button type="button" class="secondary" id="ask-new-conversation" data-i18n="新对话">新对话</button>
-<button type="button" class="text-button" id="ask-delete-conversation" disabled="" data-i18n="删除对话">删除对话</button>
-</div>
-<div id="answer-result"></div>
 </section>
 <section data-panel="history" hidden="">
 <div class="page-heading">
@@ -240,7 +271,7 @@
 </section>
 <section data-panel="reader" hidden=""><div class="page-heading"><div><p class="eyebrow" data-i18n="文献阅读">文献阅读</p><h1 data-i18n="文献阅读" id="reader-title">文献阅读</h1></div></div><article class="card reader-content" id="reader-body"></article></section></main><aside aria-label="页面信息" class="inspector" data-i18n-aria-label="页面信息" id="inspector">
 <h2 data-i18n="页面目录">页面目录</h2><nav aria-label="页面目录" data-i18n-aria-label="页面目录" id="page-outline"></nav>
-<div class="inspector-section"><h2 data-i18n="工作空间">工作空间</h2><dl class="workspace-properties"><dt data-i18n="知识领域">知识领域</dt><dd data-i18n="生物科学">生物科学</dd><dt data-i18n="资料与证据">资料与证据</dt><dd data-i18n="原文可追溯">原文可追溯</dd><dt data-i18n="语言">语言</dt><dd data-i18n="中文 / English">中文 / English</dd></dl></div>
+<div class="inspector-section"><h2 data-i18n="工作空间">工作空间</h2><dl class="workspace-properties"><dt data-i18n="知识领域">知识领域</dt><dd data-i18n="细胞生物学">细胞生物学</dd><dt data-i18n="资料与证据">资料与证据</dt><dd data-i18n="原文可追溯">原文可追溯</dd><dt data-i18n="语言">语言</dt><dd data-i18n="中文 / English">中文 / English</dd></dl></div>
 <div class="inspector-section"><h2 data-i18n="使用提示">使用提示</h2><p data-i18n="通过左侧文献树阅读原文；在标签页之间切换，保留当前输入和结果。">通过左侧文献树阅读原文；在标签页之间切换，保留当前输入和结果。</p><p data-i18n="使用 Ctrl / ⌘ + K 快速查找文献。">使用 Ctrl / ⌘ + K 快速查找文献。</p></div>
 <div class="inspector-note"><span data-icon="leaf"></span><p data-i18n="从文献出发，让每个回答有据可循。">从文献出发，让每个回答有据可循。</p></div>
 </aside></div><footer><div><span class="status-dot"></span><span data-i18n="本地工作空间">本地工作空间</span><span class="footer-divider">/</span><span data-i18n="知识库概览" id="footer-view">知识库概览</span></div><span>BioKB · {{ version }}</span></footer>

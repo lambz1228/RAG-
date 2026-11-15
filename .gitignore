@@ -1,54 +1,30 @@
-__pycache__/
-*.py[cod]
-
-*.log
-
+# 本机配置与凭据
 .env
 .env.*
 !.env.example
 
-# Web App 运行时数据库
-sci-illust-system/web_app/data/knowledge.db
+# 运行数据、原始文献和实验产物
+/data/
+/output/
+*.sqlite3
+*.sqlite3-*
+*.db
+*.log
 
-# GraphRAG 本地工作区与索引产物
-sci-illust-system/web_app/data/text_kb/
-
-# Git worktree 隔离目录
-.worktrees/
-
-# 桌面打包产物
-dist/
-build/gui/
-.gui_browser_profile/
-
-# GraphRAG 专用虚拟环境（graphrag 1.2.x 需要 pandas<3、numpy<2）
-.venv-graphrag/
-
-# BioKB 2.0 运行数据与构建产物
-.venv/
-.venv-verify/
-data/biokb/
-data/**/*.sqlite3*
-src/*.egg-info/
+# Python 环境、缓存和构建
+.venv*/
+__pycache__/
+*.py[cod]
+*.egg-info/
 .pytest_cache/
 .ruff_cache/
 build/
-BioKB-source*.zip
-output/refactor/
-output/distributions/
+dist/
+.coverage
+htmlcov/
 
-# ===== 2026-11 毕业设计仓库边界：大文件与敏感数据不入库 =====
-# 知识库与全部实验产物（单库最大 789MB，含文献原文与嵌入向量）
-/data/
-/output/
-# 历史绘图应用与原始实验数据（387MB，本地保留）
-sci-illust-system/
-# 虚拟环境与构建产物
-.venv-graphrag/
-/build/
-# 测试向量缓存与截图
-tests/**/cache/
-.screenshots/
-# 数据库文件兜底
-*.sqlite3
-*.sqlite3-*
+# 本地工作树和编辑器
+.worktrees/
+.DS_Store
+.vscode/
+.idea/

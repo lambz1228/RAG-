@@ -16,6 +16,14 @@ def verify(path: Path) -> dict:
         manifest = json.loads(bundle.read("SOURCE_MANIFEST.json"))
         assert set(manifest) == names - {"SOURCE_MANIFEST.json"}, "清单与文件不一致"
         errors = []
+        unbundled = (
+            set(json.loads(bundle.read("UNBUNDLED_ASSETS.json"))["paths"])
+            if "UNBUNDLED_ASSETS.json" in names
+            else set()
+        )
+        for target in unbundled:
+            if not target.startswith(("output/", "data/", "sci-illust-system/", "docs/archive/")):
+                errors.append(f"非法未分发资产登记：{target}")
         for name, expected in manifest.items():
             if name.startswith("/") or ".." in name.split("/"):
                 errors.append(f"越界路径：{name}")
@@ -40,11 +48,12 @@ def verify(path: Path) -> dict:
                     target = posixpath.normpath(
                         posixpath.join(posixpath.dirname(name), unquote(parsed.path))
                     )
-                    if target not in names:
+                    if target not in names and target not in unbundled:
                         errors.append(f"失效链接：{name} → {target}")
         return {
             "passed": not errors,
             "files": len(manifest),
+            "unbundled_assets": sorted(unbundled),
             "zip_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
             "errors": errors,
         }

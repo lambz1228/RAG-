@@ -330,9 +330,12 @@ class Repository:
             raise ValueError("消息角色必须是 user 或 assistant")
         message_id = message_id or "msg_" + uuid.uuid4().hex
         with self.connection() as conn:
-            if conn.execute(
-                "SELECT 1 FROM conversations WHERE id=?", (conversation_id,)
-            ).fetchone() is None:
+            if (
+                conn.execute(
+                    "SELECT 1 FROM conversations WHERE id=?", (conversation_id,)
+                ).fetchone()
+                is None
+            ):
                 raise NotFoundError("对话不存在")
             cursor = conn.execute(
                 "INSERT OR IGNORE INTO conversation_messages (id,conversation_id,role,content,run_id) VALUES (?,?,?,?,?)",

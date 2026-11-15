@@ -102,7 +102,11 @@ def verify(output: Path) -> dict:
                 page.locator("#ask-query").fill("EGFR ATP")
                 page.locator("#ask-form").get_by_role("button", name="Answer from sources").click()
                 expect(page.locator("#answer-result .answer-text")).to_be_visible(timeout=15000)
-                expect(page.locator("#answer-result .notice").first).to_contain_text("研究 B")
+                expect(
+                    page.locator("#answer-result .chat-turn.assistant")
+                    .last.locator(".notice")
+                    .first
+                ).to_contain_text("研究 B")
                 report["checks"].append("多篇论文范围可选、清空，回答保存当次范围快照")
                 page.locator('[data-view="papers"]').click()
                 for width in (390, 820, 1440):

@@ -8,7 +8,7 @@ import sys
 from dataclasses import replace
 from pathlib import Path
 
-from .config import PROJECT_ROOT, Settings
+from .config import Settings
 from .container import build_services
 from .errors import KnowledgeError
 from .evaluation import evaluate, write_report
@@ -24,7 +24,6 @@ def parser() -> argparse.ArgumentParser:
     serve.add_argument("--dev", action="store_true", help="启用开发服务器，不启用远程调试器")
     import_command = commands.add_parser("import", help="导入文献或语料目录")
     import_command.add_argument("path", type=Path)
-    commands.add_parser("import-legacy", help="将已有生物语料导入新库，保留原库不变")
     for name in ("search", "ask"):
         cmd = commands.add_parser(name, help="检索文献" if name == "search" else "证据问答")
         cmd.add_argument("query")
@@ -102,13 +101,6 @@ def main(argv: list[str] | None = None) -> int:
                 result["document"].pop("text", None)
             else:
                 raise KnowledgeError("导入路径不存在")
-        elif args.command == "import-legacy":
-            legacy = PROJECT_ROOT / "sci-illust-system/web_app/data/corpus/biology"
-            if not legacy.is_dir():
-                legacy = (
-                    PROJECT_ROOT / "sci-illust-system/web_app/data/text_kb/biology/graphrag/input"
-                )
-            result = services.ingestion.import_directory(legacy)
         elif args.command == "search":
             result = services.retrieval.search(args.query, args.strategy, args.top_k)
         elif args.command == "ask":

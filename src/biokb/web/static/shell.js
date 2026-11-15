@@ -3,7 +3,7 @@ import { request } from "./api.js";
 import { $, element, action, guarded, contentTypeLabel } from "./ui.js";
 import { msg, t, setText, serviceText, applyTranslations } from "./i18n.js";
 
-const labels = {papers: "科研文献", overview: "知识库概览", documents: "文献管理", search: "知识检索", ask: "证据问答", history: "问答记录", evaluation: "检索评估", settings: "运行配置", reader: "文献阅读"};
+const labels = {sources: "文献采集", papers: "科研文献", overview: "知识库概览", documents: "文献管理", search: "知识检索", ask: "证据问答", history: "问答记录", evaluation: "检索评估", settings: "运行配置", reader: "文献阅读"};
 const icons = {
   papers: "M4 3h11l5 5v13H4zM14 3v6h6M8 13h8M8 17h6",
   overview: "M3 10 12 3 21 10M5 9v12h14V9M9 21v-7h6v7",

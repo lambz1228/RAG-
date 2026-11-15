@@ -208,6 +208,7 @@ async function loadConversations() {
   const { items } = await request("/api/conversations");
   const select = $("ask-conversation");
   const placeholder = new Option(t("选择历史对话"), "");
+  placeholder.dataset.i18n = "选择历史对话";
   select.replaceChildren(placeholder);
   for (const item of items) {
     const option = new Option(item.title || item.id, item.id);

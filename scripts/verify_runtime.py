@@ -1,4 +1,4 @@
-"""用当前解释器验证安装包、源码入口与桌面后端，所有服务使用临时数据。"""
+"""用当前解释器验证安装包、源码入口，所有服务使用临时数据。"""
 
 import argparse
 import json
@@ -58,22 +58,13 @@ def verify(output: Path) -> dict:
         )
         report["installed_package"] = json.loads(smoke.stdout)
         report["checks"].append("隔离解释器从 site-packages 加载 wheel，数据根目录为工作目录")
-        for label in ("wheel_cli", "source_app", "gui_backend"):
+        for label in ("wheel_cli", "source_app"):
             port = free_port()
             environment.update(BIOKB_PORT=str(port), BIOKB_DATA_DIR=str(working / label))
             if label == "wheel_cli":
                 command = [sys.executable, "-I", "-m", "biokb", "serve"]
-            elif label == "source_app":
-                command = [sys.executable, str(ROOT / "app.py")]
             else:
-                command = [
-                    sys.executable,
-                    "-I",
-                    "-c",
-                    "import runpy,sys; m=runpy.run_path(sys.argv[1]); m['_start_flask'](int(sys.argv[2]),m['Settings'].from_env())",
-                    str(ROOT / "gui.py"),
-                    str(port),
-                ]
+                command = [sys.executable, str(ROOT / "app.py")]
             process = subprocess.Popen(
                 command,
                 cwd=working,
@@ -102,6 +93,8 @@ def verify(output: Path) -> dict:
                     "/static/i18n.js",
                     "/static/messages.js",
                     "/static/papers.js",
+                    "/static/literature.js",
+                    "/api/literature/topics",
                     "/api/dashboard",
                     "/api/config",
                     "/api/papers",

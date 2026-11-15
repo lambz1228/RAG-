@@ -29,7 +29,9 @@ def test_conversation_repository_roundtrip(services):
     first = repository.append_message(conversation_id, "user", "第一个问题", message_id="t1_u")
     assert first["role"] == "user"
     # 相同 message_id 幂等跳过：任务重试不会重复写入。
-    assert repository.append_message(conversation_id, "user", "第一个问题", message_id="t1_u") is None
+    assert (
+        repository.append_message(conversation_id, "user", "第一个问题", message_id="t1_u") is None
+    )
     repository.append_message(
         conversation_id, "assistant", "第一个回答", run_id="qa_x", message_id="t1_a"
     )
