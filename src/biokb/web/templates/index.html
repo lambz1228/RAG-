@@ -97,7 +97,7 @@
 <div class="source-layout"><form class="card source-composer" id="literature-form">
 <h2 data-i18n="研究范围">研究范围</h2>
 <label><span data-i18n="生物学主题">生物学主题</span><select id="literature-topic">
-<option value="mitochondria" data-i18n="线粒体与能量代谢">线粒体与能量代谢</option><option value="autophagy" data-i18n="自噬与溶酶体">自噬与溶酶体</option><option value="signaling" data-i18n="细胞信号转导">细胞信号转导</option><option value="endoplasmic_reticulum" data-i18n="内质网与蛋白质稳态">内质网与蛋白质稳态</option><option value="cell_cycle" data-i18n="细胞周期与凋亡">细胞周期与凋亡</option><option value="peroxisome" data-i18n="过氧化物酶体">过氧化物酶体</option></select></label>
+{% for topic_id, topic in literature_topics.items() %}<option value="{{ topic_id }}" data-i18n="{{ topic.label }}">{{ topic.label }}</option>{% endfor %}</select></label>
 <label><span data-i18n="补充英文关键词">补充英文关键词</span><input id="literature-keywords" placeholder="例如：mitophagy、ATP、EGFR" data-i18n-placeholder="例如：mitophagy、ATP、EGFR" maxlength="200"/></label>
 <div class="year-range"><label><span data-i18n="起始年份">起始年份</span><input id="literature-from" value="2021" type="number" min="1900" max="2026" required/></label><label><span data-i18n="结束年份">结束年份</span><input id="literature-to" value="2026" type="number" min="1900" max="2026" required/></label></div>
 <label class="checkbox-label"><input type="checkbox" id="literature-open" checked/><span data-i18n="仅发现开放获取论文">仅发现开放获取论文</span></label>

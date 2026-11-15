@@ -34,7 +34,7 @@ def verify(output):
     errors = []
     from unittest.mock import patch
 
-    from biokb.literature import LiteratureService
+    from biokb.literature import TOPICS, LiteratureService
 
     def official_fixture(self, path, params=None, **kwargs):
         return (
@@ -55,6 +55,9 @@ def verify(output):
             page = browser.new_page(viewport={"width": 1440, "height": 1000})
             page.on("pageerror", lambda error: errors.append(str(error)))
             page.goto(url + "/#sources")
+            expect(page.locator("#literature-topic option")).to_have_count(len(TOPICS))
+            page.locator("#literature-topic").select_option("dna_maintenance")
+            expect(page.locator("#literature-topic")).to_have_value("dna_maintenance")
             page.locator("#literature-topic").select_option("peroxisome")
             page.locator("#literature-form").get_by_role("button", name="检索生物文献").click()
             expect(page.locator(".literature-card")).to_have_count(1)
@@ -68,6 +71,17 @@ def verify(output):
             page.screenshot(path=str(output / "literature_zh.png"))
             page.locator("#language-select").select_option("en")
             check_translations(page)
+            expect(page.locator('#literature-topic option[value="dna_maintenance"]')).to_have_text(
+                "DNA replication and repair"
+            )
+            assert (
+                page.evaluate("""async () => {
+                const {topicName} = await import('/static/papers.js');
+                const {translate} = await import('/static/i18n.js');
+                return translate(topicName('dna_maintenance'));
+            }""")
+                == "DNA replication and repair"
+            )
             expect(page.locator("#literature-status")).to_contain_text("Open full text imported")
             navigate(page, "ask")
             expect(page.locator(".chat-welcome")).to_be_visible()
@@ -89,6 +103,7 @@ def verify(output):
                 passed=True,
                 page_errors=errors,
                 checks=[
+                    "18个主题同步展示及新主题双语切换",
                     "官方检索响应展示",
                     "许可和标识校验后实际入库",
                     "来源保存",

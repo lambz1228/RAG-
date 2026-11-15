@@ -39,6 +39,54 @@ TOPICS = {
         "label": "过氧化物酶体",
         "query": "(TITLE_ABS:peroxisome OR TITLE_ABS:peroxisomal)",
     },
+    "cell_basics": {
+        "label": "细胞结构与生物大分子",
+        "query": '(TITLE_ABS:"cell structure" OR TITLE_ABS:"cell organelles" OR TITLE_ABS:"biological macromolecules")',
+    },
+    "membranes": {
+        "label": "细胞膜与膜运输",
+        "query": '(TITLE_ABS:"plasma membrane" OR TITLE_ABS:endocytosis OR TITLE_ABS:exocytosis OR TITLE_ABS:"membrane transport")',
+    },
+    "cytoskeleton": {
+        "label": "细胞骨架与运动",
+        "query": '(TITLE_ABS:cytoskeleton OR TITLE_ABS:microtubule OR TITLE_ABS:"actin dynamics")',
+    },
+    "nucleus_chromatin": {
+        "label": "细胞核与染色质",
+        "query": '(TITLE_ABS:chromatin OR TITLE_ABS:nucleosome OR TITLE_ABS:nucleolus OR TITLE_ABS:"nuclear pore")',
+    },
+    "dna_maintenance": {
+        "label": "DNA复制与修复",
+        "query": '(TITLE_ABS:"DNA replication" OR TITLE_ABS:"DNA repair" OR TITLE_ABS:"DNA damage response")',
+    },
+    "gene_expression": {
+        "label": "基因表达与蛋白质合成",
+        "query": '(TITLE_ABS:"RNA splicing" OR TITLE_ABS:"mRNA translation" OR TITLE_ABS:"transcription initiation" OR TITLE_ABS:"ribosome biogenesis")',
+    },
+    "protein_traffic": {
+        "label": "高尔基体与蛋白质运输",
+        "query": '(TITLE_ABS:"Golgi apparatus" OR TITLE_ABS:"ER-to-Golgi" OR TITLE_ABS:"vesicle trafficking" OR TITLE_ABS:"protein trafficking")',
+    },
+    "cell_communication": {
+        "label": "细胞通讯与发育信号",
+        "query": "(TITLE_ABS:Wnt OR TITLE_ABS:Notch OR TITLE_ABS:SMAD) AND (TITLE_ABS:signaling OR TITLE_ABS:signalling)",
+    },
+    "adhesion_matrix": {
+        "label": "细胞连接与细胞外基质",
+        "query": '(TITLE_ABS:"cell adhesion" OR TITLE_ABS:"extracellular matrix" OR TITLE_ABS:"cell junctions")',
+    },
+    "metabolism": {
+        "label": "代谢与酶学基础",
+        "query": '(TITLE_ABS:"cellular metabolism" OR TITLE_ABS:"enzyme regulation" OR TITLE_ABS:"metabolic pathways")',
+    },
+    "photosynthesis": {
+        "label": "叶绿体与光合作用",
+        "query": "(TITLE_ABS:chloroplast OR TITLE_ABS:photosynthesis) AND (TITLE_ABS:mechanism OR TITLE_ABS:regulation OR TITLE_ABS:function)",
+    },
+    "methods": {
+        "label": "细胞与分子生物学方法",
+        "query": '(TITLE_ABS:microscopy OR TITLE_ABS:sequencing OR TITLE_ABS:CRISPR OR TITLE_ABS:PCR) AND (TITLE_ABS:"cell biology" OR TITLE_ABS:"molecular biology")',
+    },
 }
 
 
