@@ -244,6 +244,13 @@
 <div class="notice" data-i18n="指标衡量文档检索能力。模型生成题目需要人工复核，开发样例与正式评测样例应分开。">指标衡量文档检索能力。模型生成题目需要人工复核，开发样例与正式评测样例应分开。</div>
 </form>
 <div id="evaluation-result"></div>
+<form class="card" id="answer-quality-form">
+<h2 data-i18n="回答质量评价">回答质量评价</h2>
+<p class="muted" data-i18n="导入实验运行包和真实评分表，汇总准确性、无支持断言及拒答表现。空白评分保留为待复核。">导入实验运行包和真实评分表，汇总准确性、无支持断言及拒答表现。空白评分保留为待复核。</p>
+<div class="form-grid"><label><span data-i18n="评分运行包（协调者）">评分运行包（协调者）</span><input id="answer-quality-bundle" name="bundle" type="file" accept=".json" required/></label><label><span data-i18n="人工评分CSV">人工评分CSV</span><input id="answer-quality-reviews" name="reviews" type="file" accept=".csv" required/></label></div>
+<button type="submit" data-i18n="导入评分并汇总">导入评分并汇总</button><p id="answer-quality-status" role="status" class="muted"></p>
+</form><div id="answer-quality-result"></div>
+
 <article class="card">
 <h2 data-i18n="实验记录">实验记录</h2>
 <div id="evaluation-list"></div>

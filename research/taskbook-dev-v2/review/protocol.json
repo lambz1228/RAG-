@@ -1,0 +1,299 @@
+{
+  "created_at_utc": "2026-11-15T04:31:36.880828+00:00",
+  "seed": 20261115,
+  "scope": "固定配置问答对照；正确性待人工盲评",
+  "dataset": {
+    "sha256": "50a0fc93b1b991cb17dd1e2aff9f1e64a4a6e4c7b24ddef24761b79962be035f",
+    "manifest": {
+      "origin": "任务书开发草稿：原文锚点校验不等于领域正确性复核",
+      "split": "development",
+      "human_review_status": null,
+      "database_sha256": "abaac342e11155d74435f852f234f9acbab8f4a9f2b4ef7a475b54b5af4213e7",
+      "corpus_manifest_sha256": "d0823fe7a2c231e6f11981bb321cab879500676cf1a8353ff30f23c2e3d92ba2",
+      "spec_sha256": "77313fe464ea4cd61b2b0f1c299132ab1cf99daaf068876878f2086e0700a160",
+      "items": [
+        {
+          "qid": "DEV-01",
+          "question": "依据TMEM55B研究，抑制TMEM55B后溶酶体酸化与钙动态如何变化？线粒体钙动态是否也改变？",
+          "reference_answer": "溶酶体酸化探针荧光降低，钙释放和再摄取减弱，ER中ATP诱导的钙反应降低；线粒体钙动态未受影响。",
+          "type": "机制/结论",
+          "answerable": true,
+          "evidence": [
+            {
+              "document_id": "doc_dcb213b1bf16df54592713f0",
+              "start_offset": 648,
+              "end_offset": 1068,
+              "sha256": "2739eddb1f603283c1e3854254caa4e84ed5589766022040dd1d23dfb87c7d13",
+              "pmid": "42928446",
+              "pmcid": "PMC13696740"
+            }
+          ],
+          "human_review_status": null
+        },
+        {
+          "qid": "DEV-02",
+          "question": "TMEM55B位于哪类细胞器，并与哪个复合体结合？",
+          "reference_answer": "TMEM55B定位于溶酶体，是Protrudin-PDZD8复合体的结合伙伴。",
+          "type": "机制/结论",
+          "answerable": true,
+          "evidence": [
+            {
+              "document_id": "doc_dcb213b1bf16df54592713f0",
+              "start_offset": 430,
+              "end_offset": 541,
+              "sha256": "5bf7e3bd15c91d60da45b4a2302c9013ac1b708e3806baf12c08c6c4bb5ac6a0",
+              "pmid": "42928446",
+              "pmcid": "PMC13696740"
+            }
+          ],
+          "human_review_status": null
+        },
+        {
+          "qid": "DEV-03",
+          "question": "Fisetin研究使用哪些筛选或实验方法确定DYRK1B抑制剂？报告的IC50是多少？",
+          "reference_answer": "使用虚拟筛选、分子对接与体外激酶实验；IC50为1.2微摩尔。",
+          "type": "方法条件",
+          "answerable": true,
+          "evidence": [
+            {
+              "document_id": "doc_8d78a83cfc7c153a6bef01c2",
+              "start_offset": 539,
+              "end_offset": 702,
+              "sha256": "8c0a0f3109df825dde1f52385f79cbc6e33f6d77bc1f9051fc7553ea6bf0d974",
+              "pmid": "43005627",
+              "pmcid": "PMC13746834"
+            }
+          ],
+          "human_review_status": null
+        },
+        {
+          "qid": "DEV-04",
+          "question": "Rab蛋白的活性与非活性状态分别结合哪种核苷酸？这种切换如何帮助细胞内运输？",
+          "reference_answer": "活性状态结合GTP，非活性状态结合GDP；切换调控效应复合体招募、膜区室身份及内吞或分泌途径货物运输。",
+          "type": "机制/结论",
+          "answerable": true,
+          "evidence": [
+            {
+              "document_id": "doc_c9cd24331beeb0adb5c9aafd",
+              "start_offset": 644,
+              "end_offset": 955,
+              "sha256": "e593ffa9685da539712f269004afd4bc5de4b150526da596f9921be35f5bbbdb",
+              "pmid": "43004376",
+              "pmcid": "PMC13746722"
+            }
+          ],
+          "human_review_status": null
+        },
+        {
+          "qid": "DEV-05",
+          "question": "FSHD研究介绍的DUX4去抑制与哪些细胞过程相关？",
+          "reference_answer": "DUX4去抑制可诱导肌生成抑制和细胞凋亡。",
+          "type": "机制/结论",
+          "answerable": true,
+          "evidence": [
+            {
+              "document_id": "doc_2697eef6744d825b0488ad0a",
+              "start_offset": 747,
+              "end_offset": 960,
+              "sha256": "a0dff196d08d8cd4b0a7785bb8cbb866bad5bff97189c15c8622ac0d14fc58c6",
+              "pmid": "42995481",
+              "pmcid": "PMC13743862"
+            }
+          ],
+          "human_review_status": null
+        },
+        {
+          "qid": "DEV-06",
+          "question": "所选肌萎缩研究将蛋白质稳态失衡与哪两种降解系统以及哪条信号通路联系起来？",
+          "reference_answer": "泛素-蛋白酶体系统UPS和自噬-溶酶体途径ALP过度激活，伴随AKT通路受抑制。",
+          "type": "机制/结论",
+          "answerable": true,
+          "evidence": [
+            {
+              "document_id": "doc_215805f6afcc9363c5396318",
+              "start_offset": 111,
+              "end_offset": 375,
+              "sha256": "878896ba099882ff0ee8be71a017662163ed62f966492d9038a87db4ad5dbc58",
+              "pmid": "43006737",
+              "pmcid": "PMC13749619"
+            }
+          ],
+          "human_review_status": null
+        },
+        {
+          "qid": "DEV-07",
+          "question": "减数分裂I和减数分裂II分别分离什么染色体结构？",
+          "reference_answer": "减数分裂I分离同源染色体；减数分裂II分离姐妹染色单体。",
+          "type": "机制/结论",
+          "answerable": true,
+          "evidence": [
+            {
+              "document_id": "doc_8252f11cd0d37a6e79b58f46",
+              "start_offset": 215,
+              "end_offset": 359,
+              "sha256": "a4fbdf98ae60f394f60714ce13a0ed96ae78746703a7e34270c1251b85be31d2",
+              "pmid": "41954595",
+              "pmcid": "PMC13065327"
+            }
+          ],
+          "human_review_status": null
+        },
+        {
+          "qid": "DEV-08",
+          "question": "减数分裂I与II中，姐妹染色单体相对于纺锤体极的定向有何不同？",
+          "reference_answer": "减数分裂I朝同一纺锤体极单向定向，减数分裂II朝相反两极双向定向。",
+          "type": "机制/结论",
+          "answerable": true,
+          "evidence": [
+            {
+              "document_id": "doc_8252f11cd0d37a6e79b58f46",
+              "start_offset": 360,
+              "end_offset": 532,
+              "sha256": "9b2ccbf7dce3c1c78aadb4d1ac78160d11dcfc5fc9a64c1b9e3fe5dc4f02494f",
+              "pmid": "41954595",
+              "pmcid": "PMC13065327"
+            }
+          ],
+          "human_review_status": null
+        },
+        {
+          "qid": "DEV-09",
+          "question": "PEX生物信息分析中，该数据库的数据来自哪个癌症项目？使用什么统计显著性阈值？",
+          "reference_answer": "数据来自癌症基因组图谱TCGA，显著性阈值为P<0.05。",
+          "type": "方法条件",
+          "answerable": true,
+          "evidence": [
+            {
+              "document_id": "doc_c4c4631f2c7fec27aa54e310",
+              "start_offset": 6597,
+              "end_offset": 6698,
+              "sha256": "46a72c8269487a255cbaba65a7a148e133883b2428593a4a59482cddb600b1b6",
+              "pmid": "40487257",
+              "pmcid": "PMC12142011"
+            }
+          ],
+          "human_review_status": null
+        },
+        {
+          "qid": "DEV-10",
+          "question": "比较TMEM55B研究和Rab综述：前者聚焦哪种溶酶体功能，后者描述的Rab开关如何调节膜运输？",
+          "reference_answer": "TMEM55B研究聚焦溶酶体酸化与钙动态；Rab通过GTP/GDP结合状态切换，招募效应复合体并调控膜运输。",
+          "type": "跨论文比较",
+          "answerable": true,
+          "evidence": [
+            {
+              "document_id": "doc_dcb213b1bf16df54592713f0",
+              "start_offset": 648,
+              "end_offset": 1068,
+              "sha256": "2739eddb1f603283c1e3854254caa4e84ed5589766022040dd1d23dfb87c7d13",
+              "pmid": "42928446",
+              "pmcid": "PMC13696740"
+            },
+            {
+              "document_id": "doc_c9cd24331beeb0adb5c9aafd",
+              "start_offset": 644,
+              "end_offset": 955,
+              "sha256": "e593ffa9685da539712f269004afd4bc5de4b150526da596f9921be35f5bbbdb",
+              "pmid": "43004376",
+              "pmcid": "PMC13746722"
+            }
+          ],
+          "human_review_status": null
+        },
+        {
+          "qid": "DEV-11",
+          "question": "只依据本次冻结库，能否给出DOI为10.0000/biokb-absent-20261115-a的论文记录及其实验培养基配方？",
+          "reference_answer": "冻结库中没有该DOI记录，不能提供来自该来源的培养基配方，应说明证据不足。",
+          "type": "库外标识无答案",
+          "answerable": false,
+          "absence_basis": {
+            "kind": "精确DOI目录缺失，仅验证指定来源身份",
+            "doi": "10.0000/biokb-absent-20261115-a",
+            "checked_documents": 7
+          },
+          "evidence": [],
+          "human_review_status": null
+        },
+        {
+          "qid": "DEV-12",
+          "question": "只依据本次冻结库，能否给出DOI为10.0000/biokb-absent-20261115-b的论文记录及其实验培养基配方？",
+          "reference_answer": "冻结库中没有该DOI记录，不能提供来自该来源的培养基配方，应说明证据不足。",
+          "type": "库外标识无答案",
+          "answerable": false,
+          "absence_basis": {
+            "kind": "精确DOI目录缺失，仅验证指定来源身份",
+            "doi": "10.0000/biokb-absent-20261115-b",
+            "checked_documents": 7
+          },
+          "evidence": [],
+          "human_review_status": null
+        }
+      ]
+    }
+  },
+  "database_sha256": "abaac342e11155d74435f852f234f9acbab8f4a9f2b4ef7a475b54b5af4213e7",
+  "snapshot_sha256": "abaac342e11155d74435f852f234f9acbab8f4a9f2b4ef7a475b54b5af4213e7",
+  "corpus": {
+    "sha256": "ef37817eb7eeeee88ca38c242fb7d658f4ed5e5b41813ac753269c4fb05ee09a",
+    "documents": 7,
+    "eligible_documents": 7
+  },
+  "index_revision": 12,
+  "configuration": {
+    "embedding_backend": "openai_compatible",
+    "embedding_model": "biokb-qwen3-embedding-0.6b",
+    "embedding_key_configured": false,
+    "llm_backend": "openai_compatible",
+    "llm_model": "biokb-qwen2.5-1.5b",
+    "llm_key_configured": false,
+    "retrieval": "hybrid",
+    "top_k": 5,
+    "chunk_size": 800,
+    "chunk_overlap": 120,
+    "request_timeout": 300,
+    "max_context_chars": 6000,
+    "authentication_required": false,
+    "answer_mode": "generated",
+    "retrieval_candidates": 50,
+    "rrf_constant": 60,
+    "dense_min_score": 0.12,
+    "max_evidence_per_document": 2,
+    "reranker_backend": "disabled",
+    "reranker_model": "",
+    "embedding_revision": "Qwen3-Embedding-0.6B-Q8_0@370f27d7550e0def9b39c1f16d3fbaa13aa67728",
+    "llm_response_format": "json_schema",
+    "llm_max_tokens": 512,
+    "llm_output_mode": "claims"
+  },
+  "arms": [
+    {
+      "name": "no_rag",
+      "strategy": "none",
+      "top_k": 5,
+      "neighbors": 0,
+      "document_cap": 2
+    },
+    {
+      "name": "basic_rag",
+      "strategy": "dense",
+      "top_k": 5,
+      "neighbors": 0,
+      "document_cap": 2
+    },
+    {
+      "name": "optimized_rag",
+      "strategy": "hybrid",
+      "top_k": 5,
+      "neighbors": 1,
+      "document_cap": 2
+    }
+  ],
+  "profile": "taskbook",
+  "generation_fingerprint": "899ee7a679feb95cf20ada0a",
+  "embedding_fingerprint": "d30ae3cdfe40c89f1cf98e7d",
+  "reranker_fingerprint": "0776a2dfd88e1cd1524664c4",
+  "prompt_version": "evidence-v6-structured-claims",
+  "no_rag_prompt_version": "no-retrieval-v1",
+  "human_review_status": null,
+  "latency_scope": "查询内随机对照组顺序；共享缓存与网络，不作受控速度结论"
+}

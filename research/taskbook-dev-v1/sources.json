@@ -1,0 +1,69 @@
+{
+  "scope": "2026-11-15已采集的开发源登记；纳入5篇并排除1篇，另补2篇仓库许可样例",
+  "sources": [
+    {
+      "pmid": "42995481",
+      "topic": "mitochondria",
+      "title": "Metabolomics Reveals Multiple Metabolic Alterations and Biomarkers of Disease Severity in Facioscapulohumeral Muscle Dystrophy.",
+      "source_url": "https://europepmc.org/article/MED/42995481",
+      "expected_imported_type": "fulltext",
+      "expected_xml_sha256": "dd7f3d6b22a4f66a4884c34ffb83f5208eee05c6032301d927196c9a43381fce",
+      "include": true,
+      "selection_reason": "包含本开发实验使用的细胞机制或方法信息，尚未经领域评审"
+    },
+    {
+      "pmid": "43004376",
+      "topic": "autophagy",
+      "title": "Rab GTPases and the Rabopathy framework: from synaptic trafficking to neurodegeneration via LRRK2-driven pathology.",
+      "source_url": "https://europepmc.org/article/MED/43004376",
+      "expected_imported_type": "fulltext",
+      "expected_xml_sha256": "46b785a7e0f2fe2ee7dd81e961bf198bd5b60a54f02889eb1ddebec29b949d88",
+      "include": true,
+      "selection_reason": "包含本开发实验使用的细胞机制或方法信息，尚未经领域评审"
+    },
+    {
+      "pmid": "43006737",
+      "topic": "signaling",
+      "title": "ZIF-8-Based Nanodelivery of Tectorigenin for Alleviating Skeletal Muscle Atrophy via Inhibition of Oxidative Stress and Inflammation.",
+      "source_url": "https://europepmc.org/article/MED/43006737",
+      "expected_imported_type": "fulltext",
+      "expected_xml_sha256": "4fa618f3d4843cb359e1b75dfc745b79f51bce1a6cb31cd9d09ad0ebbb77646d",
+      "include": true,
+      "selection_reason": "包含本开发实验使用的细胞机制或方法信息，尚未经领域评审"
+    },
+    {
+      "pmid": "42928446",
+      "topic": "endoplasmic_reticulum",
+      "title": "TMEM55B Maintains Lysosomal Homeostasis and Promotes ER-Lysosome Calcium Signaling.",
+      "source_url": "https://europepmc.org/article/MED/42928446",
+      "expected_imported_type": "abstract",
+      "expected_xml_sha256": "913adace73b125c93736b5543afc69c0db1242f76a021db903b4284bea913dd2",
+      "include": true,
+      "selection_reason": "包含本开发实验使用的细胞机制或方法信息，尚未经领域评审"
+    },
+    {
+      "pmid": "43005627",
+      "topic": "cell_cycle",
+      "title": "Identification and Biological Evaluation of Fisetin as a Novel DYRK1B Inhibitor in Ovarian Cancer with Apoptotic and Ferroptotic Effects.",
+      "source_url": "https://europepmc.org/article/MED/43005627",
+      "expected_imported_type": "abstract",
+      "expected_xml_sha256": "06b797652f99a4728c3729abcc8200db097251f77881f4254fbcfe4b670e927b",
+      "include": true,
+      "selection_reason": "包含本开发实验使用的细胞机制或方法信息，尚未经领域评审"
+    },
+    {
+      "pmid": "43011241",
+      "topic": "peroxisome",
+      "title": "Associations of fibroblast growth factor 21 with renal parameter changes during pemafibrate treatment in patients with type 2 diabetes.",
+      "source_url": "https://europepmc.org/article/MED/43011241",
+      "expected_imported_type": "fulltext",
+      "expected_xml_sha256": "8ed094361fac0a1f505ddedf2f9927d94765f2c10a7f24ece4ab46e4ae8fc622",
+      "include": false,
+      "selection_reason": "主要评价临床肾功能关联；PPAR名称不能替代过氧化物酶体基础内容，本轮范围排除"
+    }
+  ],
+  "sample_pmcids": [
+    "PMC12142011",
+    "PMC13065327"
+  ]
+}

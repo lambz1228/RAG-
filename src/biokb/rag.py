@@ -90,6 +90,9 @@ class RAGService:
             )
 
         remember(response)
+        if isinstance(response, dict) and response.get("citation_rendering"):
+            trace["citation_rendering"] = response["citation_rendering"]
+            trace["raw_response_sha256"] = response.get("raw_response_sha256")
         try:
             return RAGService._validate_answer(response, len(evidence))
         except ProviderError as exc:

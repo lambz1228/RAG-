@@ -1,0 +1,312 @@
+{
+  "scope": "开发语料冻结；来源与文件一致性不等于领域正确性",
+  "database_sha256": "abaac342e11155d74435f852f234f9acbab8f4a9f2b4ef7a475b54b5af4213e7",
+  "index_revision": 12,
+  "vector_profiles": [
+    {
+      "fingerprint": "d30ae3cdfe40c89f1cf98e7d",
+      "dimensions": 1024,
+      "count": 446
+    }
+  ],
+  "documents": [
+    {
+      "id": "doc_215805f6afcc9363c5396318",
+      "title": "ZIF-8-Based Nanodelivery of Tectorigenin for Alleviating Skeletal Muscle Atrophy via Inhibition of Oxidative Stress and Inflammation.",
+      "text_sha256": "9cfbc1aa230c1d028d191ba89b149bb4b4e6b21e2d075cd19dba4c6d0c478ee6",
+      "metadata": {
+        "title": "ZIF-8-Based Nanodelivery of Tectorigenin for Alleviating Skeletal Muscle Atrophy via Inhibition of Oxidative Stress and Inflammation.",
+        "source": "europe_pmc",
+        "source_id": "PMC13749619-fulltext",
+        "url": "https://europepmc.org/article/MED/43006737",
+        "doi": "10.1002/jcsm.70418",
+        "journal": "Journal of cachexia, sarcopenia and muscle",
+        "year": "2026",
+        "authors": [
+          "Li X",
+          "Wei Y",
+          "Qi L",
+          "Dai X",
+          "Li Z",
+          "Zhu C",
+          "Zhu X",
+          "Shen Y",
+          "Chen B",
+          "Gu X",
+          "Sun H",
+          "Yao X"
+        ],
+        "topic": "signaling",
+        "content_type": "fulltext",
+        "pmid": "43006737",
+        "pmcid": "PMC13749619",
+        "license": "https://creativecommons.org/licenses/by/4.0/",
+        "xml_sha256": "4fa618f3d4843cb359e1b75dfc745b79f51bce1a6cb31cd9d09ad0ebbb77646d",
+        "quality": {
+          "version": "quality-v1",
+          "content_type": "fulltext",
+          "status": "unreviewed",
+          "eligible": true,
+          "reasons": [],
+          "assessment": "规则自动检查，未经人工学术审核"
+        },
+        "processing": {
+          "chunk_size": 800,
+          "chunk_overlap": 120,
+          "version": "2.1.0"
+        }
+      }
+    },
+    {
+      "id": "doc_2697eef6744d825b0488ad0a",
+      "title": "Metabolomics Reveals Multiple Metabolic Alterations and Biomarkers of Disease Severity in Facioscapulohumeral Muscle Dystrophy.",
+      "text_sha256": "8239d80d2cca5edabad6e324aaf2bcf4b3c01f88461b2f142aaf0d19022488d3",
+      "metadata": {
+        "title": "Metabolomics Reveals Multiple Metabolic Alterations and Biomarkers of Disease Severity in Facioscapulohumeral Muscle Dystrophy.",
+        "source": "europe_pmc",
+        "source_id": "PMC13743862-fulltext",
+        "url": "https://europepmc.org/article/MED/42995481",
+        "doi": "10.1002/jcsm.70414",
+        "journal": "Journal of cachexia, sarcopenia and muscle",
+        "year": "2026",
+        "authors": [
+          "Reynier P",
+          "Michel M",
+          "Vandeputte P",
+          "Albano N",
+          "Zoppi D",
+          "Gillet C",
+          "Pini S",
+          "Nuredini A",
+          "De Maria M",
+          "Blanchet O",
+          "Gueguen N",
+          "Chao de la Barca JM",
+          "Ruggiero L",
+          "Tupler R",
+          "Spinazzi M"
+        ],
+        "topic": "mitochondria",
+        "content_type": "fulltext",
+        "pmid": "42995481",
+        "pmcid": "PMC13743862",
+        "license": "https://creativecommons.org/licenses/by/4.0/",
+        "xml_sha256": "dd7f3d6b22a4f66a4884c34ffb83f5208eee05c6032301d927196c9a43381fce",
+        "quality": {
+          "version": "quality-v1",
+          "content_type": "fulltext",
+          "status": "unreviewed",
+          "eligible": true,
+          "reasons": [],
+          "assessment": "规则自动检查，未经人工学术审核"
+        },
+        "processing": {
+          "chunk_size": 800,
+          "chunk_overlap": 120,
+          "version": "2.1.0"
+        }
+      }
+    },
+    {
+      "id": "doc_8252f11cd0d37a6e79b58f46",
+      "title": "Specialisation of meiotic kinetochores revealed through a synthetic spindle assembly checkpoint strategy",
+      "text_sha256": "9e379d8b2b3b5cb3e4b63f505f8db99bc39123139efa7b80f1583aa83e060587",
+      "metadata": {
+        "title": "Specialisation of meiotic kinetochores revealed through a synthetic spindle assembly checkpoint strategy",
+        "source": "europe_pmc_demo_body_paragraphs",
+        "source_id": "PMC13065327-demo-body",
+        "url": "https://europepmc.org/articles/PMC13065327",
+        "doi": "10.7554/eLife.110117",
+        "authors": [
+          "KochLori B",
+          "GhoshTiasha",
+          "SpanosChristos",
+          "MarstonAdèle L",
+          "PinesJon",
+          "CooperJonathan A"
+        ],
+        "topic": "cell_cycle",
+        "content_type": "fulltext",
+        "pmid": "41954595",
+        "pmcid": "PMC13065327",
+        "license": "CC BY 4.0 https://creativecommons.org/licenses/by/4.0/",
+        "xml_sha256": "29d5eeee1f82450ecebba2d0374654c1a3d32467af90c44bb377a1e12b0ced6d",
+        "quality": {
+          "version": "quality-v1",
+          "content_type": "fulltext",
+          "status": "unreviewed",
+          "eligible": true,
+          "reasons": [],
+          "assessment": "规则自动检查，未经人工学术审核"
+        },
+        "processing": {
+          "chunk_size": 800,
+          "chunk_overlap": 120,
+          "version": "2.1.0"
+        }
+      }
+    },
+    {
+      "id": "doc_8d78a83cfc7c153a6bef01c2",
+      "title": "Identification and Biological Evaluation of Fisetin as a Novel DYRK1B Inhibitor in Ovarian Cancer with Apoptotic and Ferroptotic Effects.",
+      "text_sha256": "e1f8debfe1babab388d893fb4082d95e67e10c1ca1f0fca14731735dab0279d3",
+      "metadata": {
+        "title": "Identification and Biological Evaluation of Fisetin as a Novel DYRK1B Inhibitor in Ovarian Cancer with Apoptotic and Ferroptotic Effects.",
+        "source": "europe_pmc",
+        "source_id": "PMC13746834-abstract",
+        "url": "https://europepmc.org/article/MED/43005627",
+        "doi": "10.2147/dddt.s631685",
+        "journal": "Drug design, development and therapy",
+        "year": "2026",
+        "authors": [
+          "Sam A",
+          "Peng CH",
+          "Hsu KC",
+          "HuangFu WC"
+        ],
+        "topic": "cell_cycle",
+        "content_type": "abstract",
+        "pmid": "43005627",
+        "pmcid": "PMC13746834",
+        "license": "cc by-nc",
+        "xml_sha256": "06b797652f99a4728c3729abcc8200db097251f77881f4254fbcfe4b670e927b",
+        "quality": {
+          "version": "quality-v1",
+          "content_type": "abstract",
+          "status": "unreviewed",
+          "eligible": true,
+          "reasons": [],
+          "assessment": "规则自动检查，未经人工学术审核"
+        },
+        "processing": {
+          "chunk_size": 800,
+          "chunk_overlap": 120,
+          "version": "2.1.0"
+        }
+      }
+    },
+    {
+      "id": "doc_c4c4631f2c7fec27aa54e310",
+      "title": "Bioinformatics Analysis of Peroxisomal Biogenesis Factor Proteins in Breast Malignancy for Introducing Potential Prognostic Biomarkers",
+      "text_sha256": "1650999c7e61a87464b6c84443aaacb2a85331f9ff52bf358a8253db4a1d0451",
+      "metadata": {
+        "title": "Bioinformatics Analysis of Peroxisomal Biogenesis Factor Proteins in Breast Malignancy for Introducing Potential Prognostic Biomarkers",
+        "source": "europe_pmc_demo_body_paragraphs",
+        "source_id": "PMC12142011-demo-body",
+        "url": "https://europepmc.org/articles/PMC12142011",
+        "doi": "10.30699/ijp.2025.2030953.3311",
+        "authors": [
+          "Mahdei NasirmahallehNima",
+          "HemmatiMina",
+          "ParsamaneshNegin"
+        ],
+        "topic": "peroxisome",
+        "content_type": "fulltext",
+        "pmid": "40487257",
+        "pmcid": "PMC12142011",
+        "license": "CC BY 4.0 https://creativecommons.org/licenses/by/4.0/",
+        "xml_sha256": "22ef9f26a9f74f9773774c02dc29d21e894b424fd215511c6386a91fd22266f5",
+        "quality": {
+          "version": "quality-v1",
+          "content_type": "fulltext",
+          "status": "unreviewed",
+          "eligible": true,
+          "reasons": [],
+          "assessment": "规则自动检查，未经人工学术审核"
+        },
+        "processing": {
+          "chunk_size": 800,
+          "chunk_overlap": 120,
+          "version": "2.1.0"
+        }
+      }
+    },
+    {
+      "id": "doc_c9cd24331beeb0adb5c9aafd",
+      "title": "Rab GTPases and the Rabopathy framework: from synaptic trafficking to neurodegeneration via LRRK2-driven pathology.",
+      "text_sha256": "d506132c031cd22607d1874b412eef220210573e65df04f901a0ce6ef2d87834",
+      "metadata": {
+        "title": "Rab GTPases and the Rabopathy framework: from synaptic trafficking to neurodegeneration via LRRK2-driven pathology.",
+        "source": "europe_pmc",
+        "source_id": "PMC13746722-fulltext",
+        "url": "https://europepmc.org/article/MED/43004376",
+        "doi": "10.1186/s40035-026-00596-8",
+        "journal": "Translational neurodegeneration",
+        "year": "2026",
+        "authors": [
+          "Zha L",
+          "Xu J",
+          "Zhu X",
+          "Tu Q",
+          "Zhong C",
+          "Zhan L",
+          "Zhang M",
+          "Zhou D",
+          "Wang X",
+          "Wu J",
+          "Hua F",
+          "Guan X"
+        ],
+        "topic": "autophagy",
+        "content_type": "fulltext",
+        "pmid": "43004376",
+        "pmcid": "PMC13746722",
+        "license": "https://creativecommons.org/licenses/by/4.0/",
+        "xml_sha256": "46b785a7e0f2fe2ee7dd81e961bf198bd5b60a54f02889eb1ddebec29b949d88",
+        "quality": {
+          "version": "quality-v1",
+          "content_type": "fulltext",
+          "status": "unreviewed",
+          "eligible": true,
+          "reasons": [],
+          "assessment": "规则自动检查，未经人工学术审核"
+        },
+        "processing": {
+          "chunk_size": 800,
+          "chunk_overlap": 120,
+          "version": "2.1.0"
+        }
+      }
+    },
+    {
+      "id": "doc_dcb213b1bf16df54592713f0",
+      "title": "TMEM55B Maintains Lysosomal Homeostasis and Promotes ER-Lysosome Calcium Signaling.",
+      "text_sha256": "804f3d1975c9c0472318e5b6a9f43c4ae7dd85c9a2b5d212fe0aabbf0f11878f",
+      "metadata": {
+        "title": "TMEM55B Maintains Lysosomal Homeostasis and Promotes ER-Lysosome Calcium Signaling.",
+        "source": "europe_pmc",
+        "source_id": "PMC13696740-abstract",
+        "url": "https://europepmc.org/article/MED/42928446",
+        "doi": "10.1111/tra.70057",
+        "journal": "Traffic (Copenhagen, Denmark)",
+        "year": "2026",
+        "authors": [
+          "Mukae N",
+          "Maki H",
+          "Shirane M"
+        ],
+        "topic": "endoplasmic_reticulum",
+        "content_type": "abstract",
+        "pmid": "42928446",
+        "pmcid": "PMC13696740",
+        "license": "cc by-nc",
+        "xml_sha256": "913adace73b125c93736b5543afc69c0db1242f76a021db903b4284bea913dd2",
+        "quality": {
+          "version": "quality-v1",
+          "content_type": "abstract",
+          "status": "unreviewed",
+          "eligible": true,
+          "reasons": [],
+          "assessment": "规则自动检查，未经人工学术审核"
+        },
+        "processing": {
+          "chunk_size": 800,
+          "chunk_overlap": 120,
+          "version": "2.1.0"
+        }
+      }
+    }
+  ],
+  "files_count": 21,
+  "note": "仅公开清单和摘要，原始文献及数据库不进入Git；在线重建可能取得新版本"
+}

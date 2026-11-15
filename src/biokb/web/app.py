@@ -11,6 +11,7 @@ from flask import Flask, jsonify, render_template, request, send_file
 from werkzeug.exceptions import HTTPException
 
 from .. import __version__
+from ..answer_evaluation import summarize_bundle
 from ..config import Settings
 from ..container import Services, build_services
 from ..errors import KnowledgeError
@@ -426,6 +427,20 @@ def create_app(settings: Settings | None = None, services: Services | None = Non
     def remove_conversation(conversation_id):
         services.repository.delete_conversation(conversation_id)
         return jsonify(success=True)
+
+    @app.post("/api/answer-evaluations")
+    def answer_quality():
+        bundle_file, reviews_file = request.files.get("bundle"), request.files.get("reviews")
+        if bundle_file is None or reviews_file is None:
+            raise KnowledgeError("请选择协调者评分运行包和人工评分CSV")
+        try:
+            bundle = json.loads(bundle_file.read())
+            report = summarize_bundle(bundle, reviews_file.read())
+        except (ValueError, KeyError, TypeError, UnicodeError) as exc:
+            raise KnowledgeError("评分材料格式不正确或与本次答卷不一致") from exc
+        report["id"] = "review_" + uuid.uuid4().hex
+        services.repository.save_run(report["id"], "answer_evaluation", "回答质量评价", report)
+        return jsonify(success=True, report=report)
 
     @app.get("/api/evaluations")
     def evaluations():

@@ -176,7 +176,9 @@ def test_all_real_model_arms_use_same_frozen_questions_without_gold(
         )
     )
     output = tmp_path / "real-controlled"
-    summary = run_experiment(services.settings.database_path, dataset, output, settings)
+    summary = run_experiment(
+        services.settings.database_path, dataset, output, settings, profile="rerank"
+    )
     assert summary["errors"] == 0 and summary["completed_records"] == 7
     assert len(captured) == 7
     assert all(question == "EGFR RAS" for question, _ in captured)

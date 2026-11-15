@@ -34,7 +34,16 @@ def package(output: Path | None = None) -> Path:
     )
     candidates = [ROOT / name for name in SINGLES]
     candidates.extend(path for path in (ROOT / "docs").rglob("*") if path.is_file())
-    for name in ("src/biokb", "tests/biokb", "deploy", "scripts", "questionbank", "examples"):
+    for name in (
+        "src/biokb",
+        "tests/biokb",
+        "deploy",
+        "scripts",
+        "questionbank",
+        "examples",
+        "config",
+        "research",
+    ):
         candidates.extend(path for path in (ROOT / name).rglob("*") if path.is_file())
     manifest = {}
     unbundled = set()

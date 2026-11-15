@@ -1,0 +1,65 @@
+{
+  "dataset_sha256": "5bc5c1db218c36b0ee3cc947e3ca8e6796fe04c8a12ded2f7d97126bca8d0265",
+  "latency_scope": "按策略顺序执行，共用有界查询向量缓存；冷启动和网络抖动影响耗时，不作为独立速度优劣结论",
+  "source_map": {},
+  "source_map_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "source_coverage": {
+    "required": 7,
+    "available": 7,
+    "missing": []
+  },
+  "embedding_fingerprint": "d30ae3cdfe40c89f1cf98e7d",
+  "reranker_fingerprint": "",
+  "dataset_split": "development",
+  "human_review_status": null,
+  "created_at": "2026-11-15T04:23:31.323341+00:00",
+  "dataset_hash_scope": "JSON 解析后按键排序并以 UTF-8 序列化",
+  "k": 5,
+  "candidate_chunks": 25,
+  "index_revision": 12,
+  "metrics_scope": "文档检索，不包含回答正确性或专家评价",
+  "dataset_origin": "任务书开发草稿；未经领域复核",
+  "source_dataset_sha256": "50a0fc93b1b991cb17dd1e2aff9f1e64a4a6e4c7b24ddef24761b79962be035f",
+  "included_supported_questions": 10,
+  "excluded_unanswerable_questions": 2,
+  "source_database_unchanged": true,
+  "results": {
+    "bm25": {
+      "n": 10,
+      "Hit@5": 1.0,
+      "Recall@5": 1.0,
+      "AllHit@5": 1.0,
+      "MRR@5": 0.9199999999999999,
+      "Precision@5": 0.22000000000000003,
+      "nDCG@5": 0.9386852807234541,
+      "latency_median_ms": 1.915,
+      "latency_p95_ms": 192.84,
+      "seconds_per_query": 0.020964001100037422
+    },
+    "dense": {
+      "n": 10,
+      "Hit@5": 1.0,
+      "Recall@5": 1.0,
+      "AllHit@5": 1.0,
+      "MRR@5": 1.0,
+      "Precision@5": 0.22000000000000003,
+      "nDCG@5": 1.0,
+      "latency_median_ms": 333.03499999999997,
+      "latency_p95_ms": 1660.56,
+      "seconds_per_query": 0.5472586126000352
+    },
+    "hybrid": {
+      "n": 10,
+      "Hit@5": 1.0,
+      "Recall@5": 1.0,
+      "AllHit@5": 1.0,
+      "MRR@5": 1.0,
+      "Precision@5": 0.22000000000000003,
+      "nDCG@5": 1.0,
+      "latency_median_ms": 22.075000000000003,
+      "latency_p95_ms": 58.1,
+      "seconds_per_query": 0.03253698329999679
+    }
+  },
+  "scope_note": "仅10道有出处的开发草稿，7篇资料，小规模且部分问题点名来源；不得外推一般效果，不包括回答正确性"
+}

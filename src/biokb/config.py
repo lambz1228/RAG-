@@ -119,6 +119,8 @@ class Settings:
     reranker_api_key: str = field(default="", repr=False)
     embedding_revision: str = ""
     llm_response_format: str = "text"
+    llm_max_tokens: int = 1600
+    llm_output_mode: str = "answer"
 
     @property
     def database_path(self) -> Path:
@@ -139,6 +141,7 @@ class Settings:
             "retrieval_candidates": (1, 50),
             "rrf_constant": (1, 1000),
             "max_evidence_per_document": (1, 50),
+            "llm_max_tokens": (128, 4096),
         }
         for name, (lower, upper) in bounds.items():
             value = getattr(self, name)
@@ -148,8 +151,16 @@ class Settings:
             raise KnowledgeError("BIOKB_EMBEDDING_BACKEND 仅支持 hash、ollama、openai_compatible")
         if self.llm_backend not in {"disabled", "ollama", "openai_compatible"}:
             raise KnowledgeError("BIOKB_LLM_BACKEND 仅支持 disabled、ollama、openai_compatible")
-        if self.llm_response_format not in {"text", "json_object"}:
-            raise KnowledgeError("生成响应格式仅支持 text、json_object")
+        if self.llm_response_format not in {"text", "json_object", "json_schema"}:
+            raise KnowledgeError("生成响应格式仅支持 text、json_object、json_schema")
+        if self.llm_output_mode not in {"answer", "claims"}:
+            raise KnowledgeError("生成输出模式仅支持 answer 或 claims")
+        if (
+            self.llm_output_mode == "claims"
+            and self.llm_backend == "openai_compatible"
+            and self.llm_response_format != "json_schema"
+        ):
+            raise KnowledgeError("结构化论断模式需要服务支持并启用 json_schema")
         if self.default_retrieval not in {"bm25", "dense", "hybrid", "hybrid_rerank"}:
             raise KnowledgeError("检索策略仅支持 bm25、dense、hybrid、hybrid_rerank")
         if self.reranker_backend not in {"disabled", "compatible"}:
@@ -211,6 +222,8 @@ class Settings:
             reranker_api_key=secret("BIOKB_RERANKER_API_KEY"),
             embedding_revision=os.environ.get("BIOKB_EMBEDDING_REVISION", ""),
             llm_response_format=os.environ.get("BIOKB_LLM_RESPONSE_FORMAT", "text"),
+            llm_max_tokens=integer("BIOKB_LLM_MAX_TOKENS", 1600, 128, 4096),
+            llm_output_mode=os.environ.get("BIOKB_LLM_OUTPUT_MODE", "answer"),
         ).validate()
 
     def public(self) -> dict:
@@ -237,6 +250,8 @@ class Settings:
             "reranker_model": self.reranker_model,
             "embedding_revision": self.embedding_revision,
             "llm_response_format": self.llm_response_format,
+            "llm_max_tokens": self.llm_max_tokens,
+            "llm_output_mode": self.llm_output_mode,
         }
 
 

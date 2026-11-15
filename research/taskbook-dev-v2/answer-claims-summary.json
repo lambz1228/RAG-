@@ -1,0 +1,88 @@
+{
+  "scope": "12题开发运行的技术诊断；结构通过与区间覆盖不是正确率或幻觉率",
+  "dataset_sha256": "50a0fc93b1b991cb17dd1e2aff9f1e64a4a6e4c7b24ddef24761b79962be035f",
+  "database_sha256": "abaac342e11155d74435f852f234f9acbab8f4a9f2b4ef7a475b54b5af4213e7",
+  "generation_fingerprint": "899ee7a679feb95cf20ada0a",
+  "embedding_fingerprint": "d30ae3cdfe40c89f1cf98e7d",
+  "prompt_version": "evidence-v6-structured-claims",
+  "configuration": {
+    "embedding_backend": "openai_compatible",
+    "embedding_model": "biokb-qwen3-embedding-0.6b",
+    "embedding_key_configured": false,
+    "llm_backend": "openai_compatible",
+    "llm_model": "biokb-qwen2.5-1.5b",
+    "llm_key_configured": false,
+    "retrieval": "hybrid",
+    "top_k": 5,
+    "chunk_size": 800,
+    "chunk_overlap": 120,
+    "request_timeout": 300,
+    "max_context_chars": 6000,
+    "authentication_required": false,
+    "answer_mode": "generated",
+    "retrieval_candidates": 50,
+    "rrf_constant": 60,
+    "dense_min_score": 0.12,
+    "max_evidence_per_document": 2,
+    "reranker_backend": "disabled",
+    "reranker_model": "",
+    "embedding_revision": "Qwen3-Embedding-0.6B-Q8_0@370f27d7550e0def9b39c1f16d3fbaa13aa67728",
+    "llm_response_format": "json_schema",
+    "llm_max_tokens": 512,
+    "llm_output_mode": "claims"
+  },
+  "profile": "taskbook",
+  "protocol_sha256": "1510e613d62c4f810c6bb797061421f82a739d3f8839c1a9604fffeb0ba15745",
+  "results_sha256": "bfc08f8d81d0ef980b7f17769db351a9d746c4cb9a87173cd14000f26f2f48a6",
+  "source_unchanged": true,
+  "planned_answers": 36,
+  "completed_records": 36,
+  "arms": {
+    "no_rag": {
+      "count": 12,
+      "modes": {
+        "ungrounded_answered": 10,
+        "ungrounded_partial": 2
+      },
+      "errors": 0,
+      "provider_fallbacks": 0,
+      "context_span_coverage_mean": null,
+      "context_span_coverage_n": 0,
+      "academic_correctness_rate": null
+    },
+    "basic_rag": {
+      "count": 12,
+      "modes": {
+        "generated": 9,
+        "partial": 3
+      },
+      "errors": 0,
+      "provider_fallbacks": 0,
+      "context_span_coverage_mean": 0.85,
+      "context_span_coverage_n": 10,
+      "academic_correctness_rate": null
+    },
+    "optimized_rag": {
+      "count": 12,
+      "modes": {
+        "generated": 7,
+        "partial": 3,
+        "provider_fallback": 2
+      },
+      "errors": 0,
+      "provider_fallbacks": 2,
+      "context_span_coverage_mean": 0.75,
+      "context_span_coverage_n": 10,
+      "academic_correctness_rate": null
+    }
+  },
+  "academic_correctness_rate": null,
+  "human_review_status": null,
+  "limitations": [
+    "同一开发题参与提示与输出协议诊断，不是独立测试",
+    "模型小、库小，且部分题目点名论文",
+    "无答案仅验证虚构DOI缺失，不能代表一般领域无答案",
+    "多个诊断运行共用本地服务，耗时不是受控速度比较",
+    "结构化引用由程序渲染，不能据此推断事实支持率"
+  ]
+}
