@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "biology-rag-kb"
+version = "2.2.0"
+description = "基于 RAG 技术的生物领域知识库系统"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["Flask>=3.0,<4.0", "requests>=2.31,<3.0", "waitress>=3.0,<4.0", "pdfplumber>=0.11,<1.0", "python-docx>=1.2,<2.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "ruff>=0.14,<1"]
+browser = ["playwright>=1.50,<2"]
+build = ["pyinstaller>=6,<7"]
+
+[project.scripts]
+biokb = "biokb.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+biokb = ["web/templates/*.html", "web/static/*.css", "web/static/*.js"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests/biokb"]
+pythonpath = ["src"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+

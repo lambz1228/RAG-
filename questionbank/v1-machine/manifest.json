@@ -1,0 +1,21 @@
+{
+  "version": "v1-machine",
+  "frozen_at_utc": "2026-11-13T06:24:57.939059+00:00",
+  "status": "frozen",
+  "database": "E:\\keyanhuitu\\keyanhuitu\\data\\biokb-v26-authors-20261105\\knowledge.sqlite3",
+  "database_sha256": "4aef7ac0f19f9fbe890b8894882805121be55b0f59e92938e0a01dbd55a9498b",
+  "question_count": 82,
+  "by_set": {
+    "开发集": 0,
+    "正式集": 82
+  },
+  "by_type": {
+    "方法条件": 30,
+    "机制/结论": 25,
+    "跨论文比较": 6,
+    "无答案": 20,
+    "版本/时效": 1
+  },
+  "questions_file_sha256": "9f040be66a54132e61414d7b62fd054e977252258bad5c5c20f6e289c5a8754b",
+  "human_review_status": null
+}

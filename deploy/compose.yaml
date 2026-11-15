@@ -1,0 +1,25 @@
+name: biology-rag-kb
+services:
+  biokb:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    ports:
+      - "127.0.0.1:${BIOKB_PUBLISHED_PORT:-5000}:5000"
+    env_file:
+      - ${BIOKB_ENV_FILE:-../.env}
+    environment:
+      BIOKB_HOST: 0.0.0.0
+      BIOKB_PORT: "5000"
+      BIOKB_DATA_DIR: /app/data
+      BIOKB_API_TOKEN: ${BIOKB_API_TOKEN:?请在环境变量或 .env 中设置访问令牌}
+    volumes:
+      - biokb_data:/app/data
+    restart: unless-stopped
+    init: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+volumes:
+  biokb_data:

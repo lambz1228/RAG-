@@ -1,0 +1,12 @@
+# 仅发送构建需要的源码，运行数据和凭据不进入构建上下文。
+**
+!pyproject.toml
+!requirements.txt
+!README.md
+!src/
+!src/biokb/
+!src/biokb/**
+!deploy/
+!deploy/Dockerfile
+**/__pycache__/**
+**/*.pyc

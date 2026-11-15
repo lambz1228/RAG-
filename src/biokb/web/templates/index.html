@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title data-i18n="生物领域知识库 · BioKB">生物领域知识库 · BioKB</title>
+<link href="{{ url_for('static',filename='app.css') }}" rel="stylesheet"/>
+<script src="{{ url_for('static',filename='main.js') }}" type="module"></script>
+</head>
+<body>
+<aside class="sidebar" id="navigation-pane">
+<a class="workspace-brand" href="#overview"><span>BioKB</span><small data-i18n="研究工作空间">研究工作空间</small></a>
+<div class="tree-search"><span data-icon="search"></span><input aria-label="快速查找文献" data-i18n-aria-label="快速查找文献" data-i18n-placeholder="快速查找文献" id="tree-query" placeholder="快速查找文献" type="search"/><kbd>Ctrl K</kbd></div>
+<nav aria-label="主导航" data-i18n-aria-label="主导航">
+<details class="navigation-group" open=""><summary data-i18n="知识工作台">知识工作台</summary><div class="navigation-items"><button class="nav-item" data-view="papers"><span data-icon="papers"></span><span data-i18n="科研文献">科研文献</span></button><button class="nav-item" data-view="overview"><span data-icon="overview"></span><span data-i18n="知识库概览">知识库概览</span></button><button class="nav-item" data-view="documents"><span data-icon="documents"></span><span data-i18n="文献管理">文献管理</span></button><button class="nav-item" data-view="search"><span data-icon="search"></span><span data-i18n="知识检索">知识检索</span></button><button class="nav-item" data-view="ask"><span data-icon="ask"></span><span data-i18n="证据问答">证据问答</span></button><button class="nav-item" data-view="history"><span data-icon="history"></span><span data-i18n="问答记录">问答记录</span></button><button class="nav-item" data-view="evaluation"><span data-icon="evaluation"></span><span data-i18n="检索评估">检索评估</span></button><button class="nav-item" data-view="settings"><span data-icon="settings"></span><span data-i18n="运行配置">运行配置</span></button></div></details>
+</nav>
+<div class="tree-heading"><span data-i18n="文献库">文献库</span><button aria-label="导入文献" class="icon-button" data-go="documents" data-i18n-aria-label="导入文献" data-i18n-title="导入文献" title="导入文献"><span data-icon="plus"></span></button></div>
+<nav aria-label="文献树" data-i18n-aria-label="文献树" id="document-tree"><p class="tree-message" data-i18n="正在读取文献">正在读取文献</p></nav>
+<div class="sidebar-note"><span class="status-dot"></span><span data-i18n="本地知识工作台">本地知识工作台</span><small>{{ version }}</small></div>
+</aside>
+<div class="workspace">
+<header class="tabbar">
+<button aria-controls="navigation-pane" aria-expanded="true" aria-label="切换导航栏" class="icon-button" data-i18n-aria-label="切换导航栏" data-i18n-title="切换导航栏" id="toggle-sidebar" title="切换导航栏"><span data-icon="panel"></span></button>
+<div aria-label="工作区标签页" data-i18n-aria-label="工作区标签页" id="workspace-tabs" role="tablist"></div>
+<div class="workspace-controls"><label class="language-control"><span class="sr-only" data-i18n="界面语言">界面语言</span><select aria-label="界面语言" class="language-select" data-i18n-aria-label="界面语言" id="language-select"><option lang="zh-CN" value="zh-CN">中文</option><option lang="en" value="en">English</option></select></label>
+<button aria-controls="inspector" aria-expanded="true" aria-label="切换信息栏" class="icon-button" data-i18n-aria-label="切换信息栏" data-i18n-title="切换信息栏" id="toggle-inspector" title="切换信息栏"><span data-icon="info"></span></button></div>
+</header><div class="topbar"><div class="breadcrumb"><span data-icon="overview"></span><span>BioKB</span><span class="breadcrumb-separator">/</span><span data-i18n="知识库概览" id="breadcrumb-current">知识库概览</span></div><span class="badge" data-i18n="读取状态" id="mode-badge">读取状态</span></div>
+
+<div class="work-area"><main>
+<section class="card access-panel" hidden="" id="access-panel">
+<h2 data-i18n="访问验证">访问验证</h2>
+<p data-i18n="当前服务启用了访问令牌。令牌只保存在本页会话中。">当前服务启用了访问令牌。令牌只保存在本页会话中。</p>
+<form class="row" id="access-form">
+<label><span data-i18n="访问令牌">访问令牌</span><input autocomplete="off" id="access-token" required="" type="password"/></label><button data-i18n="连接知识库" type="submit">连接知识库</button>
+</form>
+</section>
+<section data-panel="overview">
+<div class="page-heading">
+<div>
+<p class="eyebrow">BIOLOGY KNOWLEDGE BASE</p>
+<h1 data-i18n="知识库概览">知识库概览</h1>
+<p data-i18n="管理生物领域文献，检索原文证据，记录每次问答的来源。">管理生物领域文献，检索原文证据，记录每次问答的来源。</p>
+</div>
+<button data-go="documents" data-i18n="导入文献">导入文献</button>
+</div>
+<div aria-live="polite" class="stats-grid" id="stats"></div>
+<div class="two-columns">
+<article class="card">
+<h2 data-i18n="开始使用">开始使用</h2>
+<ol class="steps">
+<li>
+<strong data-i18n="整理文献">整理文献</strong><span data-i18n="上传论文、摘要或研究笔记，保留标题和来源。">上传论文、摘要或研究笔记，保留标题和来源。</span>
+</li>
+<li>
+<strong data-i18n="检索证据">检索证据</strong><span data-i18n="选择关键词、向量或混合检索，检查命中的原文片段。">选择关键词、向量或混合检索，检查命中的原文片段。</span>
+</li>
+<li>
+<strong data-i18n="提出问题">提出问题</strong><span data-i18n="查看引用编号与对应出处，保存可复核的问答记录。">查看引用编号与对应出处，保存可复核的问答记录。</span>
+</li>
+</ol>
+<button class="secondary" data-go="ask" data-i18n="进入证据问答">进入证据问答</button>
+</article>
+<article class="card">
+<h2 data-i18n="当前运行方式">当前运行方式</h2>
+<div id="overview-config"></div>
+<div class="notice" data-i18n="原文摘录、模型生成和证据不足会分别标记。引用编号校验不等同于事实正确性审核。">原文摘录、模型生成和证据不足会分别标记。引用编号校验不等同于事实正确性审核。</div>
+<button class="text-button" data-go="settings" data-i18n="查看运行配置 →">查看运行配置 →</button>
+</article>
+</div>
+<article class="card">
+<div class="card-heading">
+<h2 data-i18n="最近入库">最近入库</h2>
+<button class="text-button" data-go="documents" data-i18n="全部文献 →">全部文献 →</button>
+</div>
+<div class="empty" data-i18n="正在读取文献" id="recent-documents">正在读取文献</div>
+</article>
+</section>
+<section data-panel="papers" hidden="">
+<div class="page-heading"><div><h1 data-i18n="科研文献">科研文献</h1><p data-i18n="按论文关联摘要与全文，选择研究范围，再查找原文证据。">按论文关联摘要与全文，选择研究范围，再查找原文证据。</p></div></div>
+<div class="stats-grid" id="papers-summary"></div>
+<p class="notice" data-i18n="论文按一致的 PMID、PMCID 或 DOI 关联。仅有标题相同的资料不会自动合并；目录占位资料不计入论文。">论文按一致的 PMID、PMCID 或 DOI 关联。仅有标题相同的资料不会自动合并；目录占位资料不计入论文。</p>
+<p class="muted" data-i18n="资料质量仅经自动检查，尚未完成生物领域专家复核。">资料质量仅经自动检查，尚未完成生物领域专家复核。</p>
+<form class="card" id="papers-filter"><label><span data-i18n="查找论文">查找论文</span><input id="papers-query" data-i18n-placeholder="标题、作者、期刊、关键词或正式编号" placeholder="标题、作者、期刊、关键词或正式编号" maxlength="400"/></label>
+<div class="filter-options"><label><span data-i18n="主题">主题</span><select id="papers-topic"><option value="" data-i18n="全部主题">全部主题</option></select></label><label><span data-i18n="年份">年份</span><select id="papers-year"><option value="" data-i18n="全部年份">全部年份</option></select></label><label class="checkbox-label"><input type="checkbox" id="papers-fulltext"/><span data-i18n="仅看有全文的论文">仅看有全文的论文</span></label><button type="submit" data-i18n="查找论文">查找论文</button></div>
+</form><article class="card"><div id="papers-scope" class="research-scope"></div><button type="button" id="papers-ask" data-i18n="按当前范围提问">按当前范围提问</button></article>
+<div id="papers-list"></div><div class="pagination"><button class="secondary" id="papers-prev" data-i18n="上一页">上一页</button><span id="papers-page"></span><button class="secondary" id="papers-next" data-i18n="下一页">下一页</button></div>
+</section>
+<section data-panel="documents" hidden="">
+<div class="page-heading">
+<div>
+<h1 data-i18n="文献管理">文献管理</h1>
+<p data-i18n="原文、文本块和索引关联保存，支持重复文件检测与出处追溯。">原文、文本块和索引关联保存，支持重复文件检测与出处追溯。</p>
+</div>
+</div>
+<form class="card" id="upload-form">
+<h2 data-i18n="导入文献">导入文献</h2>
+<div class="form-grid">
+<label><span data-i18n="文献文件">文献文件</span><input accept=".txt,.md,.pdf,.docx,.csv,.json" id="document-file" name="file" required="" type="file"/><small data-i18n="支持文本、PDF、Word、CSV 和结构化 JSON，单篇不超过 25 MB。">支持文本、PDF、Word、CSV 和结构化 JSON，单篇不超过 25 MB。</small></label><label><span data-i18n="标题（可选）">标题（可选）</span><input data-i18n-placeholder="留空时使用文件名或已有元数据" name="title" placeholder="留空时使用文件名或已有元数据"/></label><label><span data-i18n="来源链接（可选）">来源链接（可选）</span><input name="url" placeholder="https://" type="url"/></label><label><span data-i18n="研究主题（可选）">研究主题（可选）</span><input data-i18n-placeholder="例如：细胞信号转导" name="topic" placeholder="例如：细胞信号转导"/></label><label><span data-i18n="资料类型">资料类型</span><select name="content_type"><option data-i18n="自动识别" value="">自动识别</option><option data-i18n="论文摘要" value="abstract">论文摘要</option><option data-i18n="全文" value="fulltext">全文</option><option data-i18n="知识条目" value="knowledge_note">知识条目</option><option data-i18n="待补充条目" value="reference_stub">待补充条目</option></select></label><label><span data-i18n="年份">年份</span><input inputmode="numeric" name="year" pattern="[0-9]{4}"/></label>
+</div>
+<div class="row">
+<button data-i18n="上传并建立索引" type="submit">上传并建立索引</button><span class="muted" id="upload-status" role="status"></span>
+</div>
+<progress hidden="" id="upload-progress" max="100" value="0"></progress>
+</form>
+<article class="card">
+<div class="card-heading">
+<h2><span data-i18n="文献列表">文献列表</span><span class="count" id="document-total"></span></h2>
+<form class="row" id="document-filter">
+<input aria-label="按标题搜索文献" data-i18n-aria-label="按标题搜索文献" data-i18n-placeholder="搜索标题或文件名" id="document-query" placeholder="搜索标题或文件名"/><button class="secondary" data-i18n="搜索" type="submit">搜索</button>
+</form>
+</div>
+<div class="filter-options"><label><span data-i18n="主题">主题</span><select id="documents-topic"><option data-i18n="全部主题" value="">全部主题</option></select></label><label><span data-i18n="年份">年份</span><select id="documents-year"><option data-i18n="全部年份" value="">全部年份</option></select></label><label><span data-i18n="资料类型">资料类型</span><select id="documents-content_type"><option data-i18n="全部资料类型" value="">全部资料类型</option></select></label></div>
+<div id="documents-table"></div>
+<div class="pagination">
+<button class="secondary" data-i18n="上一页" id="documents-prev">上一页</button><span id="documents-page"></span><button class="secondary" data-i18n="下一页" id="documents-next">下一页</button>
+</div>
+</article>
+</section>
+<section data-panel="search" hidden="">
+<div class="page-heading">
+<div>
+<h1 data-i18n="知识检索">知识检索</h1>
+<p data-i18n="对照不同检索策略，直接查看命中的文献片段及其位置。">对照不同检索策略，直接查看命中的文献片段及其位置。</p>
+</div>
+</div>
+<form class="card" id="search-form">
+<div id="search-scope" class="research-scope"></div><p class="muted" data-i18n="可在科研文献中选择单篇或多篇论文；下方筛选同时生效。">可在科研文献中选择单篇或多篇论文；下方筛选同时生效。</p>
+<label><span data-i18n="检索问题">检索问题</span><input data-i18n-placeholder="例如：线粒体与细胞凋亡的关系" id="search-query" maxlength="4000" minlength="2" placeholder="例如：线粒体与细胞凋亡的关系" required=""/></label>
+<div class="form-options">
+<label><span data-i18n="检索策略">检索策略</span><select id="search-strategy">
+<option data-i18n="混合检索" value="hybrid">混合检索</option>
+<option data-i18n="BM25 关键词检索" value="bm25">BM25 关键词检索</option>
+<option data-i18n="向量检索" value="dense">向量检索</option>
+<option data-i18n="混合检索＋重排序" value="hybrid_rerank">混合检索＋重排序</option>
+</select></label><label><span data-i18n="返回数量">返回数量</span><select id="search-top-k">
+<option>5</option>
+<option>10</option>
+<option>20</option>
+</select></label><button data-i18n="检索知识库" type="submit">检索知识库</button>
+</div>
+<div class="filter-options"><label><span data-i18n="主题">主题</span><select id="search-topic"><option data-i18n="全部主题" value="">全部主题</option></select></label><label><span data-i18n="年份">年份</span><select id="search-year"><option data-i18n="全部年份" value="">全部年份</option></select></label><label><span data-i18n="资料类型">资料类型</span><select id="search-content_type"><option data-i18n="全部资料类型" value="">全部资料类型</option></select></label></div>
+<p class="muted" id="search-status" role="status"></p>
+</form>
+<div class="results" id="search-results">
+<div class="empty card" data-i18n="输入问题后，这里会显示原文证据。">输入问题后，这里会显示原文证据。</div>
+</div>
+</section>
+<section data-panel="ask" hidden="">
+<div class="page-heading">
+<div>
+<h1 data-i18n="证据问答">证据问答</h1>
+<p data-i18n="每次提问独立检索知识库，引用可回到对应文献与原文位置。">每次提问独立检索知识库，引用可回到对应文献与原文位置。</p>
+</div>
+</div>
+<form class="card" id="ask-form">
+<div id="ask-scope" class="research-scope"></div><p class="muted" data-i18n="可在科研文献中选择单篇或多篇论文；下方筛选同时生效。">可在科研文献中选择单篇或多篇论文；下方筛选同时生效。</p>
+<label><span data-i18n="你的问题">你的问题</span><textarea data-i18n-placeholder="例如：EGFR 如何参与细胞信号转导？" id="ask-query" maxlength="4000" minlength="2" placeholder="例如：EGFR 如何参与细胞信号转导？" required="" rows="4"></textarea>
+</label>
+<div class="form-options">
+<label><span data-i18n="检索策略">检索策略</span><select id="ask-strategy">
+<option data-i18n="混合检索" value="hybrid">混合检索</option>
+<option data-i18n="BM25 关键词检索" value="bm25">BM25 关键词检索</option>
+<option data-i18n="向量检索" value="dense">向量检索</option>
+<option data-i18n="混合检索＋重排序" value="hybrid_rerank">混合检索＋重排序</option>
+</select></label><label><span data-i18n="证据片段数">证据片段数</span><select id="ask-top-k">
+<option>5</option>
+<option>3</option>
+<option>10</option>
+</select></label><button data-i18n="依据文献回答" type="submit">依据文献回答</button>
+</div>
+<div class="filter-options"><label><span data-i18n="主题">主题</span><select id="ask-topic"><option data-i18n="全部主题" value="">全部主题</option></select></label><label><span data-i18n="年份">年份</span><select id="ask-year"><option data-i18n="全部年份" value="">全部年份</option></select></label><label><span data-i18n="资料类型">资料类型</span><select id="ask-content_type"><option data-i18n="全部资料类型" value="">全部资料类型</option></select></label></div>
+<label class="checkbox-label"><input type="checkbox" checked="" id="ask-expand-context"/><span data-i18n="补齐命中片段前后的原文">补齐命中片段前后的原文</span></label>
+<p class="muted" id="ask-status" role="status"></p>
+<progress hidden="" id="ask-progress" max="100" value="0"></progress>
+</form>
+<div class="conversation-bar">
+<select id="ask-conversation" aria-label="选择历史对话"><option value="">选择历史对话</option></select>
+<button type="button" class="secondary" id="ask-new-conversation" data-i18n="新对话">新对话</button>
+<button type="button" class="text-button" id="ask-delete-conversation" disabled="" data-i18n="删除对话">删除对话</button>
+</div>
+<div id="answer-result"></div>
+</section>
+<section data-panel="history" hidden="">
+<div class="page-heading">
+<div>
+<h1 data-i18n="问答记录">问答记录</h1>
+<p data-i18n="保留当次问题、回答、证据快照和检索配置，便于复核。">保留当次问题、回答、证据快照和检索配置，便于复核。</p>
+</div>
+<button class="secondary" data-i18n="刷新记录" id="refresh-history">刷新记录</button>
+</div>
+<div class="card" id="history-list"></div>
+<article class="card"><h2 data-i18n="最近后台任务">最近后台任务</h2><p data-i18n="中断任务可重新提交；导入失败请重新选择原文件。">中断任务可重新提交；导入失败请重新选择原文件。</p><div id="jobs-list"></div></article>
+</section>
+<section data-panel="evaluation" hidden="">
+<div class="page-heading">
+<div>
+<h1 data-i18n="检索评估">检索评估</h1>
+<p data-i18n="使用独立标注的标准出处，对比检索命中率、召回率与排序表现。">使用独立标注的标准出处，对比检索命中率、召回率与排序表现。</p>
+</div>
+</div>
+<form class="card" id="evaluation-form">
+<label><span data-i18n="评估集 JSON">评估集 JSON</span><input accept=".json" id="evaluation-file" required="" type="file"/><small data-i18n="每题包含 question 和 gold_doc_id 或 gold_doc_ids；网页最多 200 题。">每题包含 question 和 gold_doc_id 或 gold_doc_ids；网页最多 200 题。</small></label>
+<div class="form-options">
+<label><span data-i18n="评估前 K 篇">评估前 K 篇</span><select id="evaluation-k">
+<option>10</option>
+<option>5</option>
+</select></label><button data-i18n="运行检索对比" type="submit">运行检索对比</button>
+</div>
+<label class="checkbox-label"><input id="evaluation-rerank" type="checkbox"/><span data-i18n="同时评估重排序（需配置模型）">同时评估重排序（需配置模型）</span></label>
+<p class="muted" id="evaluation-status" role="status"></p>
+<progress hidden="" id="evaluation-progress" max="100" value="0"></progress>
+<div class="notice" data-i18n="指标衡量文档检索能力。模型生成题目需要人工复核，开发样例与正式评测样例应分开。">指标衡量文档检索能力。模型生成题目需要人工复核，开发样例与正式评测样例应分开。</div>
+</form>
+<div id="evaluation-result"></div>
+<article class="card">
+<h2 data-i18n="实验记录">实验记录</h2>
+<div id="evaluation-list"></div>
+</article>
+</section>
+<section data-panel="settings" hidden="">
+<div class="page-heading">
+<div>
+<h1 data-i18n="运行配置">运行配置</h1>
+<p data-i18n="配置由项目 .env 或环境变量管理，修改后重启服务生效。">配置由项目 .env 或环境变量管理，修改后重启服务生效。</p>
+</div>
+</div>
+<article class="card">
+<h2 data-i18n="模型与检索">模型与检索</h2>
+<div id="configuration-table"></div>
+<div class="notice" data-i18n="配置远程模型后，相关文献片段会发送到所配置的服务。本地哈希向量用于离线功能验证，正式语义检索需配置向量模型。">配置远程模型后，相关文献片段会发送到所配置的服务。本地哈希向量用于离线功能验证，正式语义检索需配置向量模型。</div>
+</article>
+<article class="card">
+<h2 data-i18n="索引维护">索引维护</h2>
+<p data-i18n="更换向量模型后重建索引，系统不会混用不同模型的向量。重建失败保留原索引。">更换向量模型后重建索引，系统不会混用不同模型的向量。重建失败保留原索引。</p>
+<button class="secondary" data-i18n="重建向量索引" id="rebuild-index">重建向量索引</button>
+<p class="muted" id="rebuild-status" role="status"></p>
+<progress hidden="" id="rebuild-progress" max="100" value="0"></progress>
+</article>
+</section>
+<section data-panel="reader" hidden=""><div class="page-heading"><div><p class="eyebrow" data-i18n="文献阅读">文献阅读</p><h1 data-i18n="文献阅读" id="reader-title">文献阅读</h1></div></div><article class="card reader-content" id="reader-body"></article></section></main><aside aria-label="页面信息" class="inspector" data-i18n-aria-label="页面信息" id="inspector">
+<h2 data-i18n="页面目录">页面目录</h2><nav aria-label="页面目录" data-i18n-aria-label="页面目录" id="page-outline"></nav>
+<div class="inspector-section"><h2 data-i18n="工作空间">工作空间</h2><dl class="workspace-properties"><dt data-i18n="知识领域">知识领域</dt><dd data-i18n="生物科学">生物科学</dd><dt data-i18n="资料与证据">资料与证据</dt><dd data-i18n="原文可追溯">原文可追溯</dd><dt data-i18n="语言">语言</dt><dd data-i18n="中文 / English">中文 / English</dd></dl></div>
+<div class="inspector-section"><h2 data-i18n="使用提示">使用提示</h2><p data-i18n="通过左侧文献树阅读原文；在标签页之间切换，保留当前输入和结果。">通过左侧文献树阅读原文；在标签页之间切换，保留当前输入和结果。</p><p data-i18n="使用 Ctrl / ⌘ + K 快速查找文献。">使用 Ctrl / ⌘ + K 快速查找文献。</p></div>
+<div class="inspector-note"><span data-icon="leaf"></span><p data-i18n="从文献出发，让每个回答有据可循。">从文献出发，让每个回答有据可循。</p></div>
+</aside></div><footer><div><span class="status-dot"></span><span data-i18n="本地工作空间">本地工作空间</span><span class="footer-divider">/</span><span data-i18n="知识库概览" id="footer-view">知识库概览</span></div><span>BioKB · {{ version }}</span></footer>
+</div>
+<dialog id="document-dialog">
+<div class="dialog-heading">
+<h2 data-i18n="文献详情" id="document-dialog-title">文献详情</h2>
+<button aria-label="关闭文献详情" class="secondary" data-i18n="关闭" data-i18n-aria-label="关闭文献详情" id="close-document">关闭</button>
+<label class="dialog-language"><span class="sr-only" data-i18n="界面语言">界面语言</span><select aria-label="界面语言" class="language-select" data-i18n-aria-label="界面语言"><option lang="zh-CN" value="zh-CN">中文</option><option lang="en" value="en">English</option></select></label></div>
+<div id="document-dialog-body"></div>
+</dialog>
+<div hidden="" id="toast" role="alert"></div>
+<button aria-label="关闭导航栏" class="navigation-shade" data-i18n-aria-label="关闭导航栏" hidden="" id="navigation-shade"></button></body>
+</html>

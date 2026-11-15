@@ -1,0 +1,16 @@
+{
+  "versions": [
+    {
+      "version": "v0-dev",
+      "frozen_at_utc": "2026-11-13T05:37:27.453109+00:00",
+      "question_count": 6,
+      "questions_file_sha256": "4d6771f1d8a6c126385ea4e5d68cfe831a4109a61f03f75d381afc8261c9911a"
+    },
+    {
+      "version": "v1-machine",
+      "frozen_at_utc": "2026-11-13T06:24:57.939059+00:00",
+      "question_count": 82,
+      "questions_file_sha256": "9f040be66a54132e61414d7b62fd054e977252258bad5c5c20f6e289c5a8754b"
+    }
+  ]
+}

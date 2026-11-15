@@ -1,0 +1,41 @@
+name: BioKB 主线验证
+on:
+  push:
+    paths: ["src/**", "tests/biokb/**", "scripts/**", "docs/**", "*.py", "*.toml", "requirements.txt", ".github/workflows/biokb.yml"]
+  pull_request:
+    paths: ["src/**", "tests/biokb/**", "scripts/**", "docs/**", "*.py", "*.toml", "requirements.txt", ".github/workflows/biokb.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: 安装声明依赖
+        run: python -m pip install -e ".[dev]"
+      - name: 代码检查与主线测试
+        run: |
+          python -m ruff check src/biokb tests/biokb scripts/audit_research_corpus.py scripts/derive_paper_metrics.py scripts/replay_research_cases.py scripts/package_source.py scripts/verify_research.py scripts/verify_browser.py scripts/verify_runtime.py
+          python -m ruff format --check src/biokb tests/biokb scripts/audit_research_corpus.py scripts/derive_paper_metrics.py scripts/replay_research_cases.py scripts/package_source.py scripts/verify_research.py scripts/verify_browser.py scripts/verify_runtime.py
+          python -m pytest -q
+      - name: 安装独立浏览器
+        if: matrix.python-version == '3.12'
+        run: |
+          python -m pip install -e ".[browser]"
+          python -m playwright install --with-deps chromium
+      - name: 浏览器完整流程与源码打包
+        if: matrix.python-version == '3.12'
+        run: |
+          python scripts/verify_browser.py
+          python scripts/verify_workspace.py
+          python scripts/verify_research.py --output output/ci-research
+          python scripts/package_source.py --output output/distributions/BioKB-ci.zip
+          python scripts/verify_package.py output/distributions/BioKB-ci.zip
