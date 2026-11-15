@@ -2,7 +2,7 @@
 
 ## 当前主线
 
-题目为“基于 RAG 技术的生物领域知识库系统研发”，聚焦细胞生物学。入口为 `app.py` 或 `python -m biokb serve`；主线在 `src/biokb/`。界面与流程参考 MimirQ，后端复用本项目，不引入它的整套企业部署组件。
+题目为“基于 RAG 技术的生物领域知识库系统研发”，聚焦细胞生物学。入口为 `app.py` 或 `python -m biokb serve`；主线在 `src/biokb/`。采用单机知识工作台和 Python / Flask / SQLite 后端。
 
 ## 工程边界
 
