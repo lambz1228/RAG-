@@ -117,7 +117,7 @@ def create_app(settings: Settings | None = None, services: Services | None = Non
 
     @app.get("/")
     def index():
-        return render_template("index.html", version=__version__)
+        return render_template("index.html", version=__version__, literature_topics=TOPICS)
 
     @app.get("/favicon.ico")
     def favicon():

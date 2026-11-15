@@ -11,7 +11,9 @@
 | `summarize_answer_reviews.py` | 汇总真实人工评分，空白保持待复核 |
 | `summarize_experiment_run.py` | 完整问答运行的状态、回退与区间覆盖摘要 |
 | `verify_answer_quality.py` | 评分材料上传、待复核显示与导出的界面回归 |
-| `collect_biology.py` | 六个主题的官方文献采集，写入独立新库 |
+| `collect_biology.py` | 18个主题的官方文献采集，写入独立新库 |
+| `collect_foundation_corpus.py` | 按固定修订与摘要取得64个开放教材小节 |
+| `prepare_expanded_corpus.py` | 将论文与教材合并到独立新库并归档原始来源 |
 | `reproduce_demo.py` | 核对样例摘要，离线重建两篇文献的流程演示 |
 | `audit_questionbank.py` | 冻结题库完整性、题型缺口与待填写复核表 |
 | `questionbank.py` | CSV题集校验与新版本冻结；不代填人工审核 |

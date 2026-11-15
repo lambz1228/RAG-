@@ -11,7 +11,11 @@ const topicLabels = {
   nucleolus_ribosome: "核仁与核糖体", er_stress: "内质网应激", cilia: "纤毛",
   autophagy: "自噬", mitophagy: "线粒体自噬",
 };
-export const topicName = value => topicLabels[value] ? msg(topicLabels[value]) : value;
+export const topicName = value => {
+  const declared = [...document.querySelectorAll("#literature-topic option")].find(option => option.value === value);
+  const label = topicLabels[value] || declared?.dataset.i18n;
+  return label ? msg(label) : value;
+};
 export const paperScope = () => [...selected.keys()];
 
 export function scopeDescription(scope) {

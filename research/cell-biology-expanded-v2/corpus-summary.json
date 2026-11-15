@@ -1,0 +1,811 @@
+{
+  "scope": "扩充版来源冻结与离线导入检查；不构成语义检索、回答正确性或幻觉抑制实验",
+  "documents": 134,
+  "review_papers": 70,
+  "new_review_papers": 40,
+  "textbook_sections": 64,
+  "textbook_chapters": 13,
+  "topic_count": 18,
+  "chunks": 8083,
+  "vector_backend": "hash",
+  "vector_profiles": [
+    {
+      "fingerprint": "0b93220bbcf1afbacac70eea",
+      "dimensions": 384,
+      "count": 8083
+    }
+  ],
+  "frozen_database_sha256": "551964ecfcec150dbe6ba9e10db1c6cd8b63229ad7cfd7d5f72758721622609c",
+  "freeze_manifest_sha256": "31659d2b5c30235e570d50488d2bb607f0de362d3eab606ea2547a19583d9fde",
+  "source_files_verified": 357,
+  "source_counts": {
+    "europe_pmc": 70,
+    "openstax_biology_2e": 64
+  },
+  "topic_coverage": [
+    {
+      "topic": "mitochondria",
+      "label": "线粒体与能量代谢",
+      "previous_review_documents": 5,
+      "expanded_documents": 12
+    },
+    {
+      "topic": "autophagy",
+      "label": "自噬与溶酶体",
+      "previous_review_documents": 5,
+      "expanded_documents": 5
+    },
+    {
+      "topic": "signaling",
+      "label": "细胞信号转导",
+      "previous_review_documents": 5,
+      "expanded_documents": 5
+    },
+    {
+      "topic": "endoplasmic_reticulum",
+      "label": "内质网与蛋白质稳态",
+      "previous_review_documents": 5,
+      "expanded_documents": 5
+    },
+    {
+      "topic": "cell_cycle",
+      "label": "细胞周期与凋亡",
+      "previous_review_documents": 5,
+      "expanded_documents": 12
+    },
+    {
+      "topic": "peroxisome",
+      "label": "过氧化物酶体",
+      "previous_review_documents": 5,
+      "expanded_documents": 5
+    },
+    {
+      "topic": "cell_basics",
+      "label": "细胞结构与生物大分子",
+      "previous_review_documents": 0,
+      "expanded_documents": 8
+    },
+    {
+      "topic": "membranes",
+      "label": "细胞膜与膜运输",
+      "previous_review_documents": 0,
+      "expanded_documents": 9
+    },
+    {
+      "topic": "cytoskeleton",
+      "label": "细胞骨架与运动",
+      "previous_review_documents": 0,
+      "expanded_documents": 6
+    },
+    {
+      "topic": "nucleus_chromatin",
+      "label": "细胞核与染色质",
+      "previous_review_documents": 0,
+      "expanded_documents": 5
+    },
+    {
+      "topic": "dna_maintenance",
+      "label": "DNA复制与修复",
+      "previous_review_documents": 0,
+      "expanded_documents": 11
+    },
+    {
+      "topic": "gene_expression",
+      "label": "基因表达与蛋白质合成",
+      "previous_review_documents": 0,
+      "expanded_documents": 17
+    },
+    {
+      "topic": "protein_traffic",
+      "label": "高尔基体与蛋白质运输",
+      "previous_review_documents": 0,
+      "expanded_documents": 6
+    },
+    {
+      "topic": "cell_communication",
+      "label": "细胞通讯与发育信号",
+      "previous_review_documents": 0,
+      "expanded_documents": 9
+    },
+    {
+      "topic": "adhesion_matrix",
+      "label": "细胞连接与细胞外基质",
+      "previous_review_documents": 0,
+      "expanded_documents": 6
+    },
+    {
+      "topic": "metabolism",
+      "label": "代谢与酶学基础",
+      "previous_review_documents": 0,
+      "expanded_documents": 5
+    },
+    {
+      "topic": "photosynthesis",
+      "label": "叶绿体与光合作用",
+      "previous_review_documents": 0,
+      "expanded_documents": 3
+    },
+    {
+      "topic": "methods",
+      "label": "细胞与分子生物学方法",
+      "previous_review_documents": 0,
+      "expanded_documents": 5
+    }
+  ],
+  "coverage_note": "主题统计来自文献元数据，不是逐题可回答率。教材小节与论文分别计数，不把小节数改称论文数。",
+  "human_review_status": null,
+  "generation_experiment_performed": false,
+  "existing_evaluation_results_reused": false,
+  "documents_metadata": [
+    {
+      "id": "doc_044e5f4d6d6720d0c462828a",
+      "source_id": "PMC6367132-fulltext",
+      "text_sha256": "5d441ddc20fa30a3e688bbc0865650149f0ee71620e6bfd35819de3bfc10a38f"
+    },
+    {
+      "id": "doc_04db4db697b2a9f95fb66bb3",
+      "source_id": "openstax-biology-2e-m66509@5ae2f953cfe9",
+      "text_sha256": "d50db5e7ca9c07c93959ff7fa89c58be7fb6a79a3c557b0002fe6e0c28b754ad"
+    },
+    {
+      "id": "doc_064f4453a2712c1ae0c61366",
+      "source_id": "PMC10822820-fulltext",
+      "text_sha256": "193c7602537d317ff6eeba8a4d9df5df5d25288a5d86e9799c571af26b36cc89"
+    },
+    {
+      "id": "doc_066d57781cfffd65cddbd399",
+      "source_id": "PMC10649022-fulltext",
+      "text_sha256": "a3561f78426ee49f0003956a6d5356b0df17884864045f6c7eadb256703b23bd"
+    },
+    {
+      "id": "doc_0855999a32b9dd86714701e9",
+      "source_id": "PMC8146082-fulltext",
+      "text_sha256": "456fdb4f63c218364b0ad9bd8569439c2252206ac9b9dd5e7732e52355d656a8"
+    },
+    {
+      "id": "doc_0c64a9dc16c12ada0931c402",
+      "source_id": "PMC7497325-fulltext",
+      "text_sha256": "a8cd145f59eb98374337423b35bc064c8ab9c5517c445b6efb4f0e3f0d2ce00b"
+    },
+    {
+      "id": "doc_0e8ea27a757791d90bfda17b",
+      "source_id": "PMC8226492-fulltext",
+      "text_sha256": "c3aa0eb428a917690d13a2a9e60411399ae37d2cd98b114658749e39306b9632"
+    },
+    {
+      "id": "doc_0fb1f57efc6b7dc69c0a128a",
+      "source_id": "PMC11592877-fulltext",
+      "text_sha256": "3cabf6dc9d7a193bfd46c0f7c2528f719566fbc05029ea38b9866bd8b6c814ec"
+    },
+    {
+      "id": "doc_153a026b6441345009c8c614",
+      "source_id": "openstax-biology-2e-m66454@5ae2f953cfe9",
+      "text_sha256": "872108f27336a32f4811f3cd362e972392dd1cdfad21a50126b447c3b650044f"
+    },
+    {
+      "id": "doc_1b509608eae51c644cc7454e",
+      "source_id": "PMC8699227-fulltext",
+      "text_sha256": "113d1a2da3bf2696c7d191b798af47e3429f242cdec02e64604bc717485b1585"
+    },
+    {
+      "id": "doc_1dc0e2156d6d27f32e0e5046",
+      "source_id": "openstax-biology-2e-m66467@5ae2f953cfe9",
+      "text_sha256": "c6c9b223261e3adc67629869fa3db8476f15b168316bdd8f1e36acde04db99f8"
+    },
+    {
+      "id": "doc_20c631f82985fb27b5fa4fba",
+      "source_id": "openstax-biology-2e-m66378@5ae2f953cfe9",
+      "text_sha256": "f0c1b8a04f0123aea54d714e7189dc8e2515a9a226a4433dd747524e2f68ee48"
+    },
+    {
+      "id": "doc_23eea9e0669835c1dce09949",
+      "source_id": "PMC9196750-fulltext",
+      "text_sha256": "5a149064eda9c9c96188f9af990b70324a95a2b59f6b8603a1888c899cdfacbe"
+    },
+    {
+      "id": "doc_29c3dd92a84f5599ec7daeca",
+      "source_id": "openstax-biology-2e-m66440@5ae2f953cfe9",
+      "text_sha256": "fc985f0cbbf8dd4093e163f9eac3cd98a1530fa0b54eb54d11f5d8263356f81a"
+    },
+    {
+      "id": "doc_29dcaeae18a0a57e02670d28",
+      "source_id": "openstax-biology-2e-m66392@5ae2f953cfe9",
+      "text_sha256": "7996e46377a55aa43d7ef09b29c6f458c94a542e3bc6371ff11d3e47a4e19da7"
+    },
+    {
+      "id": "doc_2a1cf2b54934aeeaaf1bbdef",
+      "source_id": "PMC6153641-fulltext",
+      "text_sha256": "82abf66343c793c0c891f34e1e3bdec06fdeb6ce9ce3d01b41a0cd136263f6ff"
+    },
+    {
+      "id": "doc_2b75dc778c5dd723e210c457",
+      "source_id": "openstax-biology-2e-m66503@5ae2f953cfe9",
+      "text_sha256": "c311c8859d97e54740b31d6b41e6c9660faf6d8cc1f8067d44778ee193d96e64"
+    },
+    {
+      "id": "doc_2d3384db096b7db4accbe62f",
+      "source_id": "PMC6484784-fulltext",
+      "text_sha256": "a3129d4233ac25e8830420d80cee44dd0136ccfe96c4c4c8a925e3fa66ee17a2"
+    },
+    {
+      "id": "doc_3008304eb9ebbd70d8137645",
+      "source_id": "PMC10968809-fulltext",
+      "text_sha256": "09993c53764b359fc44112c8f7ccb91a25af8d49d2a08c87b3bd4c803b6471c4"
+    },
+    {
+      "id": "doc_305819d7b36fb9253663ac89",
+      "source_id": "PMC10480456-fulltext",
+      "text_sha256": "92f7256656479413e1cfcd0f2c28f384e2bc326ead7c2bd52e776b5c32803312"
+    },
+    {
+      "id": "doc_31bd50d972c3f3a11c0c4459",
+      "source_id": "openstax-biology-2e-m66511@5ae2f953cfe9",
+      "text_sha256": "0618cce8377eb27ff87e849e64bbf048cd5ef5eda45e359398c4f454f6c5424e"
+    },
+    {
+      "id": "doc_36daa6f6f9eaa959873a3b0e",
+      "source_id": "PMC8953439-fulltext",
+      "text_sha256": "d6b9cdaedff09959565866ce909c8c1b979d9c8ec5e8a121b644cf5b3e11ead8"
+    },
+    {
+      "id": "doc_38528dcfe40a0ef6eb364084",
+      "source_id": "openstax-biology-2e-m66508@5ae2f953cfe9",
+      "text_sha256": "285ce47e9b162b400f5bccf7635db77e8d5215941d2831a3d5971adf4620faa2"
+    },
+    {
+      "id": "doc_397db927bacb40a4e0e9f94d",
+      "source_id": "openstax-biology-2e-m66514@5ae2f953cfe9",
+      "text_sha256": "a9a94be2dd01ad37d649c12c8a8fa53187d3a2c2d5f06d6809eafdbb420f8423"
+    },
+    {
+      "id": "doc_3a3ddf85e2fde84fe955fe31",
+      "source_id": "openstax-biology-2e-m66449@5ae2f953cfe9",
+      "text_sha256": "e5feab6564955893a0b685ff0a7fa3d21f4f7a40180d77e48a5ca7d0b14c9369"
+    },
+    {
+      "id": "doc_3a78ac7795ef4fa8594fee76",
+      "source_id": "openstax-biology-2e-m66374@5ae2f953cfe9",
+      "text_sha256": "1ae8080922a80107c52feefc2e95ac33e1803cc8f7297b0b8be6e21a4b7c978b"
+    },
+    {
+      "id": "doc_3b7206c8ca79e454d36d3f1d",
+      "source_id": "PMC6523135-fulltext",
+      "text_sha256": "7df074a18b6e29c020eacdf1d6965d9f9740fdfa0b0a3ab1976cc722e7d69dba"
+    },
+    {
+      "id": "doc_3b951ddcffd6bb558fc1e5e7",
+      "source_id": "PMC6320978-fulltext",
+      "text_sha256": "df70d7fde8ae2b301c297bbce11dbdae677c0717f40148c353c18c6c367c2773"
+    },
+    {
+      "id": "doc_3d38322d9317d66c141e8ee6",
+      "source_id": "openstax-biology-2e-m66391@5ae2f953cfe9",
+      "text_sha256": "8af2cc5c06f6b3fa0399675fedba8d0b92d946dc4b04cd1c2a461833d6613d2f"
+    },
+    {
+      "id": "doc_4085037ffabcb3e1398b1c85",
+      "source_id": "openstax-biology-2e-m66515@5ae2f953cfe9",
+      "text_sha256": "314468925b4139fb951ea742ba36b68aa7c1cd7bd1345123729f223b6ac9be53"
+    },
+    {
+      "id": "doc_40b5f53d0a084a37183ff4e6",
+      "source_id": "PMC7277114-fulltext",
+      "text_sha256": "9fad61c5bc164a6fb512eddd0c223f884ce534c3057883c65ba9b62eef7bf977"
+    },
+    {
+      "id": "doc_452952706a4ec3dedecab6d0",
+      "source_id": "PMC6547430-fulltext",
+      "text_sha256": "e7041c8b21e262e69b35edfff59dd092c0a4084aaa1b0ca7030c2855f61ec3e9"
+    },
+    {
+      "id": "doc_46254a458103555bbef9bc23",
+      "source_id": "PMC9090780-fulltext",
+      "text_sha256": "b38dd8241badd937f8d5426a128c7ce5ae6b67caf352a6d8cda279c4c143db78"
+    },
+    {
+      "id": "doc_4691d219430dfc728dc8b04d",
+      "source_id": "openstax-biology-2e-m66475@5ae2f953cfe9",
+      "text_sha256": "7b86d86f6ad9cf23858b5c7dcce684a46726c9fc87e2c15cc790e9cf51555ba5"
+    },
+    {
+      "id": "doc_4798b32558258972762d9107",
+      "source_id": "openstax-biology-2e-m66373@5ae2f953cfe9",
+      "text_sha256": "bc15b21426284ecfc1f567094e103e7f697a01111b7184744f3530551315693f"
+    },
+    {
+      "id": "doc_499c23e1d0d84f3850472dc6",
+      "source_id": "openstax-biology-2e-m66498@5ae2f953cfe9",
+      "text_sha256": "5d5c564485f36a313fdbb531b5d91f2c30196a79c509756f4a013aa2ea6ea29e"
+    },
+    {
+      "id": "doc_4c8a374cdebc9daec8c92999",
+      "source_id": "openstax-biology-2e-m66471@5ae2f953cfe9",
+      "text_sha256": "9b67899d76a89d49d70e05410d5b7275a5d2840fb7ef84433763b68083c0628b"
+    },
+    {
+      "id": "doc_4ec79101c5caf335fa119228",
+      "source_id": "openstax-biology-2e-m66443@5ae2f953cfe9",
+      "text_sha256": "b707870cdf8c8fb95faaffdbb05d05a31284410173de9fec6d3e310e56cdb562"
+    },
+    {
+      "id": "doc_5252aab3864dabc688fb5bc7",
+      "source_id": "openstax-biology-2e-m66442@5ae2f953cfe9",
+      "text_sha256": "f9325b7377c60f0a733d898f639a85b112593d4c9ae98f80843f99fc3949d973"
+    },
+    {
+      "id": "doc_53ee28ac9fe6bcf0d84a09e2",
+      "source_id": "openstax-biology-2e-m66477@5ae2f953cfe9",
+      "text_sha256": "a7fc73c05679732749081fe88f7d5a4fed76eacd49d56f255abe114d0de57d4f"
+    },
+    {
+      "id": "doc_54686aaedb8d74e594892d49",
+      "source_id": "openstax-biology-2e-m66376@5ae2f953cfe9",
+      "text_sha256": "11e94775d69244fdb79d7c014cab2f7e9ca8e9d5aaacbdf3256e1f05e1c63ab3"
+    },
+    {
+      "id": "doc_55418d4abe002032ba94c87e",
+      "source_id": "PMC8268097-fulltext",
+      "text_sha256": "0f320da6be733f493c3231365d04a029c6f195fc3e93d688b146f4e6dd0d8f70"
+    },
+    {
+      "id": "doc_564a225b8179ec71b3811aa4",
+      "source_id": "openstax-biology-2e-m66463@5ae2f953cfe9",
+      "text_sha256": "8dc866d1cb61c03c7fea19b7819e585b580bc0a464fdbb868fbe9acee162cca1"
+    },
+    {
+      "id": "doc_5a73b62610590ac362a6d26f",
+      "source_id": "openstax-biology-2e-m66462@5ae2f953cfe9",
+      "text_sha256": "d818ecab1a83e723004c8351d0f8df405aa92e2d1a64372275a3f3f6c2790011"
+    },
+    {
+      "id": "doc_5dd11d9dbe65ad6b5427b75f",
+      "source_id": "PMC7913544-fulltext",
+      "text_sha256": "07a7cb87efbe5ba2160d24a79b2d1847e6215428804a734ff0b051776471d1e3"
+    },
+    {
+      "id": "doc_5f83f4bdf0d01b9701d16839",
+      "source_id": "PMC7057261-fulltext",
+      "text_sha256": "7fcbe1ea477685f785b723d90944433f76ad3b356dd17a9df2193f1c9805ac6e"
+    },
+    {
+      "id": "doc_64475b29c1c13d4156c053e5",
+      "source_id": "PMC9598390-fulltext",
+      "text_sha256": "65544c76f0c21528d072550c8caf76d6f9f54440b13528483d2a8989ff677647"
+    },
+    {
+      "id": "doc_669ec52557dce8026a284605",
+      "source_id": "PMC8396561-fulltext",
+      "text_sha256": "e38803f3ef31499b526a5dc43ad3f4caad8acbff5b0812f09f4324558387ee65"
+    },
+    {
+      "id": "doc_66b12f1b013dfddbdecd259c",
+      "source_id": "PMC7776579-fulltext",
+      "text_sha256": "6c36910ad4de3869950f1c107271f1f7a26f9c7525ad5d04df2d2a1d50e87185"
+    },
+    {
+      "id": "doc_6887641b5e0ad04e777a90ba",
+      "source_id": "PMC7875919-fulltext",
+      "text_sha256": "baf28e96d6f661bf81de91744f4ae59aae6e3158d9628298d756c1876d9cefce"
+    },
+    {
+      "id": "doc_699045ec493fb2f3ee83700b",
+      "source_id": "openstax-biology-2e-m66507@5ae2f953cfe9",
+      "text_sha256": "368e82f089a96ec458117e27ca1864fc2ad0225b755696b3ae9c5f6b701e5be0"
+    },
+    {
+      "id": "doc_6c39a9307aa74a6166f14e20",
+      "source_id": "PMC6523435-fulltext",
+      "text_sha256": "47ffa77c9a19f9d8f938b05410c2c72298f4370a52062e3cc7d33b78df6793d3"
+    },
+    {
+      "id": "doc_6df9a8fa7630ff07983b3d7a",
+      "source_id": "openstax-biology-2e-m66386@5ae2f953cfe9",
+      "text_sha256": "9d42a68da36c3b6b8ea5a8bfe03b072a34def110aa170228edf4a691c41837ba"
+    },
+    {
+      "id": "doc_70285623cf9bd42fe9c4550a",
+      "source_id": "PMC6096564-fulltext",
+      "text_sha256": "bfade261499cf9b88a85a775bb3564192eba8aa7f3031d65c31e8944d45df480"
+    },
+    {
+      "id": "doc_706744147bbbd2d4f0d590af",
+      "source_id": "openstax-biology-2e-m66473@5ae2f953cfe9",
+      "text_sha256": "30ffa0fc078a6e8299659e535fe2257a1eaa5811c0e25f041102a065c5f1621f"
+    },
+    {
+      "id": "doc_70ee1c17d425b71d94ee6059",
+      "source_id": "PMC7014277-fulltext",
+      "text_sha256": "da140469ca527002a76367b13fc2c31343f4656b4edbdd76de838f64f2c5ac3a"
+    },
+    {
+      "id": "doc_71d3c01097719c95c049fdad",
+      "source_id": "openstax-biology-2e-m66457@5ae2f953cfe9",
+      "text_sha256": "453c2502df9ce6a1e80dba338081d2a89f3dd82afaab7042e50efdfb58436a1f"
+    },
+    {
+      "id": "doc_73bb9b8e35ad68be850f3cb7",
+      "source_id": "PMC5974435-fulltext",
+      "text_sha256": "6c075efcef1f37b231030e3745f936fcde2b5051bf0f9888450044b50a61f2be"
+    },
+    {
+      "id": "doc_756d26527e56c2572cc5fff3",
+      "source_id": "PMC9696846-fulltext",
+      "text_sha256": "12b858ddda7d0c1fa21d1323a1f4b6da10155cc2ee11e5aae12d20b5efea183f"
+    },
+    {
+      "id": "doc_7903b310cdf791effb9f8153",
+      "source_id": "PMC10046292-fulltext",
+      "text_sha256": "cf629fe995acf798008108d3e7e338f75a0d934ef7c4062d74522ded5189b3c1"
+    },
+    {
+      "id": "doc_7bd63005a891f26bc662efad",
+      "source_id": "PMC7319585-fulltext",
+      "text_sha256": "6a95b639a737ab09a29ad03410fc5e52531f73fed4e344197445a2a363f8afce"
+    },
+    {
+      "id": "doc_7be7f423acd6ecb5df0dc4e0",
+      "source_id": "PMC7465203-fulltext",
+      "text_sha256": "9976e69121f658813d0186c32bc01428135b558fcb4ee1c0aea4c8c95efe1b6b"
+    },
+    {
+      "id": "doc_8541b853c6e4c9e861cc067f",
+      "source_id": "openstax-biology-2e-m66438@5ae2f953cfe9",
+      "text_sha256": "1c46b7466adab8826cc613d7957dc0a7826ee64ad85007b149a1d95d938731cd"
+    },
+    {
+      "id": "doc_85875a830c6dba4a0feffcda",
+      "source_id": "PMC7010707-fulltext",
+      "text_sha256": "26455bfe81ae209770a3778e8f846b122b31ccd1042d29c25399b3eaa6e8f23c"
+    },
+    {
+      "id": "doc_877d989278b37c7c4170e135",
+      "source_id": "PMC6695606-fulltext",
+      "text_sha256": "22f7a01453c41dbcef52a7e0d6edfb102a138b54091cacd91eb9c55365888416"
+    },
+    {
+      "id": "doc_8c530b7ad284722b9685e42f",
+      "source_id": "PMC8011170-fulltext",
+      "text_sha256": "d37466ae91ecfb794be33d9ef73c91e702d55e93a08a8bbf8094154b778954b9"
+    },
+    {
+      "id": "doc_92c3046ced870dbe92edd7cd",
+      "source_id": "PMC8724284-fulltext",
+      "text_sha256": "bfea37a694b127eddca44a2d54cc1327d292823b101dde55aaf80780fa285dc0"
+    },
+    {
+      "id": "doc_947e953f68119bb030865b22",
+      "source_id": "PMC10543444-fulltext",
+      "text_sha256": "84488e4ea6412e3e489ac0bfaea317428d513a7ee88aa78bf4228b5162b40349"
+    },
+    {
+      "id": "doc_95a5a668a2892ab9576db07c",
+      "source_id": "openstax-biology-2e-m66446@5ae2f953cfe9",
+      "text_sha256": "17f5c667e43bdf180cb6726098834cf82f3cc44edba6ffcef2b8a40a5f4c98cc"
+    },
+    {
+      "id": "doc_965a3140604c2a73cbca634e",
+      "source_id": "openstax-biology-2e-m66375@5ae2f953cfe9",
+      "text_sha256": "6bf9e7f6ab98e8731ca2639d14391425959ec490ff6d933e3fa7441e0683c87d"
+    },
+    {
+      "id": "doc_976a78e23ad74d08bc5ce1b1",
+      "source_id": "PMC9856021-fulltext",
+      "text_sha256": "d3d01614b8691ab633d22d9f58720fa4c7cebc256095e4943f22d19a3640ec4a"
+    },
+    {
+      "id": "doc_98e17af592f62fb9b6b559a4",
+      "source_id": "PMC7333888-fulltext",
+      "text_sha256": "4fccc3d17697515010d6c32ba4daa4b7c83e119352777708062645a40e5e19fd"
+    },
+    {
+      "id": "doc_9a6ffa49d04cf301e92434ef",
+      "source_id": "openstax-biology-2e-m66483@5ae2f953cfe9",
+      "text_sha256": "2e5734ff8256d891f46936e5d9695b063528aa8f5b830a8dd8db3e85b8fa9ade"
+    },
+    {
+      "id": "doc_9cf94704b92fea59a9ab8cf9",
+      "source_id": "openstax-biology-2e-m66459@5ae2f953cfe9",
+      "text_sha256": "6ba108b650b8b3514f7d0bb8d1ef591115ed655d4c9437cfb08dfe7d8071d0dd"
+    },
+    {
+      "id": "doc_a0879bd40a0e09049e1a1dbd",
+      "source_id": "PMC6721831-fulltext",
+      "text_sha256": "f501a6a769cdb4f32c49f627638f5b317e54ce87e3705fd168e8fdf78ebb0843"
+    },
+    {
+      "id": "doc_a4f893cc9affb50cfc504a82",
+      "source_id": "PMC9329718-fulltext",
+      "text_sha256": "e769130a3f398a395e4177990ea735d3e81b8588b0f28a2ab7901f79130bca2f"
+    },
+    {
+      "id": "doc_a66a4bf43b53860730560ff6",
+      "source_id": "openstax-biology-2e-m66461@5ae2f953cfe9",
+      "text_sha256": "2356715e287a331a426d016a3be9c0f13d88b7f5610b60d7f8d4d445f4fd5d88"
+    },
+    {
+      "id": "doc_a6f4765e9155d9c1fcf4da38",
+      "source_id": "openstax-biology-2e-m66380@5ae2f953cfe9",
+      "text_sha256": "0f5c4d44629032be7b7ff440adf6d0b3864eea30df6af0e46d96efc224c81298"
+    },
+    {
+      "id": "doc_a916934eec562b3928de8055",
+      "source_id": "openstax-biology-2e-m66445@5ae2f953cfe9",
+      "text_sha256": "1ed734b47d8a3d7c363e99ba46f61d2de0521ed55dba5b9dd2bbf5e6aca227dd"
+    },
+    {
+      "id": "doc_a9c2ed70a3dd12aca59a7336",
+      "source_id": "openstax-biology-2e-m66387@5ae2f953cfe9",
+      "text_sha256": "3d9c560a65a17c3d9caba32e7f70cc4edc90e12454711b6b8ef761de2cab8576"
+    },
+    {
+      "id": "doc_aa959f9edb97dfa3b3fef59c",
+      "source_id": "PMC6628108-fulltext",
+      "text_sha256": "c0c86b1c5ffbc3c6d700b01e15e9ed7b8dc1882ade777a1013a74bdd4cf8a42f"
+    },
+    {
+      "id": "doc_aaed261dd3d404b2f3ad3c66",
+      "source_id": "PMC6802350-fulltext",
+      "text_sha256": "98bb5031dd028f6b25087c702186ac91e752cd99a3c1241954b3b6bf829bc0f5"
+    },
+    {
+      "id": "doc_ababd65b327e9c8a6a1beb00",
+      "source_id": "PMC6281477-fulltext",
+      "text_sha256": "e355f3da41583f9d6ea66abcc98fa3ea76e41b3fc5338e67e90b3f7c75997c39"
+    },
+    {
+      "id": "doc_b172b8644e36879b56dc00d1",
+      "source_id": "openstax-biology-2e-m66499@5ae2f953cfe9",
+      "text_sha256": "a9f14e76eab206ed4cb03221d29052c231e1c6818c250e73402616cd35b61b56"
+    },
+    {
+      "id": "doc_b536a99a4d601203e1fb8d27",
+      "source_id": "PMC7177758-fulltext",
+      "text_sha256": "33f6f2be007fbd6674a3863c40e23d69c4a0acda413a153965086e06ff2f6593"
+    },
+    {
+      "id": "doc_b67b3613a58438ab284cf7ea",
+      "source_id": "PMC11734941-fulltext",
+      "text_sha256": "c6c520705856e08f5091580ae304848ebcd353e7383b2a3c2c18554a83aa815c"
+    },
+    {
+      "id": "doc_b981046e497bd8291f599016",
+      "source_id": "PMC7272360-fulltext",
+      "text_sha256": "e3fcba2596e3006cedc74299e8cf1aa5c5d5ce0de1f77254d10672fc7fab9e5b"
+    },
+    {
+      "id": "doc_bb2facdd6093ff25b2b535f4",
+      "source_id": "openstax-biology-2e-m66474@5ae2f953cfe9",
+      "text_sha256": "ebb36321565bcc3c71a000ce622b4f21b369f4215e49588c4900f6b4f9fb1912"
+    },
+    {
+      "id": "doc_bb95d0f12d35a552caafdc0f",
+      "source_id": "PMC7379631-fulltext",
+      "text_sha256": "85f03ae611b04bf153213482a3d8cd09c1d6a72c79e81236fa6b1891c5e84776"
+    },
+    {
+      "id": "doc_bd1b84a1d62a8f06d2c133f3",
+      "source_id": "PMC8080561-fulltext",
+      "text_sha256": "9a865771bc5696b78f69dbc5a09727af0864b3be2a78a709732dcb8244600875"
+    },
+    {
+      "id": "doc_bda0fa66636bb1c49bcd5026",
+      "source_id": "PMC8210275-fulltext",
+      "text_sha256": "882300ad698d1987364f521e1a069fe329438e1a4a0f5f1c197ea9c0e4e979c3"
+    },
+    {
+      "id": "doc_bdc4bd8df93ecce5b3efa3cd",
+      "source_id": "openstax-biology-2e-m66505@5ae2f953cfe9",
+      "text_sha256": "918411b8b83b236a3ad575c5f55cd62708ab143134a3fa2e584375f7cbc38d5a"
+    },
+    {
+      "id": "doc_bdf36ebf83c76475bd97711f",
+      "source_id": "PMC10417163-fulltext",
+      "text_sha256": "aac364660c90e895e653c377e701b6c95c6565485244a13887be8b4fcbf40fac"
+    },
+    {
+      "id": "doc_be11d88949613c259fbce343",
+      "source_id": "openstax-biology-2e-m66504@5ae2f953cfe9",
+      "text_sha256": "e342e4ed41d8e3f2e776e8092a9b938ae2f55b9ae8c4af6a9b355d766e5560b2"
+    },
+    {
+      "id": "doc_c034c3d32b6091c1cc9aef9a",
+      "source_id": "openstax-biology-2e-m66390@5ae2f953cfe9",
+      "text_sha256": "7149b91dbbee03db49a1b0e9baec35e08bf80a9c3502f8b5f866b7b0ce806859"
+    },
+    {
+      "id": "doc_c2f10c6145d578532295efa3",
+      "source_id": "openstax-biology-2e-m66500@5ae2f953cfe9",
+      "text_sha256": "54ef109df9f3bd64de6bbb4f928339d9b36fe0f8b14a061a1a90f1c38b98e0e4"
+    },
+    {
+      "id": "doc_c4109f7f16d1462b588ae050",
+      "source_id": "PMC8948217-fulltext",
+      "text_sha256": "e6df6bd3963e51206bf3a8622a50f9999ef36772c8c7547a0e21decbe61003ca"
+    },
+    {
+      "id": "doc_c634dd5787ead82fdb3e5d47",
+      "source_id": "openstax-biology-2e-m66383@5ae2f953cfe9",
+      "text_sha256": "6b420fe79bfb16371f3250e2b9fc6b51646e3a3a18047e82f92af5bf780d7a76"
+    },
+    {
+      "id": "doc_c93a1141fa1f11616b191798",
+      "source_id": "openstax-biology-2e-m66484@5ae2f953cfe9",
+      "text_sha256": "67966387fe33901765c14116a3559f57096614fcbbeec638951cef096ce0969e"
+    },
+    {
+      "id": "doc_ca0a7126db0081bd6312fad9",
+      "source_id": "openstax-biology-2e-m66379@5ae2f953cfe9",
+      "text_sha256": "f0439fbb84415594da46e194a1f69d4219df500d1520be3f0cc2d19310bda0d3"
+    },
+    {
+      "id": "doc_cab41cd46925d54ace10506a",
+      "source_id": "PMC6540057-fulltext",
+      "text_sha256": "3566582d3131bf654520ebb56b6fe6fa6db9c4d3486e300d39d488930f276132"
+    },
+    {
+      "id": "doc_caca6cd04023d11a9a10976f",
+      "source_id": "openstax-biology-2e-m66468@5ae2f953cfe9",
+      "text_sha256": "be0141ec1d6c420b3d1cd98454978403b3dfbb4e2647be89b247559c8641793f"
+    },
+    {
+      "id": "doc_d48f55dcb1be5248c9554990",
+      "source_id": "PMC8622459-fulltext",
+      "text_sha256": "050f61a5408fd32fdafb3136df2e42b35aa0685b00b0e3293b8551509d9d4fef"
+    },
+    {
+      "id": "doc_d9cf7651b95a626dc42cb032",
+      "source_id": "openstax-biology-2e-m66455@5ae2f953cfe9",
+      "text_sha256": "35e143a6c43dad714b8ae74d90bdac9279917236f05635301017c5e43c71e724"
+    },
+    {
+      "id": "doc_da19cffca33447f3f41ce54a",
+      "source_id": "PMC6423427-fulltext",
+      "text_sha256": "fdc8f300a57c97012723f08b9fdda8fb3ad3b58933d6cd3e8831a54f45dace23"
+    },
+    {
+      "id": "doc_daa976d9ce074c633ffc9618",
+      "source_id": "PMC9153193-fulltext",
+      "text_sha256": "1be71e67d8ed1ee9769e08893b92f1b3999aa6293b2fdd8c9056d7469b24e978"
+    },
+    {
+      "id": "doc_dc5310352ef869a090334c60",
+      "source_id": "openstax-biology-2e-m66506@5ae2f953cfe9",
+      "text_sha256": "dbf8a82875496c929478f562065fc757ee000e0f26639ec94fbaa5fc7bd79432"
+    },
+    {
+      "id": "doc_de30299468643cce0551ba8f",
+      "source_id": "openstax-biology-2e-m66479@5ae2f953cfe9",
+      "text_sha256": "84aa7bedef6f9e1fe79c2a6f371f5a63df50444328dfbbbef77b575801326428"
+    },
+    {
+      "id": "doc_df46d5f01bfbeebfe22faf20",
+      "source_id": "PMC10568841-fulltext",
+      "text_sha256": "54bb39814eada164ccca38fea204cf4127218af4ef1f3c3b95ac25e3cc8c92ef"
+    },
+    {
+      "id": "doc_e0c2d3d16298ff73e8395a1a",
+      "source_id": "PMC8890532-fulltext",
+      "text_sha256": "c29e9f4e65f5625e5a90f189148c568b93ada37b8244c0c8fb92e52163d2f60e"
+    },
+    {
+      "id": "doc_e0d27fac7012ebca8f6d435e",
+      "source_id": "PMC9492833-fulltext",
+      "text_sha256": "1aa038b9b27e6e2b5a87f69df5c7a9b28e862e11d94f5dd6caffc7ff97385b94"
+    },
+    {
+      "id": "doc_e1e897a6f00c216394627439",
+      "source_id": "openstax-biology-2e-m66481@5ae2f953cfe9",
+      "text_sha256": "ce4e3314f5c37a24aa2fb177de39c3725c4d6f471cf86ca736ce2539be72a134"
+    },
+    {
+      "id": "doc_e219cb44f720b87461808a73",
+      "source_id": "openstax-biology-2e-m66512@5ae2f953cfe9",
+      "text_sha256": "f19469fc5f3e98676e9d2de0331452828703207f7affbaea11f99caf2b4cbcf6"
+    },
+    {
+      "id": "doc_e2b7d5df370be980c1edea26",
+      "source_id": "openstax-biology-2e-m66466@5ae2f953cfe9",
+      "text_sha256": "1a5ff302de919d7d1cde40ff0f794fb0476396d7ec39564ad990caad2fc0fc83"
+    },
+    {
+      "id": "doc_e2e166f365bf77cc7ccad3ab",
+      "source_id": "openstax-biology-2e-m66469@5ae2f953cfe9",
+      "text_sha256": "5b664c6dff2ea06dc99c40e77497456f1bb268eb0ee6cbdc9195605d49df20e1"
+    },
+    {
+      "id": "doc_e3ff1de140771e3f75c555bc",
+      "source_id": "openstax-biology-2e-m66441@5ae2f953cfe9",
+      "text_sha256": "c460e84632ded99e36a4281dd85d16e058c21de849a14bb4b3c54dbcee488fc0"
+    },
+    {
+      "id": "doc_e6a96e3d24b2b83a3bc255d8",
+      "source_id": "PMC6823166-fulltext",
+      "text_sha256": "52b7a60ae69fec2b6797d8d2aeb2f8f98d32c3002615a841e94686d4fcd4365b"
+    },
+    {
+      "id": "doc_e837145989eafda693943478",
+      "source_id": "PMC8868334-fulltext",
+      "text_sha256": "b409b14fa4bfc3fbb1d2cd8022ec38f2c6fa24d142275bc705c18d5249739d0d"
+    },
+    {
+      "id": "doc_ea25ea0c34cb2197d3e69b2a",
+      "source_id": "openstax-biology-2e-m66465@5ae2f953cfe9",
+      "text_sha256": "e5e4661e25d7ae3e128f5a7824c8b1b861044eedf94b6fac5816d5487344131b"
+    },
+    {
+      "id": "doc_ea4065467bc763d7029d6f3a",
+      "source_id": "PMC11926181-fulltext",
+      "text_sha256": "baeecf3defedda03fa23457785b7020aac23cdee9b2c851cc180f1f43156986c"
+    },
+    {
+      "id": "doc_eaf0b8f6535aadc11fbf5854",
+      "source_id": "openstax-biology-2e-m66389@5ae2f953cfe9",
+      "text_sha256": "cc2c48aae7243d23985b305c2f326360117a4d269bd483a6e3852e1d556a1175"
+    },
+    {
+      "id": "doc_ed29ef6baad9da7d5689048c",
+      "source_id": "openstax-biology-2e-m66478@5ae2f953cfe9",
+      "text_sha256": "58efa653ccda1b9d57891ee8457a692f46178b339403f5729b94a740b7a9d2f9"
+    },
+    {
+      "id": "doc_ed38e005674f6917c247ae5e",
+      "source_id": "openstax-biology-2e-m66501@5ae2f953cfe9",
+      "text_sha256": "f09547f92c697f91f00353a96555d289b7c3b1741facf1b6a05359a7cbc8568e"
+    },
+    {
+      "id": "doc_eee2c37a2741a11fcdce6b6d",
+      "source_id": "PMC8834378-fulltext",
+      "text_sha256": "78fc5be7fd823f5fe6c1222a17ded7d08bfcbdda1894070b39f879025eba6c49"
+    },
+    {
+      "id": "doc_f1122c9fc5f0f8012263ae36",
+      "source_id": "openstax-biology-2e-m66452@5ae2f953cfe9",
+      "text_sha256": "4b99990c2300ee1a0b7a48c552a491da29fdb80362a3753357ab76cc67b74e21"
+    },
+    {
+      "id": "doc_f494ba29b1d883a9825fc2ee",
+      "source_id": "openstax-biology-2e-m66470@5ae2f953cfe9",
+      "text_sha256": "a34af37f39818a1f1bc6b595659fdb7588e50fd19df110de906659a28e3f5a81"
+    },
+    {
+      "id": "doc_f4d0586b7f9d77c8cc3496ba",
+      "source_id": "openstax-biology-2e-m66480@5ae2f953cfe9",
+      "text_sha256": "24813af05cb8a5570a20516d12c4b9f0162fe3a36526b3a608c3461d0c941f67"
+    },
+    {
+      "id": "doc_f659f46cb55892bc80f691f7",
+      "source_id": "PMC8373318-fulltext",
+      "text_sha256": "3e54b8982ca97c1f65944cc2698f0570f7f79dfeea2d49f1f381d05205291f48"
+    },
+    {
+      "id": "doc_f8fa8dc264b0aca0e9eca1e1",
+      "source_id": "PMC7329351-fulltext",
+      "text_sha256": "f10b81c0e4ac25e3decf626ef7c43f1334e15e9724fbe9d8bac2f420d10f0061"
+    },
+    {
+      "id": "doc_f95dee25cf718dbec77e694c",
+      "source_id": "openstax-biology-2e-m66513@5ae2f953cfe9",
+      "text_sha256": "b8b185f6efd44113b2075a22a52242992d7a0ae91f3c99b8ec84ef1c53b780d9"
+    },
+    {
+      "id": "doc_fbefea30b077a17428e2eebf",
+      "source_id": "PMC8201181-fulltext",
+      "text_sha256": "49d4e4e57eae51d5861ee263e9d03555f0581e22f50be268f01a230f39911e0d"
+    },
+    {
+      "id": "doc_fc1845d8bf528bc7867ca374",
+      "source_id": "openstax-biology-2e-m66497@5ae2f953cfe9",
+      "text_sha256": "0100a77d94431001971a6805ab8ae6541cad347ae1a092133dfb48ddb57252be"
+    },
+    {
+      "id": "doc_fd01286f7b78c2228b344c62",
+      "source_id": "PMC8077471-fulltext",
+      "text_sha256": "a6ad737efde86e8a96eaf57f5d375ebee10e9f84f8cb222040792d59af5e0d54"
+    },
+    {
+      "id": "doc_fe2403db29c7f08727b587d0",
+      "source_id": "PMC9221026-fulltext",
+      "text_sha256": "ab1699ffbc5403d10aa722a2d49a24bbfb52cbf599719979d07a608ae755071c"
+    }
+  ]
+}
