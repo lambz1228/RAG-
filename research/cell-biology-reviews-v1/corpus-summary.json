@@ -1,0 +1,183 @@
+{
+  "scope": "本轮来源冻结与离线导入验证；哈希向量不代表预训练语义检索能力",
+  "documents": 30,
+  "fulltext_documents": 30,
+  "abstract_only_documents": 0,
+  "topics": {
+    "线粒体与能量代谢": 5,
+    "自噬与溶酶体": 5,
+    "细胞信号转导": 5,
+    "内质网与蛋白质稳态": 5,
+    "细胞周期与凋亡": 5,
+    "过氧化物酶体": 5
+  },
+  "downloaded_text_characters": 1905947,
+  "chunks": 3281,
+  "vector_backend": "hash",
+  "vector_profiles": [
+    {
+      "fingerprint": "0b93220bbcf1afbacac70eea",
+      "dimensions": 384,
+      "count": 3281
+    }
+  ],
+  "human_review_status": null,
+  "question_count": 0,
+  "generation_experiment_performed": false,
+  "source_database_sha256": "4c91aa8cc4786af7174c4405b9e35f5dc850931828f59d6bc15fdfd4ec2ad663",
+  "frozen_database_sha256": "a673cc4f52107e92f97e35b91170be5a9ded1697ef1378b1de008e28083d6ac8",
+  "freeze_manifest_sha256": "754309a737eaad49dff47431797192a65ca3cbfb1ca5e1a36c9967d52a4793fc",
+  "source_files_verified": 91,
+  "documents_metadata": [
+    {
+      "id": "doc_064f4453a2712c1ae0c61366",
+      "pmid": "38244103",
+      "text_sha256": "193c7602537d317ff6eeba8a4d9df5df5d25288a5d86e9799c571af26b36cc89"
+    },
+    {
+      "id": "doc_0855999a32b9dd86714701e9",
+      "pmid": "33946669",
+      "text_sha256": "456fdb4f63c218364b0ad9bd8569439c2252206ac9b9dd5e7732e52355d656a8"
+    },
+    {
+      "id": "doc_0fb1f57efc6b7dc69c0a128a",
+      "pmid": "39594587",
+      "text_sha256": "3cabf6dc9d7a193bfd46c0f7c2528f719566fbc05029ea38b9866bd8b6c814ec"
+    },
+    {
+      "id": "doc_1b509608eae51c644cc7454e",
+      "pmid": "34943835",
+      "text_sha256": "113d1a2da3bf2696c7d191b798af47e3429f242cdec02e64604bc717485b1585"
+    },
+    {
+      "id": "doc_3008304eb9ebbd70d8137645",
+      "pmid": "38534345",
+      "text_sha256": "09993c53764b359fc44112c8f7ccb91a25af8d49d2a08c87b3bd4c803b6471c4"
+    },
+    {
+      "id": "doc_305819d7b36fb9253663ac89",
+      "pmid": "37669960",
+      "text_sha256": "92f7256656479413e1cfcd0f2c28f384e2bc326ead7c2bd52e776b5c32803312"
+    },
+    {
+      "id": "doc_46254a458103555bbef9bc23",
+      "pmid": "35361964",
+      "text_sha256": "b38dd8241badd937f8d5426a128c7ce5ae6b67caf352a6d8cda279c4c143db78"
+    },
+    {
+      "id": "doc_5dd11d9dbe65ad6b5427b75f",
+      "pmid": "33546413",
+      "text_sha256": "07a7cb87efbe5ba2160d24a79b2d1847e6215428804a734ff0b051776471d1e3"
+    },
+    {
+      "id": "doc_64475b29c1c13d4156c053e5",
+      "pmid": "36290718",
+      "text_sha256": "65544c76f0c21528d072550c8caf76d6f9f54440b13528483d2a8989ff677647"
+    },
+    {
+      "id": "doc_669ec52557dce8026a284605",
+      "pmid": "34445672",
+      "text_sha256": "e38803f3ef31499b526a5dc43ad3f4caad8acbff5b0812f09f4324558387ee65"
+    },
+    {
+      "id": "doc_6887641b5e0ad04e777a90ba",
+      "pmid": "33398919",
+      "text_sha256": "baf28e96d6f661bf81de91744f4ae59aae6e3158d9628298d756c1876d9cefce"
+    },
+    {
+      "id": "doc_756d26527e56c2572cc5fff3",
+      "pmid": "36430359",
+      "text_sha256": "12b858ddda7d0c1fa21d1323a1f4b6da10155cc2ee11e5aae12d20b5efea183f"
+    },
+    {
+      "id": "doc_85875a830c6dba4a0feffcda",
+      "pmid": "32047650",
+      "text_sha256": "26455bfe81ae209770a3778e8f846b122b31ccd1042d29c25399b3eaa6e8f23c"
+    },
+    {
+      "id": "doc_877d989278b37c7c4170e135",
+      "pmid": "31357514",
+      "text_sha256": "22f7a01453c41dbcef52a7e0d6edfb102a138b54091cacd91eb9c55365888416"
+    },
+    {
+      "id": "doc_947e953f68119bb030865b22",
+      "pmid": "37779156",
+      "text_sha256": "84488e4ea6412e3e489ac0bfaea317428d513a7ee88aa78bf4228b5162b40349"
+    },
+    {
+      "id": "doc_976a78e23ad74d08bc5ce1b1",
+      "pmid": "36672721",
+      "text_sha256": "d3d01614b8691ab633d22d9f58720fa4c7cebc256095e4943f22d19a3640ec4a"
+    },
+    {
+      "id": "doc_a4f893cc9affb50cfc504a82",
+      "pmid": "35892559",
+      "text_sha256": "e769130a3f398a395e4177990ea735d3e81b8588b0f28a2ab7901f79130bca2f"
+    },
+    {
+      "id": "doc_aaed261dd3d404b2f3ad3c66",
+      "pmid": "31630678",
+      "text_sha256": "98bb5031dd028f6b25087c702186ac91e752cd99a3c1241954b3b6bf829bc0f5"
+    },
+    {
+      "id": "doc_b536a99a4d601203e1fb8d27",
+      "pmid": "32231094",
+      "text_sha256": "33f6f2be007fbd6674a3863c40e23d69c4a0acda413a153965086e06ff2f6593"
+    },
+    {
+      "id": "doc_b67b3613a58438ab284cf7ea",
+      "pmid": "39800748",
+      "text_sha256": "c6c520705856e08f5091580ae304848ebcd353e7383b2a3c2c18554a83aa815c"
+    },
+    {
+      "id": "doc_bb95d0f12d35a552caafdc0f",
+      "pmid": "30027602",
+      "text_sha256": "85f03ae611b04bf153213482a3d8cd09c1d6a72c79e81236fa6b1891c5e84776"
+    },
+    {
+      "id": "doc_d48f55dcb1be5248c9554990",
+      "pmid": "34830476",
+      "text_sha256": "050f61a5408fd32fdafb3136df2e42b35aa0685b00b0e3293b8551509d9d4fef"
+    },
+    {
+      "id": "doc_da19cffca33447f3f41ce54a",
+      "pmid": "30931312",
+      "text_sha256": "fdc8f300a57c97012723f08b9fdda8fb3ad3b58933d6cd3e8831a54f45dace23"
+    },
+    {
+      "id": "doc_df46d5f01bfbeebfe22faf20",
+      "pmid": "37821940",
+      "text_sha256": "54bb39814eada164ccca38fea204cf4127218af4ef1f3c3b95ac25e3cc8c92ef"
+    },
+    {
+      "id": "doc_e0c2d3d16298ff73e8395a1a",
+      "pmid": "35213291",
+      "text_sha256": "c29e9f4e65f5625e5a90f189148c568b93ada37b8244c0c8fb92e52163d2f60e"
+    },
+    {
+      "id": "doc_e837145989eafda693943478",
+      "pmid": "35204075",
+      "text_sha256": "b409b14fa4bfc3fbb1d2cd8022ec38f2c6fa24d142275bc705c18d5249739d0d"
+    },
+    {
+      "id": "doc_ea4065467bc763d7029d6f3a",
+      "pmid": "40113751",
+      "text_sha256": "baeecf3defedda03fa23457785b7020aac23cdee9b2c851cc180f1f43156986c"
+    },
+    {
+      "id": "doc_f659f46cb55892bc80f691f7",
+      "pmid": "34250734",
+      "text_sha256": "3e54b8982ca97c1f65944cc2698f0570f7f79dfeea2d49f1f381d05205291f48"
+    },
+    {
+      "id": "doc_fbefea30b077a17428e2eebf",
+      "pmid": "34198763",
+      "text_sha256": "49d4e4e57eae51d5861ee263e9d03555f0581e22f50be268f01a230f39911e0d"
+    },
+    {
+      "id": "doc_fe2403db29c7f08727b587d0",
+      "pmid": "35740927",
+      "text_sha256": "ab1699ffbc5403d10aa722a2d49a24bbfb52cbf599719979d07a608ae755071c"
+    }
+  ]
+}
