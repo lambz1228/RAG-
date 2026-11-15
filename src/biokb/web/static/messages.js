@@ -1,5 +1,20 @@
 /** 中文为文案标识，英文逐项维护；占位参数只插值，不解释为 HTML。 */
 export const english = {
+  "模型判断当前证据不足以支持回答，请核对原文或补充文献。": "The model judged the current evidence insufficient. Check the sources or add documents.",
+  "回答质量评价": "Answer quality evaluation",
+  "导入实验运行包和真实评分表，汇总准确性、无支持断言及拒答表现。空白评分保留为待复核。": "Import an experiment bundle and real reviewer scores. Blank scores remain pending.",
+  "评分运行包（协调者）": "Experiment bundle (coordinator)",
+  "人工评分CSV": "Reviewer scores CSV",
+  "导入评分并汇总": "Import and summarize scores",
+  "已填写 {reviewed} / {planned} 份评分": "Reviewed {reviewed} / {planned} answers",
+  "含运行失败，无法汇总完整指标": "Run failures prevent complete metrics",
+  "待评分或不适用": "Pending or not applicable",
+  "已评答卷": "Reviewed answers",
+  "事实完全正确率": "Fully correct answers",
+  "含无支持断言比例": "Answers with unsupported claims",
+  "评分汇总完成，结果需结合题集范围解释": "Review summary complete. Interpret it within the dataset scope.",
+  "尚未完成全部人工评分，整体指标保持空值": "Human review is incomplete. Overall quality metrics remain empty.",
+
   "仅发现开放获取论文": "Open access papers only",
   "从一个研究主题开始": "Start with a research topic",
   "从你的文献库中检索证据，理解细胞、机制与实验方法。": "Explore cells, mechanisms, and experimental methods with evidence from your library.",

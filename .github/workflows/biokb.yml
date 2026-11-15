@@ -1,9 +1,9 @@
 name: BioKB 主线验证
 on:
   push:
-    paths: ["src/**", "tests/biokb/**", "scripts/**", "docs/**", "examples/**", "questionbank/**", "*.py", "*.md", "*.toml", "requirements.txt", ".gitattributes", ".github/workflows/biokb.yml"]
+    paths: ["src/**", "tests/biokb/**", "scripts/**", "docs/**", "examples/**", "questionbank/**", "config/**", "research/**", "*.py", "*.md", "*.toml", "requirements.txt", ".gitattributes", ".github/workflows/biokb.yml"]
   pull_request:
-    paths: ["src/**", "tests/biokb/**", "scripts/**", "docs/**", "examples/**", "questionbank/**", "*.py", "*.md", "*.toml", "requirements.txt", ".gitattributes", ".github/workflows/biokb.yml"]
+    paths: ["src/**", "tests/biokb/**", "scripts/**", "docs/**", "examples/**", "questionbank/**", "config/**", "research/**", "*.py", "*.md", "*.toml", "requirements.txt", ".gitattributes", ".github/workflows/biokb.yml"]
   workflow_dispatch:
 permissions:
   contents: read
@@ -42,6 +42,7 @@ jobs:
           python scripts/verify_workspace.py --output output/ci-workspace
           python scripts/verify_research.py --output output/ci-research
           python scripts/verify_literature.py --output output/ci-literature
+          python scripts/verify_answer_quality.py --output output/ci-answer-quality
           python scripts/package_source.py --output output/distributions/BioKB-ci.zip
           python scripts/verify_package.py output/distributions/BioKB-ci.zip
       - name: 保留验证报告

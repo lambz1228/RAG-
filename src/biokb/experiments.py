@@ -30,7 +30,7 @@ class Arm:
     document_cap: int = 2
 
 
-ARMS = (
+RERANK_ARMS = (
     Arm("no_rag", "none"),
     Arm("bm25", "bm25"),
     Arm("dense", "dense"),
@@ -39,6 +39,19 @@ ARMS = (
     Arm("wide", "hybrid_rerank", top_k=10, document_cap=5),
     Arm("neighbors_wide", "hybrid_rerank", top_k=10, neighbors=1, document_cap=5),
 )
+TASKBOOK_ARMS = (
+    Arm("no_rag", "none"),
+    Arm("basic_rag", "dense"),
+    Arm("optimized_rag", "hybrid", neighbors=1),
+)
+CORE_ARMS = (
+    Arm("no_rag", "none"),
+    Arm("bm25", "bm25"),
+    Arm("dense", "dense"),
+    Arm("hybrid", "hybrid"),
+    Arm("hybrid_neighbors", "hybrid", neighbors=1),
+)
+PROFILES = {"taskbook": TASKBOOK_ARMS, "core": CORE_ARMS, "rerank": RERANK_ARMS}
 OFFLINE_ARMS = (
     Arm("bm25", "bm25"),
     Arm("hybrid", "hybrid"),
@@ -51,7 +64,7 @@ def file_sha256(path: Path) -> str:
 
 
 def write_json(path: Path, value) -> None:
-    path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    path.write_bytes((json.dumps(value, ensure_ascii=False, indent=2) + "\n").encode("utf-8"))
 
 
 def load_questions(path: Path) -> tuple[list[dict], dict]:
@@ -134,8 +147,22 @@ def gold_spans(reference: dict) -> list[dict]:
         return []
 
 
+def answer_fingerprint(protocol_sha256: str, result: dict) -> str:
+    payload = {
+        "protocol_sha256": protocol_sha256,
+        "qid": result["qid"],
+        "arm": result["arm"],
+        "answer": result.get("answer", ""),
+        "citations": result.get("citations", []),
+    }
+    return hashlib.sha256(
+        json.dumps(payload, ensure_ascii=False, sort_keys=True).encode()
+    ).hexdigest()
+
+
 def export_review(output: Path, questions: list[dict], results: list[dict], seed: int) -> None:
     """公开表只给匿名答卷号；对照组和参考答案独立保存供协调者使用。"""
+    protocol_sha = file_sha256(output / "protocol.json")
     rows = list(results)
     random.Random(seed).shuffle(rows)
     by_id = {item["qid"]: item for item in questions}
@@ -143,15 +170,30 @@ def export_review(output: Path, questions: list[dict], results: list[dict], seed
     for number, result in enumerate(rows, 1):
         blind_id = f"B{number:05d}"
         item = by_id[result["qid"]]
+        digest = answer_fingerprint(protocol_sha, result)
         public.append(
             {
                 "答卷号": blind_id,
+                "答卷摘要": digest,
                 "问题": item["question"],
                 "回答": result.get("answer", ""),
-                "运行状态": "失败" if "error_type" in result else "完成",
+                "运行状态": "失败"
+                if "error_type" in result
+                else "模型回退"
+                if result.get("mode") == "provider_fallback"
+                else "完成",
                 "引用原文": json.dumps(
                     [
-                        {"number": c["number"], "text": c["text"], "title": c["title"]}
+                        {
+                            "number": c["number"],
+                            "text": c["text"],
+                            "title": c["title"],
+                            "document_id": c.get("document_id"),
+                            "start_offset": c.get("start_offset"),
+                            "end_offset": c.get("end_offset"),
+                            "url": c.get("metadata", {}).get("url"),
+                            "text_sha256": c.get("text_sha256"),
+                        }
                         for c in result.get("citations", [])
                         if c.get("used")
                     ],
@@ -172,6 +214,8 @@ def export_review(output: Path, questions: list[dict], results: list[dict], seed
                 "答卷号": blind_id,
                 "qid": item["qid"],
                 "arm": result["arm"],
+                "answer_sha256": digest,
+                "protocol_sha256": protocol_sha,
                 "reference": item["reference"],
             }
         )
@@ -180,6 +224,16 @@ def export_review(output: Path, questions: list[dict], results: list[dict], seed
         writer.writeheader()
         writer.writerows(public)
     write_json(output / "协调者密钥_勿分发给盲评者.json", keys)
+    write_json(
+        output / "评分运行包_协调者保管.json",
+        {
+            "schema_version": 1,
+            "protocol": json.loads((output / "protocol.json").read_text(encoding="utf-8")),
+            "protocol_text": (output / "protocol.json").read_bytes().decode("utf-8"),
+            "keys": keys,
+            "results": results,
+        },
+    )
 
 
 def run_experiment(
@@ -189,6 +243,7 @@ def run_experiment(
     settings: Settings,
     offline: bool = False,
     seed: int = 20261115,
+    profile: str = "taskbook",
 ) -> dict:
     """正式源库只读备份；任何失败保留已完成记录，不覆盖已有运行。"""
     database = database.resolve(strict=True)
@@ -197,14 +252,12 @@ def run_experiment(
     before = file_sha256(database)
     if expected and expected != before:
         raise KnowledgeError("正式库与题库冻结时的数据库摘要不同")
-    if not offline and (
-        settings.embedding_backend == "hash"
-        or settings.llm_backend == "disabled"
-        or settings.reranker_backend == "disabled"
-    ):
-        raise KnowledgeError(
-            "真实模型实验需要配置向量、生成、重排序模型；离线演示请显式使用 --offline"
-        )
+    if profile not in PROFILES:
+        raise KnowledgeError("实验配置必须为 taskbook、core 或 rerank")
+    if not offline and (settings.embedding_backend == "hash" or settings.llm_backend == "disabled"):
+        raise KnowledgeError("真实模型实验需要向量与生成模型；离线演示请显式使用 --offline")
+    if not offline and profile == "rerank" and settings.reranker_backend == "disabled":
+        raise KnowledgeError("rerank 实验配置需要重排序模型；任务书三组对照不要求重排序服务")
     if offline:
         settings = Settings(
             embedding_backend="hash",
@@ -212,7 +265,7 @@ def run_experiment(
             chunk_size=settings.chunk_size,
             chunk_overlap=settings.chunk_overlap,
         )
-    arms = OFFLINE_ARMS if offline else ARMS
+    arms = OFFLINE_ARMS if offline else PROFILES[profile]
     output.mkdir(parents=True, exist_ok=False)
     snapshot = output / "snapshot" / "knowledge.sqlite3"
     snapshot.parent.mkdir()
@@ -253,12 +306,15 @@ def run_experiment(
             if offline
             else "固定配置问答对照；正确性待人工盲评",
             "dataset": dataset_info,
+            "question_ids": [item["qid"] for item in questions],
+            "planned_answers": len(questions) * len(arms),
             "database_sha256": before,
             "snapshot_sha256": file_sha256(snapshot),
             "corpus": services.repository.corpus_manifest(),
             "index_revision": revision,
             "configuration": runtime.public(),
             "arms": [asdict(arm) for arm in arms],
+            "profile": "offline" if offline else profile,
             "generation_fingerprint": services.rag.model.fingerprint,
             "embedding_fingerprint": services.retrieval.embedder.fingerprint,
             "reranker_fingerprint": services.retrieval.reranker.fingerprint,
@@ -341,6 +397,16 @@ def run_experiment(
             "planned_answers": len(questions) * len(arms),
             "completed_records": len(results),
             "errors": sum("error_type" in r for r in results),
+            "provider_fallbacks": sum(r.get("mode") == "provider_fallback" for r in results),
+            "modes_by_arm": {
+                arm.name: {
+                    mode: sum(r.get("mode") == mode and r["arm"] == arm.name for r in results)
+                    for mode in sorted(
+                        {r.get("mode", "error") for r in results if r["arm"] == arm.name}
+                    )
+                }
+                for arm in arms
+            },
             "fatal_error_type": error,
             "source_unchanged": file_sha256(database) == before,
             "academic_correctness_rate": None,

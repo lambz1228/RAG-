@@ -8,7 +8,7 @@ import sys
 from dataclasses import replace
 from pathlib import Path
 
-from .config import Settings
+from .config import Settings, load_env
 from .container import build_services
 from .errors import KnowledgeError
 from .evaluation import evaluate, write_report
@@ -17,6 +17,9 @@ from .evaluation import evaluate, write_report
 def parser() -> argparse.ArgumentParser:
     root = argparse.ArgumentParser(description="基于 RAG 技术的生物领域知识库系统")
     root.add_argument("--data-dir", type=Path, help="运行数据目录；默认 data/biokb")
+    root.add_argument(
+        "--env-file", type=Path, help="读取指定配置；已有环境变量优先，不覆盖现有 .env"
+    )
     commands = root.add_subparsers(dest="command", required=True)
     serve = commands.add_parser("serve", help="启动 Web 工作台")
     serve.add_argument("--host")
@@ -69,6 +72,8 @@ def main(argv: list[str] | None = None) -> int:
                 )
             )
             return 0
+        if args.env_file:
+            load_env(args.env_file.resolve(strict=True))
         settings = Settings.from_env()
         if args.data_dir:
             settings = replace(settings, data_dir=args.data_dir.resolve())

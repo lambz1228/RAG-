@@ -1,0 +1,53 @@
+{
+  "scope": "固定配置问答对照；正确性待人工盲评",
+  "dataset_sha256": "50a0fc93b1b991cb17dd1e2aff9f1e64a4a6e4c7b24ddef24761b79962be035f",
+  "review_file_sha256": "f83c769889d2c92c1096f92ec42eceb562c8d0a82de9ee0bb26aa556491b8c46",
+  "protocol_sha256": "1510e613d62c4f810c6bb797061421f82a739d3f8839c1a9604fffeb0ba15745",
+  "reviewed_answers": 0,
+  "planned_answers": 36,
+  "complete": false,
+  "reviewer_identity_verified": false,
+  "note": "仅核对填写完整性，不能证明评分者身份或事实判断；开发题评分不得改称独立测试成绩。无检索组引用支持率不适用。",
+  "arms": {
+    "no_rag": {
+      "planned": 12,
+      "reviewed": 0,
+      "review_complete": false,
+      "errors": 0,
+      "provider_fallbacks": 0,
+      "modes": {
+        "ungrounded_answered": 10,
+        "ungrounded_partial": 2
+      },
+      "metrics": null,
+      "status": "pending_reviews"
+    },
+    "basic_rag": {
+      "planned": 12,
+      "reviewed": 0,
+      "review_complete": false,
+      "errors": 0,
+      "provider_fallbacks": 0,
+      "modes": {
+        "generated": 9,
+        "partial": 3
+      },
+      "metrics": null,
+      "status": "pending_reviews"
+    },
+    "optimized_rag": {
+      "planned": 12,
+      "reviewed": 0,
+      "review_complete": false,
+      "errors": 0,
+      "provider_fallbacks": 2,
+      "modes": {
+        "generated": 7,
+        "partial": 3,
+        "provider_fallback": 2
+      },
+      "metrics": null,
+      "status": "run_failed"
+    }
+  }
+}

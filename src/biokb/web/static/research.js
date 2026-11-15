@@ -232,6 +232,19 @@ async function ensureConversation() {
 }
 
 export function initResearch(navigate) {
+  $("answer-quality-form").addEventListener("submit", guarded(async event => {
+    await busy(event.submitter, async () => {
+      const {report} = await request("/api/answer-evaluations", {method: "POST", body: new FormData(event.target)});
+      const target = $("answer-quality-result");
+      const card = element("article", "card");
+      card.append(element("h2", "", msg("回答质量评价")), element("p", "notice", msg("已填写 {reviewed} / {planned} 份评分", {reviewed: report.reviewed_answers, planned: report.planned_answers})));
+      const percent = value => value === null || value === undefined ? msg("待评分或不适用") : `${(value * 100).toFixed(1)}%`;
+      card.append(table([msg("策略"), msg("已评答卷"), msg("事实完全正确率"), msg("含无支持断言比例")], Object.entries(report.arms).map(([arm, row]) => [arm, `${row.reviewed}/${row.planned}`, row.status === "run_failed" ? msg("含运行失败，无法汇总完整指标") : percent(row.metrics?.fact_fully_correct_rate), row.status === "run_failed" ? msg("含运行失败，无法汇总完整指标") : percent(row.metrics?.answers_with_unsupported_claims_rate)])));
+      card.append(action(msg("导出完整结果"), () => download(`/api/history/${report.id}/export`, `${report.id}.json`), "text-button"));
+      target.replaceChildren(card);
+      setText($("answer-quality-status"), report.complete ? msg("评分汇总完成，结果需结合题集范围解释") : msg("尚未完成全部人工评分，整体指标保持空值"));
+    });
+  }));
   loadConversations().catch(() => {});
   $("search-form").addEventListener(
     "submit",

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "biology-rag-kb"
-version = "3.0.0"
+version = "3.1.0"
 description = "基于 RAG 技术的生物领域知识库系统"
 readme = "README.md"
 requires-python = ">=3.10"

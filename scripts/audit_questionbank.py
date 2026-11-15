@@ -67,7 +67,7 @@ def audit(bank: Path, development: Path | None = None) -> tuple[dict, list[dict]
         "human_review_records": reviewed,
         "human_review_status": manifest.get("human_review_status"),
         "human_review_verified": False,
-        "proposed_protocol": "v2 草案；未批准、未冻结",
+        "proposed_protocol": "旧题库v2历史建议；未批准、未冻结，不是老师任务书门槛",
         "target_question_count": sum(QUOTAS.values()),
         "target_by_type": QUOTAS,
         "missing_by_type": deficits,

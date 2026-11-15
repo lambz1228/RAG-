@@ -2,6 +2,15 @@
 
 | 脚本 | 用途 |
 | --- | --- |
+| `collect_taskbook_sources.py` | 按登记PMID和来源摘要重建本轮开发语料 |
+| `export_review_copy.py` | 导出保留来源定位与摘要的复核副本 |
+| `freeze_corpus.py` | 冻结数据库与原始来源，核对文件摘要 |
+| `prepare_taskbook_corpus.py` | 独立整理任务书开发语料与纳入排除记录 |
+| `build_taskbook_dataset.py` | 开发题原文锚点、区间和库摘要核对 |
+| `run_taskbook_retrieval.py` | 冻结副本上的真实检索对照 |
+| `summarize_answer_reviews.py` | 汇总真实人工评分，空白保持待复核 |
+| `summarize_experiment_run.py` | 完整问答运行的状态、回退与区间覆盖摘要 |
+| `verify_answer_quality.py` | 评分材料上传、待复核显示与导出的界面回归 |
 | `collect_biology.py` | 六个主题的官方文献采集，写入独立新库 |
 | `reproduce_demo.py` | 核对样例摘要，离线重建两篇文献的流程演示 |
 | `audit_questionbank.py` | 冻结题库完整性、题型缺口与待填写复核表 |

@@ -20,7 +20,8 @@
 | GET `/api/jobs`、`/api/jobs/<id>` | 状态与任务结果 |
 | GET `/api/history`、`/api/history/<id>`、`/export` | 历史问答与快照导出 |
 | GET / POST `/api/conversations` | 会话列表与创建 |
-| POST `/api/evaluate` | 文档检索评估 |
+| POST `/api/evaluations` | 文档检索评估 |
+| POST `/api/answer-evaluations` | 上传协调者运行包与真实评分CSV，汇总回答质量并保存 |
 
 文献发现请求：
 
@@ -37,3 +38,5 @@
 异步接口返回 HTTP 202 和 `job.id`，随后轮询 `/api/jobs/<id>`。入库结果的 `imported_type` 明确为 `fulltext` 或 `abstract`，同时提供来源摘要和警告。
 
 检索 / 问答请求支持 `query`、`strategy`、`top_k`、`filters`、`paper_ids`。问答另支持 `context_neighbors`（0—2）和 `conversation_id`。引用包含原文、来源元数据与字符位置；回答的 `mode` 区分生成、部分支持、证据不足、摘录与模型失败降级。
+
+回答质量接口使用 multipart 的 `bundle` 与 `reviews` 两个文件字段，不接受客户端的服务器文件路径。校验答卷与协议摘要后汇总；无评分时返回空指标，成功结果可通过历史导出接口下载。
