@@ -80,6 +80,8 @@ def test_offline_experiment_preserves_source_and_blinds_arms(services, corpus, t
     )
     assert summary["errors"] == 0 and summary["completed_records"] == 3
     assert summary["source_unchanged"] and summary["academic_correctness_rate"] is None
+    protocol = json.loads((output / "protocol.json").read_text())
+    assert protocol["human_review_required"] is False
     assert file_sha256(services.settings.database_path) == before
     with (output / "盲评表.csv").open(encoding="utf-8-sig") as handle:
         rows = list(csv.DictReader(handle))
@@ -102,12 +104,13 @@ def test_real_experiment_refuses_hash_and_does_not_create_output(services, corpu
     assert not output.exists()
 
 
-def test_frozen_banks_match_original_hashes_and_require_review():
+def test_frozen_banks_preserve_history_without_human_review_gate():
     bank = ROOT / "questionbank/v1-machine"
     report, rows = audit(bank, ROOT / "questionbank/v0-dev")
     assert report["integrity_passed"] and len(rows) == 82
     assert report["missing_total"] == 28 and report["target_question_count"] == 110
     assert not report["formal_ready"] and report["human_review_records"] == 0
+    assert report["human_review_required"] is False
     assert len(load_questions(bank)[0]) == 82
     assert len(load_questions(ROOT / "questionbank/v0-dev")[0]) == 6
 

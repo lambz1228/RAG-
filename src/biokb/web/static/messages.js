@@ -1,5 +1,11 @@
 /** 中文为文案标识，英文逐项维护；占位参数只插值，不解释为 HTML。 */
 export const english = {
+  "人工评分（可选）": "Human scoring (optional)",
+  "人工评分不作为运行或验收前置条件。需要补充人工评价时，可导入运行包与真实评分表；未评分项保持空值。": "Human scoring is not required to run or accept the system. Optionally import an experiment bundle and real reviewer scores; unscored fields remain empty.",
+  "可选人工评分未完成，该项整体指标保持空值，不影响其他评测": "Optional human scoring is incomplete. Its overall metrics remain empty; other evaluations are unaffected.",
+  "资料已进行自动检查，来源与原文可追溯。": "Records have undergone automated checks. Sources and original texts are traceable.",
+  "指标衡量文档检索能力，不代表回答正确率。开发题与独立测试题应分开。": "Metrics measure document retrieval, not answer accuracy. Keep development questions separate from independent test questions.",
+  "编号与检索证据对应；编号合法不代表事实得到支持": "Citation numbers match retrieved evidence; valid numbers do not establish factual support",
   "模型判断当前证据不足以支持回答，请核对原文或补充文献。": "The model judged the current evidence insufficient. Check the sources or add documents.",
   "回答质量评价": "Answer quality evaluation",
   "导入实验运行包和真实评分表，汇总准确性、无支持断言及拒答表现。空白评分保留为待复核。": "Import an experiment bundle and real reviewer scores. Blank scores remain pending.",

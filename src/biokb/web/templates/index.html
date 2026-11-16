@@ -113,7 +113,7 @@
 <div class="page-heading"><div><h1 data-i18n="科研文献">科研文献</h1><p data-i18n="按论文关联摘要与全文，选择研究范围，再查找原文证据。">按论文关联摘要与全文，选择研究范围，再查找原文证据。</p></div></div>
 <div class="stats-grid" id="papers-summary"></div>
 <p class="notice" data-i18n="论文按一致的 PMID、PMCID 或 DOI 关联。仅有标题相同的资料不会自动合并；目录占位资料不计入论文。">论文按一致的 PMID、PMCID 或 DOI 关联。仅有标题相同的资料不会自动合并；目录占位资料不计入论文。</p>
-<p class="muted" data-i18n="资料质量仅经自动检查，尚未完成生物领域专家复核。">资料质量仅经自动检查，尚未完成生物领域专家复核。</p>
+<p class="muted" data-i18n="资料已进行自动检查，来源与原文可追溯。">资料已进行自动检查，来源与原文可追溯。</p>
 <form class="card" id="papers-filter"><label><span data-i18n="查找论文">查找论文</span><input id="papers-query" data-i18n-placeholder="标题、作者、期刊、关键词或正式编号" placeholder="标题、作者、期刊、关键词或正式编号" maxlength="400"/></label>
 <div class="filter-options"><label><span data-i18n="主题">主题</span><select id="papers-topic"><option value="" data-i18n="全部主题">全部主题</option></select></label><label><span data-i18n="年份">年份</span><select id="papers-year"><option value="" data-i18n="全部年份">全部年份</option></select></label><label class="checkbox-label"><input type="checkbox" id="papers-fulltext"/><span data-i18n="仅看有全文的论文">仅看有全文的论文</span></label><button type="submit" data-i18n="查找论文">查找论文</button></div>
 </form><article class="card"><div id="papers-scope" class="research-scope"></div><button type="button" id="papers-ask" data-i18n="按当前范围提问">按当前范围提问</button></article>
@@ -241,15 +241,16 @@
 <label class="checkbox-label"><input id="evaluation-rerank" type="checkbox"/><span data-i18n="同时评估重排序（需配置模型）">同时评估重排序（需配置模型）</span></label>
 <p class="muted" id="evaluation-status" role="status"></p>
 <progress hidden="" id="evaluation-progress" max="100" value="0"></progress>
-<div class="notice" data-i18n="指标衡量文档检索能力。模型生成题目需要人工复核，开发样例与正式评测样例应分开。">指标衡量文档检索能力。模型生成题目需要人工复核，开发样例与正式评测样例应分开。</div>
+<div class="notice" data-i18n="指标衡量文档检索能力，不代表回答正确率。开发题与独立测试题应分开。">指标衡量文档检索能力，不代表回答正确率。开发题与独立测试题应分开。</div>
 </form>
 <div id="evaluation-result"></div>
-<form class="card" id="answer-quality-form">
-<h2 data-i18n="回答质量评价">回答质量评价</h2>
-<p class="muted" data-i18n="导入实验运行包和真实评分表，汇总准确性、无支持断言及拒答表现。空白评分保留为待复核。">导入实验运行包和真实评分表，汇总准确性、无支持断言及拒答表现。空白评分保留为待复核。</p>
+<details class="card" id="optional-answer-review">
+<summary data-i18n="人工评分（可选）">人工评分（可选）</summary>
+<form id="answer-quality-form">
+<p class="muted" data-i18n="人工评分不作为运行或验收前置条件。需要补充人工评价时，可导入运行包与真实评分表；未评分项保持空值。">人工评分不作为运行或验收前置条件。需要补充人工评价时，可导入运行包与真实评分表；未评分项保持空值。</p>
 <div class="form-grid"><label><span data-i18n="评分运行包（协调者）">评分运行包（协调者）</span><input id="answer-quality-bundle" name="bundle" type="file" accept=".json" required/></label><label><span data-i18n="人工评分CSV">人工评分CSV</span><input id="answer-quality-reviews" name="reviews" type="file" accept=".csv" required/></label></div>
 <button type="submit" data-i18n="导入评分并汇总">导入评分并汇总</button><p id="answer-quality-status" role="status" class="muted"></p>
-</form><div id="answer-quality-result"></div>
+</form><div id="answer-quality-result"></div></details>
 
 <article class="card">
 <h2 data-i18n="实验记录">实验记录</h2>

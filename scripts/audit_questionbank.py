@@ -67,6 +67,7 @@ def audit(bank: Path, development: Path | None = None) -> tuple[dict, list[dict]
         "human_review_records": reviewed,
         "human_review_status": manifest.get("human_review_status"),
         "human_review_verified": False,
+        "human_review_required": False,
         "proposed_protocol": "旧题库v2历史建议；未批准、未冻结，不是老师任务书门槛",
         "target_question_count": sum(QUOTAS.values()),
         "target_by_type": QUOTAS,
@@ -74,6 +75,7 @@ def audit(bank: Path, development: Path | None = None) -> tuple[dict, list[dict]
         "missing_total": sum(deficits.values()),
         "development_overlap": overlap,
         "formal_ready": False,
+        "formal_readiness_scope": "历史题集尚未与当前原文库核对；此状态不是人工评分验收门槛",
         "limitations": [
             "不读取原文库，不能核对区间事实或判定库内无答案",
             "复核者字段非空不等于真实人员已经完成复核",

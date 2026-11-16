@@ -57,6 +57,11 @@ def verify(output):
                 page = browser.new_page(viewport={"width": 1440, "height": 1000})
                 page.on("pageerror", lambda error: report["page_errors"].append(str(error)))
                 page.goto(url + "/#evaluation")
+                expect(page.locator("#optional-answer-review")).not_to_have_attribute("open", "")
+                page.get_by_text("人工评分（可选）", exact=True).click()
+                expect(page.locator("#answer-quality-form")).to_contain_text(
+                    "不作为运行或验收前置条件"
+                )
                 page.locator("#answer-quality-bundle").set_input_files(
                     str(run / "评分运行包_协调者保管.json")
                 )
