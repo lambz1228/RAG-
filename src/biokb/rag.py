@@ -252,7 +252,7 @@ class RAGService:
             and mode == "insufficient_evidence"
             and evidence
             else "",
-            "citation_validation": "编号与检索证据对应；事实蕴含关系仍需人工核对",
+            "citation_validation": "编号与检索证据对应；编号合法不代表事实得到支持",
             "generation_fingerprint": getattr(self.model, "fingerprint", ""),
             "generation_validation": generation,
             "prompt_version": PROMPT_VERSION + ("-conversation" if history else ""),

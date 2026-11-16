@@ -8,11 +8,11 @@
 | `prepare_taskbook_corpus.py` | 独立整理任务书开发语料与纳入排除记录 |
 | `build_taskbook_dataset.py` | 开发题原文锚点、区间和库摘要核对 |
 | `run_taskbook_retrieval.py` | 冻结副本上的真实检索对照 |
-| `summarize_answer_reviews.py` | 汇总真实人工评分，空白保持待复核 |
+| `summarize_answer_reviews.py` | 可选人工评分汇总；空白不阻塞其他评测 |
 | `download_e5_model.py` | 下载并核对官方固定修订的本地ONNX模型 |
 | `summarize_semantic_retrieval.py` | 绑定题集与运行后，按中英查询汇总指定来源召回 |
 | `summarize_experiment_run.py` | 完整问答运行的状态、回退与区间覆盖摘要 |
-| `verify_answer_quality.py` | 评分材料上传、待复核显示与导出的界面回归 |
+| `verify_answer_quality.py` | 可选评分入口、空值显示与导出的界面回归 |
 | `collect_biology.py` | 18个主题的官方文献采集，写入独立新库 |
 | `collect_foundation_corpus.py` | 按固定修订与摘要取得64个开放教材小节 |
 | `prepare_expanded_corpus.py` | 将论文与教材合并到独立新库并归档原始来源 |

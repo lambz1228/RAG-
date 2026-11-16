@@ -310,7 +310,7 @@ def run_experiment(
             "seed": seed,
             "scope": "离线流程演示；无学术成绩"
             if offline
-            else "固定配置问答对照；正确性待人工盲评",
+            else "固定配置问答对照；事实质量需单独评价，人工评分可选",
             "dataset": dataset_info,
             "question_ids": [item["qid"] for item in questions],
             "planned_answers": len(questions) * len(arms),
@@ -328,6 +328,7 @@ def run_experiment(
             "generation_validation_version": GENERATION_VALIDATION_VERSION,
             "no_rag_prompt_version": UNGROUNDED_PROMPT_VERSION,
             "human_review_status": None,
+            "human_review_required": False,
             "latency_scope": "查询内随机对照组顺序；共享缓存与网络，不作受控速度结论",
         }
         write_json(output / "protocol.json", protocol)
@@ -418,7 +419,7 @@ def run_experiment(
             "source_unchanged": file_sha256(database) == before,
             "academic_correctness_rate": None,
             "human_review_status": None,
-            "scope": "离线流程验证" if offline else "待人工复核的系统输出",
+            "scope": "离线流程验证" if offline else "系统输出与技术诊断；不等于事实正确性评分",
         }
         write_json(output / "summary.json", summary)
     if not summary["source_unchanged"]:
