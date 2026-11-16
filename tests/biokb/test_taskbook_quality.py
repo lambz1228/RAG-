@@ -16,6 +16,9 @@ def test_corpus_freeze_preserves_source_and_detects_changed_files(services, corp
     before = sha256(original)
     target = tmp_path.parent / (tmp_path.name + "-frozen")
     manifest = freeze_corpus(services.settings.data_dir, target)
+    manifest_bytes = (target / "CORPUS_MANIFEST.json").read_bytes()
+    assert b"\r\n" not in manifest_bytes
+    assert json.loads(manifest_bytes.decode("utf-8")) == manifest
     assert len(manifest["documents"]) == 3
     assert sha256(original) == before
     assert verify_corpus(target)["passed"]

@@ -3,15 +3,18 @@
 from __future__ import annotations
 
 import math
+import re
+import sqlite3
 import threading
 import time
 from collections import Counter, OrderedDict
 
 from .config import Settings
-from .errors import IndexMismatchError, KnowledgeError
+from .errors import IndexMismatchError, KnowledgeError, ProviderError
 from .papers import build_catalog, resolve_scope
 from .providers import Embedder
 from .quality import assess_document, matches_filters, validate_filters
+from .query_translation import QueryTranslator
 from .reranking import Reranker
 from .storage import Repository
 from .text import TERM_EXPANSION_VERSION, expand_semantic_query, tokenize
@@ -38,6 +41,7 @@ class RetrievalService:
         self._idf: dict[str, float] = {}
         self.reranker = reranker or Reranker(settings)
         self._query_cache: OrderedDict[str, list[float]] = OrderedDict()
+        self.translator = QueryTranslator(settings) if settings.query_translation else None
 
     def _snapshot(self) -> tuple:
         with self._lock:
@@ -66,6 +70,65 @@ class RetrievalService:
             return self._rows, self._tokens, self._lengths, self._idf, self._revision
 
     def search(
+        self,
+        query: str,
+        strategy: str | None = None,
+        top_k: int | None = None,
+        document_id: str = "",
+        filters: dict | None = None,
+        paper_ids: list[str] | None = None,
+    ) -> dict:
+        strategy = strategy or self.settings.default_retrieval
+        top_k = self.settings.top_k if top_k is None else top_k
+        query = validate_query(query, top_k)
+        if not (
+            self.translator
+            and strategy in {"hybrid", "hybrid_rerank"}
+            and re.search(r"[\u4e00-\u9fff]", query)
+        ):
+            return self._search(query, strategy, top_k, document_id, filters, paper_ids)
+        started = time.perf_counter()
+        count = max(top_k, self.settings.retrieval_candidates)
+        original = self._search(query, "hybrid", count, document_id, filters, paper_ids)
+        if not original["parameters"]["eligible_chunks"]:
+            original.update(strategy=strategy, hits=original["hits"][:top_k])
+            return original
+        try:
+            receipt = self.translator.translate(query)
+        except (ProviderError, OSError, ValueError, sqlite3.Error) as exc:
+            if strategy == "hybrid_rerank":
+                original = self._search(query, strategy, top_k, document_id, filters, paper_ids)
+            original["hits"] = original["hits"][:top_k]
+            original["warnings"].append("英文检索表达转换失败，已使用原查询")
+            original["query_translation"] = {"status": "fallback", "error_type": type(exc).__name__}
+            return original
+        translated = self._search(
+            receipt["english_query"], "hybrid", count, document_id, filters, paper_ids
+        )
+        merged, scores = {}, {}
+        for branch, result in (("original", original), ("english", translated)):
+            for rank, hit in enumerate(result["hits"], 1):
+                key = hit["chunk_id"]
+                merged.setdefault(key, {**hit, "query_branches": {}})
+                merged[key]["query_branches"][branch] = {"rank": rank, "score": hit["score"]}
+                scores[key] = scores.get(key, 0) + 1 / (self.settings.rrf_constant + rank)
+        hits = [
+            {**merged[key], "score": round(scores[key], 6)}
+            for key in sorted(merged, key=lambda key: (-scores[key], key))
+        ]
+        if strategy == "hybrid_rerank":
+            hits = self.reranker.rank(query, hits[:count])
+        original.update(
+            hits=hits[:top_k],
+            strategy=strategy,
+            query_translation={
+                key: value for key, value in receipt.items() if key != "raw_response"
+            },
+            latency_ms=round((time.perf_counter() - started) * 1000, 2),
+        )
+        return original
+
+    def _search(
         self,
         query: str,
         strategy: str | None = None,
@@ -108,6 +171,9 @@ class RetrievalService:
         encoded_query, expansion_terms = (
             expand_semantic_query(query) if self.settings.query_term_expansion else (query, [])
         )
+        if strategy in {"hybrid", "hybrid_rerank"} and expansion_terms:
+            # 混合检索两路使用同一通用术语；纯BM25仍保留原始查询基线。
+            query_tokens.update(tokenize(" ".join(expansion_terms), expand_aliases=False))
         if not query_tokens:
             raise KnowledgeError("问题中没有可检索的文字")
         bm25: dict[int, float] = {}
@@ -218,6 +284,7 @@ class RetrievalService:
             "scope": {**scope, "document_id": document_id, "filters": filters},
             "parameters": {
                 "candidate_chunks": self.settings.retrieval_candidates,
+                "eligible_chunks": len(indices),
                 "rrf_constant": self.settings.rrf_constant,
                 "dense_min_score": self.settings.dense_min_score,
             },

@@ -1,5 +1,6 @@
 /** 中文为文案标识，英文逐项维护；占位参数只插值，不解释为 HTML。 */
 export const english = {
+  "英文检索表达转换失败，已使用原查询": "English query conversion failed; the original query was used.",
   "人工评分（可选）": "Human scoring (optional)",
   "人工评分不作为运行或验收前置条件。需要补充人工评价时，可导入运行包与真实评分表；未评分项保持空值。": "Human scoring is not required to run or accept the system. Optionally import an experiment bundle and real reviewer scores; unscored fields remain empty.",
   "可选人工评分未完成，该项整体指标保持空值，不影响其他评测": "Optional human scoring is incomplete. Its overall metrics remain empty; other evaluations are unaffected.",

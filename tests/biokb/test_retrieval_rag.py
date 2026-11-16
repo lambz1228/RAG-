@@ -24,6 +24,17 @@ def test_chinese_alias_expansion_retrieves_english_paper(services, corpus):
     )
 
 
+def test_hybrid_uses_translated_lexical_terms_without_changing_bm25(services):
+    services.ingestion.ingest("enzyme.txt", b"Enzymes lower activation energy of reactions.")
+    settings = replace(services.settings, query_term_expansion=True)
+    retrieval = RetrievalService(services.repository, services.retrieval.embedder, settings)
+    assert not retrieval.search("活化能", "bm25")["hits"]
+    result = retrieval.search("活化能", "hybrid")
+    assert result["hits"][0]["bm25_score"] > 0
+    disabled = RetrievalService(services.repository, services.retrieval.embedder, services.settings)
+    assert not disabled.search("活化能", "hybrid")["hits"]
+
+
 def test_no_evidence_does_not_generate_answer(services, corpus):
     result = services.rag.ask("quantum astronomical telescope", "hybrid")
     assert result["mode"] == "insufficient_evidence"

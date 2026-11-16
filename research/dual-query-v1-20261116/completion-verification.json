@@ -1,0 +1,26 @@
+{
+  "original_rankings_identical_for_24_queries": true,
+  "question_items_unchanged": true,
+  "corpus": {
+    "passed": true,
+    "files": 343,
+    "documents": 134,
+    "errors": []
+  },
+  "answer_records": 24,
+  "judge_raw_responses": 24,
+  "regression_translation_cache_hits": 24,
+  "pytest_passed": 203,
+  "ruff_format_files": 74,
+  "browser": true,
+  "workspace": true,
+  "live_translation_version": "dual-query-rrf-v1",
+  "implementation_sha256": {
+    "src/biokb/config.py": "13c076bf0fbce8927afb412fae579b0961e2f53a5855cc82869697b5c5ddc4cb",
+    "src/biokb/query_translation.py": "13c5a72608ff062a53c82b94b65cc43705ae6c7efc70aaf51ec8e09515e98f9f",
+    "src/biokb/retrieval.py": "df3bbae5c469d5bc4c67b98aa50961ae385349272d0d7079c5c652b635962465",
+    "src/biokb/experiments.py": "3f0f2db700b313e5176a67069fe6273b2135c85496891249d66fcc1f5639f5c7",
+    "scripts/compare_dual_query.py": "2199e7ee93dc6d9c7032a618ac7edca98080d9304868720eaf845b7138f2f1e6",
+    "scripts/run_answer_experiment.py": "230ead6c95243175b3eefb0647afa44f8c9d998fa5e1d9e81dce0ae9718c87c9"
+  }
+}

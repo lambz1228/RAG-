@@ -1,0 +1,75 @@
+{
+  "no_rag": {
+    "n": 4,
+    "agreement_by_field": {
+      "correctness": 4,
+      "completeness": 4,
+      "unsupported": 3,
+      "citation_support": 4,
+      "refusal": 4
+    },
+    "disagreements": [
+      {
+        "qid": "NEW-17",
+        "first": {
+          "correctness": 1,
+          "completeness": 1,
+          "unsupported": true,
+          "citation_support": "not_applicable",
+          "refusal": "not_applicable",
+          "reason": "答案正确指出时长不适用于所有细胞，但给出的各期时长与参考原文不符：G1应为约9小时而非11小时，S应为约10小时而非8小时，G2应为约4.5小时而非4小时，M应为约0.5小时而非1小时。因此部分正确但不完整。答案中关于时长不适用所有细胞及影响因素的部分有参考依据，但具体时长数字错误，属于无支持的事实断言。未提供引用，故引用支持不适用。"
+        },
+        "repeat": {
+          "correctness": 1,
+          "completeness": 1,
+          "unsupported": false,
+          "citation_support": "not_applicable",
+          "refusal": "not_applicable",
+          "reason": "答案正确指出时长不适用于所有细胞，但给出的各期时长与参考原文不符：G1应为约9小时而非11小时，S应为约10小时而非8小时，G2应为约4.5小时而非4小时，M应为约0.5小时而非1小时。因此部分正确但不完整。"
+        }
+      }
+    ]
+  },
+  "original_rag": {
+    "n": 4,
+    "agreement_by_field": {
+      "correctness": 4,
+      "completeness": 4,
+      "unsupported": 4,
+      "citation_support": 4,
+      "refusal": 4
+    },
+    "disagreements": []
+  },
+  "dual_rag": {
+    "n": 4,
+    "agreement_by_field": {
+      "correctness": 4,
+      "completeness": 4,
+      "unsupported": 4,
+      "citation_support": 3,
+      "refusal": 4
+    },
+    "disagreements": [
+      {
+        "qid": "NEW-07",
+        "first": {
+          "correctness": 1,
+          "completeness": 1,
+          "unsupported": false,
+          "citation_support": "supported",
+          "refusal": "not_applicable",
+          "reason": "答案正确回答了核糖体由蛋白质和RNA组成，含大小两个亚基，并引用了证据[1]支持；但未回答核糖体可游离或附着于哪些位置，因此完整性和正确性部分得分。引用[1]支持了组成和亚基的断言，引用[2][3]支持了组装位置，但未涉及游离或附着位置，故引用支持为supported。"
+        },
+        "repeat": {
+          "correctness": 1,
+          "completeness": 1,
+          "unsupported": false,
+          "citation_support": "partial",
+          "refusal": "not_applicable",
+          "reason": "答案正确回答了核糖体由蛋白质和RNA组成、含大小两个亚基，但未回答游离或附着位置，因此完整性和正确性部分得分。引用[1]支持组成和亚基信息，但未支持位置部分；引用[2][3]仅涉及组装过程，与问题无关。"
+        }
+      }
+    ]
+  }
+}

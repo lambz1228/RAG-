@@ -330,6 +330,12 @@ def snapshot(output: Path, data: Path) -> dict:
             page.screenshot(path=str(output / "knowledge_zh.png"))
             page.locator("#language-select").select_option("en")
             page.screenshot(path=str(output / "knowledge_en.png"))
+            # 真实语料可能仅有全文，先展开对应分组触发懒加载。
+            for group in page.locator("#document-tree .tree-group").all():
+                if group.get_attribute("open") is None:
+                    group.locator("summary").click()
+                if page.locator("#document-tree .tree-document").count():
+                    break
             page.locator("#document-tree .tree-document").first.click()
             expect(page.locator("#reader-body .document-text").first).to_be_visible()
             page.screenshot(path=str(output / "knowledge_reader.png"))

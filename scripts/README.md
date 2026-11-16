@@ -20,6 +20,8 @@
 | `audit_questionbank.py` | 冻结题库完整性、题型缺口与待填写复核表 |
 | `questionbank.py` | CSV题集校验与新版本冻结；不代填人工审核 |
 | `run_answer_experiment.py` | 隔离副本问答对照与匿名盲评材料 |
+| `evaluate_answers_auto.py` | 不同模型对匿名答卷进行自动评价，保存输入、原始响应、失败与分组指标；不写人工评分 |
+| `compare_dual_query.py` | 在独立副本比较原查询与中英双路查询的候选排名和实际上下文覆盖；已观察题仅作诊断 |
 | `derive_paper_metrics.py` | 从冻结检索报告复算论文级指标 |
 | `verify_browser.py` | 本地上传、检索、问答、历史与任务流程 |
 | `verify_workspace.py` | 双语、文献树、标签与多尺寸布局 |
@@ -33,3 +35,5 @@
 旧版本专用采集、绘图与 GraphRAG 脚本见[归档分支](https://github.com/lambz1228/RAG-/tree/archive/pre-rebuild-20261115)。所有采集与实验使用独立目录；真实数据库、原始文献和旧实验不会随源码包分发。
 
 `run_answer_experiment.py --profile deployment`保存最终应用配置的单组复核；它与三组对照分开，不作独立测试成绩。
+
+`--profile optimized`仅运行混合检索加相邻证据的一组，参数与三组对照中的优化RAG一致。启用查询转换时，实验可从配置数据目录只读复制已存在的转换缓存，并记录种子缓存摘要，避免改变英文检索表达。

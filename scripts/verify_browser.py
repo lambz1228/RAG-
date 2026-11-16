@@ -300,8 +300,29 @@ def verify(output: Path, snapshot_data: Path | None = None) -> dict:
                         capture_output=True,
                         timeout=30,
                     )
-                    assert checked.returncode == 0, "PowerShell 健康检查未通过"
-                    report["checks"].append("PowerShell 五个健康接口")
+                    if checked.returncode and b"UnauthorizedAccess" in checked.stderr:
+                        # 保留系统执行策略，仅以HTTP逐项核验等价的接口行为。
+                        import requests
+
+                        report.setdefault("platform_limitations", []).append(
+                            "Windows执行策略阻止未签名PowerShell脚本；未执行该脚本，改用等价HTTP检查"
+                        )
+                        headers = {"Authorization": "Bearer " + settings.api_token}
+                        for route in (
+                            "/",
+                            "/api/health",
+                            "/api/dashboard",
+                            "/api/config",
+                            "/api/documents?limit=1",
+                        ):
+                            response = requests.get(url + route, headers=headers, timeout=10)
+                            assert response.status_code == 200, route
+                            if route == "/api/health":
+                                assert response.json()["status"] == "ok"
+                        report["checks"].append("Python等价健康检查：五个HTTP接口")
+                    else:
+                        assert checked.returncode == 0, "PowerShell 健康检查未通过"
+                        report["checks"].append("PowerShell 五个健康接口")
 
             with running_app(settings) as (url, services):
                 page.goto(url + "#history")

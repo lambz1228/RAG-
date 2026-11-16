@@ -1,0 +1,41 @@
+{
+  "implementation_files_unchanged": 96,
+  "archive_verified": true,
+  "dataset_unchanged": true,
+  "rag_configuration_diff_only_translation": true,
+  "cases": {
+    "no_rag": {
+      "generation_records": 24,
+      "generation_errors": 1,
+      "scored": 23,
+      "primary_raw_responses": 23,
+      "repeat_raw_responses": 4,
+      "repeat_selection_matches_registered_rule": true
+    },
+    "original_rag": {
+      "generation_records": 24,
+      "generation_errors": 0,
+      "scored": 24,
+      "primary_raw_responses": 24,
+      "repeat_raw_responses": 4,
+      "repeat_selection_matches_registered_rule": true
+    },
+    "dual_rag": {
+      "generation_records": 24,
+      "generation_errors": 0,
+      "scored": 24,
+      "primary_raw_responses": 24,
+      "repeat_raw_responses": 4,
+      "repeat_selection_matches_registered_rule": true
+    }
+  },
+  "corpus": {
+    "passed": true,
+    "files": 343,
+    "documents": 134,
+    "errors": []
+  },
+  "pytest_passed": 203,
+  "ruff_format_files": 74,
+  "live_health": 200
+}

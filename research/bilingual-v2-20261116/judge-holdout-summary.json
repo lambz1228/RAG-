@@ -1,0 +1,91 @@
+{
+  "evaluation_kind": "模型自动评价",
+  "arms": {
+    "basic_rag": {
+      "planned": 24,
+      "scored": 24,
+      "failed": 0,
+      "fully_correct": 6,
+      "fully_complete": 6,
+      "answers_with_unsupported_assertions": 0,
+      "fully_correct_rate": 0.25,
+      "unsupported_answer_rate": 0.0,
+      "provider_fallbacks": 0,
+      "inappropriate_refusals": 16,
+      "citation_evaluated": 3,
+      "citation_fully_supported": 3,
+      "by_answerability": {
+        "answerable": {
+          "scored": 20,
+          "fully_correct": 2,
+          "fully_complete": 2,
+          "answers_with_unsupported_assertions": 0
+        },
+        "absent_doi": {
+          "scored": 4,
+          "fully_correct": 4,
+          "fully_complete": 4,
+          "answers_with_unsupported_assertions": 0
+        }
+      }
+    },
+    "no_rag": {
+      "planned": 24,
+      "scored": 23,
+      "failed": 1,
+      "fully_correct": 21,
+      "fully_complete": 21,
+      "answers_with_unsupported_assertions": 0,
+      "fully_correct_rate": 0.9130434782608695,
+      "unsupported_answer_rate": 0.0,
+      "provider_fallbacks": 0,
+      "inappropriate_refusals": 0,
+      "citation_evaluated": 0,
+      "citation_fully_supported": 0,
+      "by_answerability": {
+        "answerable": {
+          "scored": 19,
+          "fully_correct": 17,
+          "fully_complete": 17,
+          "answers_with_unsupported_assertions": 0
+        },
+        "absent_doi": {
+          "scored": 4,
+          "fully_correct": 4,
+          "fully_complete": 4,
+          "answers_with_unsupported_assertions": 0
+        }
+      }
+    },
+    "optimized_rag": {
+      "planned": 24,
+      "scored": 24,
+      "failed": 0,
+      "fully_correct": 10,
+      "fully_complete": 10,
+      "answers_with_unsupported_assertions": 0,
+      "fully_correct_rate": 0.4166666666666667,
+      "unsupported_answer_rate": 0.0,
+      "provider_fallbacks": 0,
+      "inappropriate_refusals": 13,
+      "citation_evaluated": 7,
+      "citation_fully_supported": 6,
+      "by_answerability": {
+        "answerable": {
+          "scored": 20,
+          "fully_correct": 6,
+          "fully_complete": 6,
+          "answers_with_unsupported_assertions": 0
+        },
+        "absent_doi": {
+          "scored": 4,
+          "fully_correct": 4,
+          "fully_complete": 4,
+          "answers_with_unsupported_assertions": 0
+        }
+      }
+    }
+  },
+  "denominator": "各组成功裁判答卷数；失败另列，不填零分",
+  "human_review_status": null
+}

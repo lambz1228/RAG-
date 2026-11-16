@@ -1,0 +1,31 @@
+{
+  "n": 12,
+  "agreement_by_field": {
+    "correctness": 11,
+    "completeness": 11,
+    "unsupported": 12,
+    "citation_support": 12,
+    "refusal": 12
+  },
+  "disagreements": [
+    {
+      "qid": "SEM-07-ZH",
+      "first": {
+        "correctness": 1,
+        "completeness": 1,
+        "unsupported": false,
+        "citation_support": "supported",
+        "refusal": "not_applicable",
+        "reason": "答案部分正确：提到了高尔基体在分泌货物运输和分选中的核心作用、蛋白质加工（糖基化和棕榈酰化）以及反面网络的分选，但遗漏了参考要点中的包装和分配功能，且未明确提及标记。引用内容基本支持所述事实，但未覆盖全部要点。"
+      },
+      "repeat": {
+        "correctness": 2,
+        "completeness": 2,
+        "unsupported": false,
+        "citation_support": "supported",
+        "refusal": "not_applicable",
+        "reason": "答案准确概括了高尔基体在蛋白质运输中的主要任务，包括分选、加工（糖基化和棕榈酰化）以及向质膜适当结构域的分选，与参考要点一致。引用的文献片段均支持相应断言，无未支持的事实断言。"
+      }
+    }
+  ]
+}

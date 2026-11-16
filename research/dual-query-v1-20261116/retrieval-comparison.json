@@ -1,0 +1,23 @@
+{
+  "scope": "已观察题集上的检索诊断，不是新独立测试",
+  "source_unchanged": true,
+  "dataset_sha256": "ee451249d6711b87c6cdecd52ac5844adda2e0393a6e5b64c3d1b92fec6427c9",
+  "arms": {
+    "original": {
+      "n": 20,
+      "gold_span_in_top50": 11,
+      "gold_span_in_top5": 4,
+      "positive_context_coverage": 4,
+      "context_coverage_mean": 0.2,
+      "translation_fallbacks": 0
+    },
+    "dual": {
+      "n": 20,
+      "gold_span_in_top50": 20,
+      "gold_span_in_top5": 17,
+      "positive_context_coverage": 16,
+      "context_coverage_mean": 0.7539772280939798,
+      "translation_fallbacks": 0
+    }
+  }
+}

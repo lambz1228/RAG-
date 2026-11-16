@@ -13,6 +13,7 @@ from .text import TERM_EXPANSION_SHA256, TERM_EXPANSION_VERSION
 SOURCE_ROOT = Path(__file__).resolve().parents[2]
 # 源码运行定位到仓库；wheel 安装后使用工作目录，避免写入 site-packages。
 PROJECT_ROOT = SOURCE_ROOT if (SOURCE_ROOT / "pyproject.toml").is_file() else Path.cwd()
+RETRIEVAL_VERSION = "hybrid-bilingual-lexical-v2"
 
 
 def load_env(path: Path) -> None:
@@ -122,6 +123,7 @@ class Settings:
     embedding_model_path: str = ""
     embedding_threads: int = 2
     query_term_expansion: bool = False
+    query_translation: bool = False
     llm_response_format: str = "text"
     llm_max_tokens: int = 1600
     llm_output_mode: str = "answer"
@@ -154,6 +156,10 @@ class Settings:
                 raise KnowledgeError(f"配置 {name} 必须为 {lower}–{upper} 的整数")
         if type(self.query_term_expansion) is not bool:
             raise KnowledgeError("术语扩展配置必须为布尔值")
+        if type(self.query_translation) is not bool:
+            raise KnowledgeError("英文查询转换配置必须为布尔值")
+        if self.query_translation and self.llm_backend != "openai_compatible":
+            raise KnowledgeError("英文查询转换需要配置兼容生成接口")
         if self.embedding_backend not in {"hash", "ollama", "openai_compatible", "onnx_e5"}:
             raise KnowledgeError(
                 "BIOKB_EMBEDDING_BACKEND 仅支持 hash、ollama、openai_compatible、onnx_e5"
@@ -244,6 +250,7 @@ class Settings:
             else "",
             embedding_threads=integer("BIOKB_EMBEDDING_THREADS", 2, 1, 8),
             query_term_expansion=boolean("BIOKB_QUERY_TERM_EXPANSION", False),
+            query_translation=boolean("BIOKB_QUERY_TRANSLATION", False),
             llm_response_format=os.environ.get("BIOKB_LLM_RESPONSE_FORMAT", "text"),
             llm_max_tokens=integer("BIOKB_LLM_MAX_TOKENS", 1600, 128, 4096),
             llm_output_mode=os.environ.get("BIOKB_LLM_OUTPUT_MODE", "answer"),
@@ -251,6 +258,7 @@ class Settings:
 
     def public(self) -> dict:
         return {
+            "retrieval_pipeline_version": RETRIEVAL_VERSION,
             "embedding_backend": self.embedding_backend,
             "embedding_model": self.embedding_model,
             "embedding_key_configured": bool(self.embedding_api_key),
@@ -275,6 +283,8 @@ class Settings:
             "local_embedding_configured": bool(self.embedding_model_path),
             "embedding_threads": self.embedding_threads,
             "query_term_expansion": self.query_term_expansion,
+            "query_translation": self.query_translation,
+            "query_translation_version": "dual-query-rrf-v1" if self.query_translation else "",
             "query_term_expansion_version": TERM_EXPANSION_VERSION
             if self.query_term_expansion
             else "",

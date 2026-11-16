@@ -18,7 +18,9 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--offline", action="store_true", help="仅运行哈希检索和原文摘录流程演示")
     parser.add_argument(
-        "--profile", choices=["taskbook", "core", "rerank", "deployment"], default="taskbook"
+        "--profile",
+        choices=["taskbook", "core", "rerank", "deployment", "optimized", "ungrounded"],
+        default="taskbook",
     )
     parser.add_argument("--env-file", type=Path, help="显式读取模型配置，不覆盖已有环境变量")
     args = parser.parse_args()

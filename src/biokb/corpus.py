@@ -68,8 +68,8 @@ def freeze_corpus(source: Path, target: Path) -> dict:
         "vector_profiles": profiles,
         "files": files,
     }
-    (target / "CORPUS_MANIFEST.json").write_text(
-        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    (target / "CORPUS_MANIFEST.json").write_bytes(
+        (json.dumps(manifest, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
     )
     return manifest
 

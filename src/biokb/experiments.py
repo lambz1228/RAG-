@@ -57,6 +57,8 @@ PROFILES = {
     "core": CORE_ARMS,
     "rerank": RERANK_ARMS,
     "deployment": DEPLOYMENT_ARMS,
+    "optimized": (Arm("optimized_rag", "hybrid", neighbors=1),),
+    "ungrounded": (Arm("no_rag", "none"),),
 }
 OFFLINE_ARMS = (
     Arm("bm25", "bm25"),
@@ -259,7 +261,9 @@ def run_experiment(
     if expected and expected != before:
         raise KnowledgeError("正式库与题库冻结时的数据库摘要不同")
     if profile not in PROFILES:
-        raise KnowledgeError("实验配置必须为 taskbook、core、rerank 或 deployment")
+        raise KnowledgeError(
+            "实验配置必须为 taskbook、core、rerank、deployment、optimized 或 ungrounded"
+        )
     if not offline and (settings.embedding_backend == "hash" or settings.llm_backend == "disabled"):
         raise KnowledgeError("真实模型实验需要向量与生成模型；离线演示请显式使用 --offline")
     if not offline and profile == "rerank" and settings.reranker_backend == "disabled":
@@ -279,6 +283,15 @@ def run_experiment(
         with closing(sqlite3.connect(snapshot)) as copied:
             original.backup(copied)
     runtime = replace(settings, data_dir=snapshot.parent, workers=1)
+    translation_cache = settings.data_dir / "query-translation-cache.sqlite3"
+    cache_sha256 = None
+    if settings.query_translation and translation_cache.is_file():
+        cache_sha256 = file_sha256(translation_cache)
+        with closing(
+            sqlite3.connect(translation_cache.resolve().as_uri() + "?mode=ro", uri=True)
+        ) as original:
+            with closing(sqlite3.connect(snapshot.parent / translation_cache.name)) as copied:
+                original.backup(copied)
     services = build_services(runtime)
     results = []
     error = None
@@ -327,6 +340,7 @@ def run_experiment(
             "prompt_version": PROMPT_VERSION,
             "generation_validation_version": GENERATION_VALIDATION_VERSION,
             "no_rag_prompt_version": UNGROUNDED_PROMPT_VERSION,
+            "query_translation_seed_cache_sha256": cache_sha256,
             "human_review_status": None,
             "human_review_required": False,
             "latency_scope": "查询内随机对照组顺序；共享缓存与网络，不作受控速度结论",

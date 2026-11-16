@@ -1,0 +1,35 @@
+{
+  "evaluation_kind": "模型自动评价",
+  "arms": {
+    "optimized_rag": {
+      "planned": 4,
+      "scored": 4,
+      "failed": 0,
+      "fully_correct": 0,
+      "fully_complete": 0,
+      "answers_with_unsupported_assertions": 0,
+      "fully_correct_rate": 0.0,
+      "unsupported_answer_rate": 0.0,
+      "provider_fallbacks": 0,
+      "inappropriate_refusals": 1,
+      "citation_evaluated": 3,
+      "citation_fully_supported": 1,
+      "by_answerability": {
+        "answerable": {
+          "scored": 4,
+          "fully_correct": 0,
+          "fully_complete": 0,
+          "answers_with_unsupported_assertions": 0
+        },
+        "absent_doi": {
+          "scored": 0,
+          "fully_correct": 0,
+          "fully_complete": 0,
+          "answers_with_unsupported_assertions": 0
+        }
+      }
+    }
+  },
+  "denominator": "各组成功裁判答卷数；失败另列，不填零分",
+  "human_review_status": null
+}
