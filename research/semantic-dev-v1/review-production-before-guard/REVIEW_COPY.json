@@ -1,0 +1,8 @@
+{
+  "scope": "模型答案与来源位置的复核副本；长原文保留于原冻结库。此副本的答卷摘要不得混用原机评分表。",
+  "source_results_sha256": "d8933bd5c792d277ffb18a9860883aa9f0f85276e598d92527875b075f97ef48",
+  "source_protocol_sha256": "2d46f0d346bbf3cafb1e656f8d0f811f8ee1ae9c1ee86c4e701978dbeaddbe57",
+  "answers": 12,
+  "reviewed_answers": 0,
+  "transformation": "仅将citations中的text替换为空并保留其SHA-256；模型answer、mode、上下文范围、原文位置与来源元数据不改写"
+}

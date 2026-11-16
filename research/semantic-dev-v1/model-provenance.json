@@ -1,0 +1,76 @@
+{
+  "scope": "实际运行的固定模型、文件摘要与推理配置；权重不分发",
+  "embedding": {
+    "schema_version": 1,
+    "repository": "intfloat/multilingual-e5-small",
+    "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "format": "onnx-qint8-avx512-vnni",
+    "files": {
+      "model.onnx": {
+        "sha256": "dd476dd0c2514e9b9be83aeb3853fac0763e0bdf4a71645407587d77c48a2d88",
+        "bytes": 118346824,
+        "source_path": "onnx/model_qint8_avx512_vnni.onnx"
+      },
+      "tokenizer.json": {
+        "sha256": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+        "bytes": 17082730,
+        "source_path": "onnx/tokenizer.json"
+      },
+      "config.json": {
+        "sha256": "bbb7c1333fc4b3e27fbc9cd5d2070aabcc1d4dfb99917c3633e772f97545a6b6",
+        "bytes": 653,
+        "source_path": "onnx/config.json"
+      },
+      "tokenizer_config.json": {
+        "sha256": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b",
+        "bytes": 443,
+        "source_path": "onnx/tokenizer_config.json"
+      },
+      "README.md": {
+        "sha256": "0038de97aee16258cecbad7ffda4b4febd6953e747a00e0ddbc8e6ed241e9c1c",
+        "bytes": 497538,
+        "source_path": "README.md"
+      }
+    },
+    "license": "MIT",
+    "license_source": "https://huggingface.co/intfloat/multilingual-e5-small/tree/614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "pooling": "attention-masked mean",
+    "normalization": "L2",
+    "dimensions": 384,
+    "max_tokens": 512,
+    "document_prefix": "passage: ",
+    "query_prefix": "query: ",
+    "threads": 2
+  },
+  "generation": {
+    "repository": "Qwen/Qwen2.5-3B-Instruct-GGUF",
+    "revision": "7dabda4d13d513e3e842b20f0d435c732f172cbe",
+    "file": "qwen2.5-3b-instruct-q4_k_m.gguf",
+    "bytes": 2104932768,
+    "sha256": "626b4a6678b86442240e33df819e00132d3ba7dddfe1cdc4fbb18e0a9615c62d",
+    "license": "Qwen RESEARCH LICENSE",
+    "license_url": "https://huggingface.co/Qwen/Qwen2.5-3B-Instruct-GGUF/blob/7dabda4d13d513e3e842b20f0d435c732f172cbe/LICENSE",
+    "license_file_sha256": "ef52482bb785733093dc9a2e8edd8e764c77d12d8e9d8f10a80c9b547d32d0f9",
+    "llama_cpp_version": "version: 1.0.0-dev (build 12390, commit 8b4ac2496)\nbuilt with GNU 11.4.0 for Linux x86_64",
+    "ctx_size": 8192,
+    "threads": 2,
+    "parallel": 1,
+    "max_tokens": 768,
+    "temperature": 0,
+    "output_mode": "claims",
+    "response_format": "json_schema",
+    "prompt_versions_exercised": [
+      "evidence-v6-structured-claims",
+      "evidence-v7-mode-aware-repair",
+      "evidence-v8-direct-information"
+    ],
+    "generation_validation_version": "citation-and-exact-echo-v1"
+  },
+  "packages": {
+    "onnxruntime": "1.32.0",
+    "tokenizers": "0.23.3",
+    "numpy": "2.5.5"
+  },
+  "platform_scope": "Linux CPU，配额2核、内存8GiB；不代表其他硬件的兼容性或速度成绩",
+  "local_encoder_source_sha256": "134570e6eb7f6102ff5564fdd0f187756d3bbfee45aaef013f7a845983da215b"
+}

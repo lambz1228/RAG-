@@ -15,6 +15,8 @@ from .providers import PROMPT_VERSION, LanguageModel
 from .retrieval import RetrievalService
 from .storage import Repository
 
+GENERATION_VALIDATION_VERSION = "citation-and-exact-echo-v1"
+
 
 class RAGService:
     def __init__(
@@ -76,6 +78,7 @@ class RAGService:
         """结构化结果至多纠正一次，所有尝试使用同一验证规则。"""
         trace = trace if trace is not None else {}
         trace.update(attempts=1, format_repair=False, validation_errors=[], response_sha256=[])
+        trace["validation_version"] = GENERATION_VALIDATION_VERSION
         # 历史非空才传入，兼容只接受固定参数的既有模型实现。
         if history:
             response = model.answer(query, evidence, history=history)
@@ -93,8 +96,20 @@ class RAGService:
         if isinstance(response, dict) and response.get("citation_rendering"):
             trace["citation_rendering"] = response["citation_rendering"]
             trace["raw_response_sha256"] = response.get("raw_response_sha256")
+
+        def validate(value):
+            result = RAGService._validate_answer(value, len(evidence))
+
+            def canonical(text):
+                text = re.sub(r"\[\d+\]", "", text).casefold()
+                return "".join(char for char in text if char.isalnum())
+
+            if result[2] != "insufficient" and canonical(result[0]) == canonical(query):
+                raise ProviderError("模型只复述了问题，未提供实际回答")
+            return result
+
         try:
-            return RAGService._validate_answer(response, len(evidence))
+            return validate(response)
         except ProviderError as exc:
             trace["validation_errors"].append(str(exc))
             repair = getattr(model, "repair_answer", None)
@@ -107,7 +122,7 @@ class RAGService:
                 corrected = repair(query, evidence, response, str(exc))
             remember(corrected)
             try:
-                return RAGService._validate_answer(corrected, len(evidence))
+                return validate(corrected)
             except ProviderError as final_error:
                 trace["validation_errors"].append(str(final_error))
                 raise
@@ -211,7 +226,7 @@ class RAGService:
                     self.model, query, evidence, generation, history
                 )
                 if generation["format_repair"]:
-                    warnings.append("模型首次输出未通过格式检查，已请求一次纠正并重新验证引用编号")
+                    warnings.append("模型首次输出未通过检查，已请求一次纠正并重新验证引用编号")
                 mode = {
                     "answered": "generated",
                     "partial": "partial",

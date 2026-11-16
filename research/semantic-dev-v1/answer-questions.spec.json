@@ -1,0 +1,208 @@
+{
+  "scope": "10道有出处题与2道指定DOI缺失题的开发问答对照；未经真实人工复核",
+  "human_review_status": null,
+  "items": [
+    {
+      "qid": "SEM-02-ZH",
+      "concept_id": "SEM-02",
+      "language": "zh",
+      "topic": "membranes",
+      "question": "细胞为什么需要消耗能量进行主动运输？",
+      "reference_answer": "逆浓度梯度或电化学梯度运输物质需要能量，常由ATP或已有梯度提供。",
+      "type": "机制/基础概念",
+      "answerable": true,
+      "evidence_specs": [
+        {
+          "source": "openstax-biology-2e-m66375@5ae2f953cfe9",
+          "start_marker": "Active transport mechanisms require the cell’s energy, usually in the form of adenosine tr",
+          "end_marker": "als, such as ions, through the membrane. Other mechanisms transport much larger molecules.",
+          "expected_document_sha256": "6bf9e7f6ab98e8731ca2639d14391425959ec490ff6d933e3fa7441e0683c87d"
+        }
+      ]
+    },
+    {
+      "qid": "SEM-03-ZH",
+      "concept_id": "SEM-03",
+      "language": "zh",
+      "topic": "cytoskeleton",
+      "question": "细胞骨架主要由哪三类蛋白纤维组成？",
+      "reference_answer": "微丝、中间纤维和微管。",
+      "type": "机制/基础概念",
+      "answerable": true,
+      "evidence_specs": [
+        {
+          "source": "openstax-biology-2e-m66454@5ae2f953cfe9",
+          "start_marker": "There are three types of fibers within the cytoskeleton: microfilaments, intermediate fila",
+          "end_marker": "bers within the cytoskeleton: microfilaments, intermediate filaments, and microtubules ().",
+          "expected_document_sha256": "872108f27336a32f4811f3cd362e972392dd1cdfad21a50126b447c3b650044f"
+        }
+      ]
+    },
+    {
+      "qid": "SEM-05-ZH",
+      "concept_id": "SEM-05",
+      "language": "zh",
+      "topic": "dna_maintenance",
+      "question": "原核DNA复制时，DNA聚合酶为何需要引物，并沿哪个方向合成新链？",
+      "reference_answer": "引物提供可供延伸的游离3′-OH；新DNA链沿5′到3′方向合成。",
+      "type": "机制/基础概念",
+      "answerable": true,
+      "evidence_specs": [
+        {
+          "source": "openstax-biology-2e-m66390@5ae2f953cfe9",
+          "start_marker": "DNA polymerase has two important restrictions: it is able to add nucleotides only in the 5",
+          "end_marker": "NA primer, adding nucleotides one-by-one that are complementary to the template strand ().",
+          "expected_document_sha256": "7149b91dbbee03db49a1b0e9baec35e08bf80a9c3502f8b5f866b7b0ce806859"
+        }
+      ]
+    },
+    {
+      "qid": "SEM-06-ZH",
+      "concept_id": "SEM-06",
+      "language": "zh",
+      "topic": "gene_expression",
+      "question": "真核mRNA的5′帽结构有哪些作用？",
+      "reference_answer": "保护新生mRNA免于降解，并帮助蛋白质合成因子识别和启动翻译。",
+      "type": "机制/基础概念",
+      "answerable": true,
+      "evidence_specs": [
+        {
+          "source": "openstax-biology-2e-m66500@5ae2f953cfe9",
+          "start_marker": "While the pre-mRNA is still being synthesized, a 7-methylguanosine cap is added to the 5' ",
+          "end_marker": "involved in protein synthesis recognize the cap to help initiate translation by ribosomes.",
+          "expected_document_sha256": "54ef109df9f3bd64de6bbb4f928339d9b36fe0f8b14a061a1a90f1c38b98e0e4"
+        }
+      ]
+    },
+    {
+      "qid": "SEM-07-ZH",
+      "concept_id": "SEM-07",
+      "language": "zh",
+      "topic": "protein_traffic",
+      "question": "高尔基体在蛋白质运输中承担哪些主要任务？",
+      "reference_answer": "对运输来的蛋白质等进行分选、标记、包装和分配，使其到达适当位置。",
+      "type": "机制/基础概念",
+      "answerable": true,
+      "evidence_specs": [
+        {
+          "source": "openstax-biology-2e-m66452@5ae2f953cfe9",
+          "start_marker": "We have already mentioned that vesicles can bud from the ER and transport their contents e",
+          "end_marker": "he Golgi apparatus (also called the Golgi body), a series of flattened membranous sacs ().",
+          "expected_document_sha256": "4b99990c2300ee1a0b7a48c552a491da29fdb80362a3753357ab76cc67b74e21"
+        }
+      ]
+    },
+    {
+      "qid": "SEM-10-ZH",
+      "concept_id": "SEM-10",
+      "language": "zh",
+      "topic": "metabolism",
+      "question": "酶如何影响反应活化能，是否改变反应的自由能差？",
+      "reference_answer": "酶降低达到过渡态所需的活化能，不改变反应的ΔG或反应物与产物的自由能。",
+      "type": "机制/基础概念",
+      "answerable": true,
+      "evidence_specs": [
+        {
+          "source": "openstax-biology-2e-m66463@5ae2f953cfe9",
+          "start_marker": "A substance that helps a chemical reaction to occur is a catalyst, and the special molecul",
+          "end_marker": " energy. They only reduce the activation energy required to reach the transition state ().",
+          "expected_document_sha256": "8dc866d1cb61c03c7fea19b7819e585b580bc0a464fdbb868fbe9acee162cca1"
+        }
+      ]
+    },
+    {
+      "qid": "SEM-13-ZH",
+      "concept_id": "SEM-13",
+      "language": "zh",
+      "topic": "mitochondria",
+      "question": "氧在细胞呼吸电子传递链的末端起什么作用？",
+      "reference_answer": "作为最终电子受体，结合电子和质子形成水。",
+      "type": "机制/基础概念",
+      "answerable": true,
+      "evidence_specs": [
+        {
+          "source": "openstax-biology-2e-m66468@5ae2f953cfe9",
+          "start_marker": "Chemiosmosis () is used to generate 90 percent of the ATP made during aerobic glucose cata",
+          "end_marker": "er is formed. Thus, oxygen is the final electron acceptor in the electron transport chain.",
+          "expected_document_sha256": "be0141ec1d6c420b3d1cd98454978403b3dfbb4e2647be89b247559c8641793f"
+        }
+      ]
+    },
+    {
+      "qid": "SEM-16-ZH",
+      "concept_id": "SEM-16",
+      "language": "zh",
+      "topic": "endoplasmic_reticulum",
+      "question": "哺乳动物细胞未折叠蛋白反应的三个主要感受器是什么？",
+      "reference_answer": "IRE1α、PERK和ATF6。",
+      "type": "机制/基础概念",
+      "answerable": true,
+      "evidence_specs": [
+        {
+          "source": "PMC8146082-fulltext",
+          "start_marker": "The UPR in mammalian cells is complex and works via three principal ER transmembrane recep",
+          "end_marker": "on factor 2α (eIF2α) kinase (PERK) and activating transcription factor 6 (ATF6) [1,4,5,6].",
+          "expected_document_sha256": "456fdb4f63c218364b0ad9bd8569439c2252206ac9b9dd5e7732e52355d656a8"
+        }
+      ]
+    },
+    {
+      "qid": "SEM-17-ZH",
+      "concept_id": "SEM-17",
+      "language": "zh",
+      "topic": "cell_cycle",
+      "question": "p53间接抑制细胞周期相关基因时，p21发挥什么作用？",
+      "reference_answer": "p21是细胞周期蛋白依赖性激酶抑制剂；p53对许多细胞周期基因的间接抑制依赖p21。",
+      "type": "机制/基础概念",
+      "answerable": true,
+      "evidence_specs": [
+        {
+          "source": "PMC9090780-fulltext",
+          "start_marker": "p53 is a transcription factor that activates a large number of genes [31, 32]. Prominent t",
+          "end_marker": "n by p53 requires the cyclin-dependent kinase inhibitor p21/WAF1/CIP1/CDKN1A [23, 37, 38].",
+          "expected_document_sha256": "b38dd8241badd937f8d5426a128c7ce5ae6b67caf352a6d8cda279c4c143db78"
+        }
+      ]
+    },
+    {
+      "qid": "SEM-18-ZH",
+      "concept_id": "SEM-18",
+      "language": "zh",
+      "topic": "peroxisome",
+      "question": "人类过氧化物酶体膜上有哪些主要的ABCD家族转运蛋白？",
+      "reference_answer": "ABCD1、ABCD2和ABCD3。",
+      "type": "机制/基础概念",
+      "answerable": true,
+      "evidence_specs": [
+        {
+          "source": "PMC8201181-fulltext",
+          "start_marker": "ABCD1, ABCD2, and ABCD3 are located in the peroxisomal membrane.",
+          "end_marker": "ABCD1, ABCD2, and ABCD3 are located in the peroxisomal membrane.",
+          "expected_document_sha256": "49d4e4e57eae51d5861ee263e9d03555f0581e22f50be268f01a230f39911e0d"
+        }
+      ]
+    },
+    {
+      "qid": "SEM-ABSENT-01",
+      "concept_id": "SEM-ABSENT-01",
+      "language": "zh",
+      "topic": "source_identity",
+      "question": "请仅依据当前资料库，给出DOI为10.0000/biokb-semantic-no-paper-01的论文作者和研究结论。",
+      "reference_answer": "不编造作者或研究结果；说明当前证据没有该指定DOI的论文。",
+      "type": "指定来源缺失",
+      "answerable": false,
+      "absent_doi": "10.0000/biokb-semantic-no-paper-01"
+    },
+    {
+      "qid": "SEM-ABSENT-02",
+      "concept_id": "SEM-ABSENT-02",
+      "language": "zh",
+      "topic": "source_identity",
+      "question": "请仅依据当前资料库，给出DOI为10.0000/biokb-semantic-no-paper-02的论文作者和研究结论。",
+      "reference_answer": "不编造作者或研究结果；说明当前证据没有该指定DOI的论文。",
+      "type": "指定来源缺失",
+      "answerable": false,
+      "absent_doi": "10.0000/biokb-semantic-no-paper-02"
+    }
+  ]
+}

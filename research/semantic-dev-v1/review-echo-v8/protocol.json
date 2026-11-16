@@ -1,0 +1,102 @@
+{
+  "created_at_utc": "2026-11-16T02:53:17.588055+00:00",
+  "seed": 20261115,
+  "scope": "固定配置问答对照；正确性待人工盲评",
+  "dataset": {
+    "sha256": "38efdcef8c3ded60504500b8db5f30ffadfaab003e2f1a5162246693a500f049",
+    "manifest": {
+      "origin": "任务书开发草稿：原文锚点校验不等于领域正确性复核",
+      "split": "development",
+      "human_review_status": null,
+      "database_sha256": "f7450e256fb1777e358508974d406bf530d75af3306f46a9015b6fa2bf267f1c",
+      "corpus_manifest_sha256": "587f8e64468c7f595093414f4503f68f2f4375ccd035c2a7a535b8bf4d6990f3",
+      "spec_sha256": "6fc12cafb76108e432e6be79b20805372edad0761950527b7d7266ad57233a01",
+      "items": [
+        {
+          "qid": "SEM-18-ZH",
+          "question": "人类过氧化物酶体膜上有哪些主要的ABCD家族转运蛋白？",
+          "reference_answer": "ABCD1、ABCD2和ABCD3。",
+          "type": "机制/基础概念",
+          "answerable": true,
+          "concept_id": "SEM-18",
+          "language": "zh",
+          "topic": "peroxisome",
+          "evidence": [
+            {
+              "document_id": "doc_fbefea30b077a17428e2eebf",
+              "start_offset": 1273,
+              "end_offset": 1337,
+              "sha256": "3e679cbada9e85b40e32f34fa09536afe7d34026471b05b4c99c6bb255c08dba",
+              "pmid": "34198763",
+              "pmcid": "PMC8201181",
+              "source_id": "PMC8201181-fulltext"
+            }
+          ],
+          "human_review_status": null
+        }
+      ],
+      "scope": "已观察到逐字复述问题后的定向回归，不是独立测试，不与原12题混算"
+    }
+  },
+  "question_ids": [
+    "SEM-18-ZH"
+  ],
+  "planned_answers": 1,
+  "database_sha256": "f7450e256fb1777e358508974d406bf530d75af3306f46a9015b6fa2bf267f1c",
+  "snapshot_sha256": "f7450e256fb1777e358508974d406bf530d75af3306f46a9015b6fa2bf267f1c",
+  "corpus": {
+    "sha256": "2dbf872833067458ba5457b7bfd31e4bdd371e8746b13a4f3add714ea4e42fcd",
+    "documents": 134,
+    "eligible_documents": 134
+  },
+  "index_revision": 136,
+  "configuration": {
+    "embedding_backend": "onnx_e5",
+    "embedding_model": "intfloat/multilingual-e5-small",
+    "embedding_key_configured": false,
+    "llm_backend": "openai_compatible",
+    "llm_model": "biokb-qwen2.5-3b",
+    "llm_key_configured": false,
+    "retrieval": "hybrid",
+    "top_k": 5,
+    "chunk_size": 800,
+    "chunk_overlap": 120,
+    "request_timeout": 300,
+    "max_context_chars": 6000,
+    "authentication_required": false,
+    "answer_mode": "generated",
+    "retrieval_candidates": 50,
+    "rrf_constant": 60,
+    "dense_min_score": 0.12,
+    "max_evidence_per_document": 2,
+    "reranker_backend": "disabled",
+    "reranker_model": "",
+    "embedding_revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "local_embedding_configured": true,
+    "embedding_threads": 2,
+    "query_term_expansion": true,
+    "query_term_expansion_version": "cell-biology-terms-v1",
+    "query_term_expansion_sha256": "887449ff90e3ffa8a1e57c2ff9afe176f9c8423ce603472e50cf5452bfa71f41",
+    "llm_response_format": "json_schema",
+    "llm_max_tokens": 768,
+    "llm_output_mode": "claims"
+  },
+  "arms": [
+    {
+      "name": "semantic_rag",
+      "strategy": "hybrid",
+      "top_k": 5,
+      "neighbors": 0,
+      "document_cap": 2
+    }
+  ],
+  "profile": "deployment",
+  "generation_fingerprint": "d61406cd81ee9eea0c56217c",
+  "embedding_fingerprint": "6e6d83f8e9532cbdd2e0762f",
+  "reranker_fingerprint": "0776a2dfd88e1cd1524664c4",
+  "prompt_version": "evidence-v8-direct-information",
+  "generation_validation_version": "citation-and-exact-echo-v1",
+  "no_rag_prompt_version": "no-retrieval-v1",
+  "human_review_status": null,
+  "latency_scope": "查询内随机对照组顺序；共享缓存与网络，不作受控速度结论"
+}

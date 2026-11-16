@@ -8,6 +8,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 from .errors import KnowledgeError
+from .text import TERM_EXPANSION_SHA256, TERM_EXPANSION_VERSION
 
 SOURCE_ROOT = Path(__file__).resolve().parents[2]
 # 源码运行定位到仓库；wheel 安装后使用工作目录，避免写入 site-packages。
@@ -118,6 +119,9 @@ class Settings:
     reranker_base_url: str = "http://127.0.0.1:11434"
     reranker_api_key: str = field(default="", repr=False)
     embedding_revision: str = ""
+    embedding_model_path: str = ""
+    embedding_threads: int = 2
+    query_term_expansion: bool = False
     llm_response_format: str = "text"
     llm_max_tokens: int = 1600
     llm_output_mode: str = "answer"
@@ -132,6 +136,7 @@ class Settings:
             "chunk_size": (200, 4000),
             "chunk_overlap": (0, 3999),
             "embedding_dimensions": (64, 16384),
+            "embedding_threads": (1, 8),
             "request_timeout": (1, 300),
             "top_k": (1, 20),
             "workers": (1, 8),
@@ -147,8 +152,21 @@ class Settings:
             value = getattr(self, name)
             if type(value) is not int or not lower <= value <= upper:
                 raise KnowledgeError(f"配置 {name} 必须为 {lower}–{upper} 的整数")
-        if self.embedding_backend not in {"hash", "ollama", "openai_compatible"}:
-            raise KnowledgeError("BIOKB_EMBEDDING_BACKEND 仅支持 hash、ollama、openai_compatible")
+        if type(self.query_term_expansion) is not bool:
+            raise KnowledgeError("术语扩展配置必须为布尔值")
+        if self.embedding_backend not in {"hash", "ollama", "openai_compatible", "onnx_e5"}:
+            raise KnowledgeError(
+                "BIOKB_EMBEDDING_BACKEND 仅支持 hash、ollama、openai_compatible、onnx_e5"
+            )
+        if self.embedding_backend == "onnx_e5":
+            import re
+
+            if (
+                self.embedding_model != "intfloat/multilingual-e5-small"
+                or not self.embedding_model_path
+                or not re.fullmatch(r"[0-9a-f]{40}", self.embedding_revision)
+            ):
+                raise KnowledgeError("本地E5需要固定模型标识、模型路径及40位修订摘要")
         if self.llm_backend not in {"disabled", "ollama", "openai_compatible"}:
             raise KnowledgeError("BIOKB_LLM_BACKEND 仅支持 disabled、ollama、openai_compatible")
         if self.llm_response_format not in {"text", "json_object", "json_schema"}:
@@ -221,6 +239,11 @@ class Settings:
             reranker_base_url=os.environ.get("BIOKB_RERANKER_BASE_URL", "http://127.0.0.1:11434"),
             reranker_api_key=secret("BIOKB_RERANKER_API_KEY"),
             embedding_revision=os.environ.get("BIOKB_EMBEDDING_REVISION", ""),
+            embedding_model_path=str((base / os.environ["BIOKB_EMBEDDING_MODEL_PATH"]).resolve())
+            if os.environ.get("BIOKB_EMBEDDING_MODEL_PATH")
+            else "",
+            embedding_threads=integer("BIOKB_EMBEDDING_THREADS", 2, 1, 8),
+            query_term_expansion=boolean("BIOKB_QUERY_TERM_EXPANSION", False),
             llm_response_format=os.environ.get("BIOKB_LLM_RESPONSE_FORMAT", "text"),
             llm_max_tokens=integer("BIOKB_LLM_MAX_TOKENS", 1600, 128, 4096),
             llm_output_mode=os.environ.get("BIOKB_LLM_OUTPUT_MODE", "answer"),
@@ -249,6 +272,15 @@ class Settings:
             "reranker_backend": self.reranker_backend,
             "reranker_model": self.reranker_model,
             "embedding_revision": self.embedding_revision,
+            "local_embedding_configured": bool(self.embedding_model_path),
+            "embedding_threads": self.embedding_threads,
+            "query_term_expansion": self.query_term_expansion,
+            "query_term_expansion_version": TERM_EXPANSION_VERSION
+            if self.query_term_expansion
+            else "",
+            "query_term_expansion_sha256": TERM_EXPANSION_SHA256
+            if self.query_term_expansion
+            else "",
             "llm_response_format": self.llm_response_format,
             "llm_max_tokens": self.llm_max_tokens,
             "llm_output_mode": self.llm_output_mode,
@@ -260,3 +292,10 @@ def decimal(name: str, default: float) -> float:
         return float(os.environ.get(name, str(default)))
     except ValueError as exc:
         raise KnowledgeError(f"配置 {name} 必须为数值") from exc
+
+
+def boolean(name: str, default: bool) -> bool:
+    value = os.environ.get(name, str(default)).lower()
+    if value not in {"true", "false", "1", "0"}:
+        raise KnowledgeError(f"配置 {name} 必须为true或false")
+    return value in {"true", "1"}

@@ -1,0 +1,49 @@
+{
+  "scope": "本机真实E5检索API与原文位置技术检查，不是生成准确率评价",
+  "passed": true,
+  "query": "细胞骨架主要由哪三类蛋白纤维组成？",
+  "query_expansion": {
+    "terms": [
+      "cytoskeleton"
+    ],
+    "version": "cell-biology-terms-v1"
+  },
+  "embedding_fingerprint": "6e6d83f8e9532cbdd2e0762f",
+  "hits": [
+    {
+      "document_id": "doc_153a026b6441345009c8c614",
+      "source_id": "openstax-biology-2e-m66454@5ae2f953cfe9",
+      "title": "Biology 2e 4.5 — The Cytoskeleton",
+      "locator": "字符 1–762",
+      "text_sha256": "3eab4d96eef50eda8a6647511c6998b5aee6f4a034414d1c8c707b0c676ab1ab"
+    },
+    {
+      "document_id": "doc_f8fa8dc264b0aca0e9eca1e1",
+      "source_id": "PMC7329351-fulltext",
+      "title": "Elevator-type mechanisms of membrane transport.",
+      "locator": "字符 7699–8462",
+      "text_sha256": "c5e4fc9a57c722e3d8d2e778a802e8b132ae1d8a11e6d1f14de929cadca6263b"
+    },
+    {
+      "document_id": "doc_3b7206c8ca79e454d36d3f1d",
+      "source_id": "PMC6523135-fulltext",
+      "title": "The Cytoskeleton-A Complex Interacting Meshwork.",
+      "locator": "字符 1–461",
+      "text_sha256": "24077fe07ff29943bc3c0b3b5115da1fb0fee13b1b0bce8768dfc68637b65979"
+    },
+    {
+      "document_id": "doc_153a026b6441345009c8c614",
+      "source_id": "openstax-biology-2e-m66454@5ae2f953cfe9",
+      "title": "Biology 2e 4.5 — The Cytoskeleton",
+      "locator": "字符 4356–5056",
+      "text_sha256": "fdfe4bef0603fec07c15975fb8c7a2b30831269e61c82b22ae34f3949ecdbc2c"
+    },
+    {
+      "document_id": "doc_3a78ac7795ef4fa8594fee76",
+      "source_id": "openstax-biology-2e-m66374@5ae2f953cfe9",
+      "title": "Biology 2e 5.2 — Passive Transport",
+      "locator": "字符 1802–2505",
+      "text_sha256": "db6ebc4a9e428072e9d4be8e5a6bb28d4285f41aeb6ba35d6c308dbbdd5c752e"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "scope": "134份资料真实语义索引构建；不是回答准确性评价",
+  "documents": 134,
+  "chunks": 8083,
+  "vector_profiles": [
+    {
+      "fingerprint": "6e6d83f8e9532cbdd2e0762f",
+      "dimensions": 384,
+      "count": 8083
+    }
+  ],
+  "elapsed_seconds": 305.1,
+  "elapsed_scope": "本机单次运行，有其他开发活动，不用于模型速度优劣比较",
+  "database_sha256": "f7450e256fb1777e358508974d406bf530d75af3306f46a9015b6fa2bf267f1c",
+  "corpus_manifest_sha256": "587f8e64468c7f595093414f4503f68f2f4375ccd035c2a7a535b8bf4d6990f3",
+  "source_files_verified": 357,
+  "source_corpus": "../cell-biology-expanded-v2/corpus-summary.json",
+  "human_review_status": null,
+  "raw_sources_preserved": true
+}

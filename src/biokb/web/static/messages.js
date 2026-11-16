@@ -264,4 +264,5 @@ export const english = {
   "模型引用不存在的证据编号，已回退为原文证据": "The model cited nonexistent evidence. Showing source evidence instead", "模型正文与引用列表不一致，已回退为原文证据": "The response body and citation list do not match. Showing source evidence instead",
   "已按证据数量、文献覆盖、重复程度和上下文预算筛选完整片段": "Complete passages were selected based on evidence count, source coverage, duplication, and context budget",
   "模型首次输出未通过格式检查，已请求一次纠正并重新验证引用编号": "The first output failed format validation. One correction was requested and citation numbers were revalidated",
+  "模型首次输出未通过检查，已请求一次纠正并重新验证引用编号": "The first output failed validation. One correction was requested and citation numbers were revalidated",
 };

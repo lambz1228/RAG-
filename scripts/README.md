@@ -9,6 +9,8 @@
 | `build_taskbook_dataset.py` | 开发题原文锚点、区间和库摘要核对 |
 | `run_taskbook_retrieval.py` | 冻结副本上的真实检索对照 |
 | `summarize_answer_reviews.py` | 汇总真实人工评分，空白保持待复核 |
+| `download_e5_model.py` | 下载并核对官方固定修订的本地ONNX模型 |
+| `summarize_semantic_retrieval.py` | 绑定题集与运行后，按中英查询汇总指定来源召回 |
 | `summarize_experiment_run.py` | 完整问答运行的状态、回退与区间覆盖摘要 |
 | `verify_answer_quality.py` | 评分材料上传、待复核显示与导出的界面回归 |
 | `collect_biology.py` | 18个主题的官方文献采集，写入独立新库 |
@@ -29,3 +31,5 @@
 | `health_check.ps1` | Windows服务健康检查 |
 
 旧版本专用采集、绘图与 GraphRAG 脚本见[归档分支](https://github.com/lambz1228/RAG-/tree/archive/pre-rebuild-20261115)。所有采集与实验使用独立目录；真实数据库、原始文献和旧实验不会随源码包分发。
+
+`run_answer_experiment.py --profile deployment`保存最终应用配置的单组复核；它与三组对照分开，不作独立测试成绩。

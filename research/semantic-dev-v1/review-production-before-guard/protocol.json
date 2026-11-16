@@ -1,0 +1,343 @@
+{
+  "created_at_utc": "2026-11-16T02:34:28.592970+00:00",
+  "seed": 20261115,
+  "scope": "固定配置问答对照；正确性待人工盲评",
+  "dataset": {
+    "sha256": "b9da2830e93243744f1896eb874787143af03ed3b4e00a361051ccfda22a022c",
+    "manifest": {
+      "origin": "任务书开发草稿：原文锚点校验不等于领域正确性复核",
+      "split": "development",
+      "human_review_status": null,
+      "database_sha256": "f7450e256fb1777e358508974d406bf530d75af3306f46a9015b6fa2bf267f1c",
+      "corpus_manifest_sha256": "587f8e64468c7f595093414f4503f68f2f4375ccd035c2a7a535b8bf4d6990f3",
+      "spec_sha256": "6fc12cafb76108e432e6be79b20805372edad0761950527b7d7266ad57233a01",
+      "items": [
+        {
+          "qid": "SEM-02-ZH",
+          "question": "细胞为什么需要消耗能量进行主动运输？",
+          "reference_answer": "逆浓度梯度或电化学梯度运输物质需要能量，常由ATP或已有梯度提供。",
+          "type": "机制/基础概念",
+          "answerable": true,
+          "concept_id": "SEM-02",
+          "language": "zh",
+          "topic": "membranes",
+          "evidence": [
+            {
+              "document_id": "doc_965a3140604c2a73cbca634e",
+              "start_offset": 0,
+              "end_offset": 523,
+              "sha256": "b89330de4b59f67dddfd398e412d5d0c470ffd91aa30312cc7e302ed3b53433a",
+              "pmid": null,
+              "pmcid": null,
+              "source_id": "openstax-biology-2e-m66375@5ae2f953cfe9"
+            }
+          ],
+          "human_review_status": null
+        },
+        {
+          "qid": "SEM-03-ZH",
+          "question": "细胞骨架主要由哪三类蛋白纤维组成？",
+          "reference_answer": "微丝、中间纤维和微管。",
+          "type": "机制/基础概念",
+          "answerable": true,
+          "concept_id": "SEM-03",
+          "language": "zh",
+          "topic": "cytoskeleton",
+          "evidence": [
+            {
+              "document_id": "doc_153a026b6441345009c8c614",
+              "start_offset": 508,
+              "end_offset": 625,
+              "sha256": "11169d4fce47ee96eb94382d074b4ebf3f20255baaf8ee51dc5ac8e5b1df8b55",
+              "pmid": null,
+              "pmcid": null,
+              "source_id": "openstax-biology-2e-m66454@5ae2f953cfe9"
+            }
+          ],
+          "human_review_status": null
+        },
+        {
+          "qid": "SEM-05-ZH",
+          "question": "原核DNA复制时，DNA聚合酶为何需要引物，并沿哪个方向合成新链？",
+          "reference_answer": "引物提供可供延伸的游离3′-OH；新DNA链沿5′到3′方向合成。",
+          "type": "机制/基础概念",
+          "answerable": true,
+          "concept_id": "SEM-05",
+          "language": "zh",
+          "topic": "dna_maintenance",
+          "evidence": [
+            {
+              "document_id": "doc_c034c3d32b6091c1cc9aef9a",
+              "start_offset": 2593,
+              "end_offset": 3498,
+              "sha256": "9dc85a9c3c78abc1cb504431e7d572c1e2a7aef62bbeb819e8c274dd0f694100",
+              "pmid": null,
+              "pmcid": null,
+              "source_id": "openstax-biology-2e-m66390@5ae2f953cfe9"
+            }
+          ],
+          "human_review_status": null
+        },
+        {
+          "qid": "SEM-06-ZH",
+          "question": "真核mRNA的5′帽结构有哪些作用？",
+          "reference_answer": "保护新生mRNA免于降解，并帮助蛋白质合成因子识别和启动翻译。",
+          "type": "机制/基础概念",
+          "answerable": true,
+          "concept_id": "SEM-06",
+          "language": "zh",
+          "topic": "gene_expression",
+          "evidence": [
+            {
+              "document_id": "doc_c2f10c6145d578532295efa3",
+              "start_offset": 1238,
+              "end_offset": 1559,
+              "sha256": "14cd3f56ce774d05cd9ba8ab0f651bc69863258b112557a2989a2e364fd3e89f",
+              "pmid": null,
+              "pmcid": null,
+              "source_id": "openstax-biology-2e-m66500@5ae2f953cfe9"
+            }
+          ],
+          "human_review_status": null
+        },
+        {
+          "qid": "SEM-07-ZH",
+          "question": "高尔基体在蛋白质运输中承担哪些主要任务？",
+          "reference_answer": "对运输来的蛋白质等进行分选、标记、包装和分配，使其到达适当位置。",
+          "type": "机制/基础概念",
+          "answerable": true,
+          "concept_id": "SEM-07",
+          "language": "zh",
+          "topic": "protein_traffic",
+          "evidence": [
+            {
+              "document_id": "doc_f1122c9fc5f0f8012263ae36",
+              "start_offset": 2632,
+              "end_offset": 3111,
+              "sha256": "6b26d088df6f498bfe7efedb6a562618f51d41a45a52a38da92bc946291f6a79",
+              "pmid": null,
+              "pmcid": null,
+              "source_id": "openstax-biology-2e-m66452@5ae2f953cfe9"
+            }
+          ],
+          "human_review_status": null
+        },
+        {
+          "qid": "SEM-10-ZH",
+          "question": "酶如何影响反应活化能，是否改变反应的自由能差？",
+          "reference_answer": "酶降低达到过渡态所需的活化能，不改变反应的ΔG或反应物与产物的自由能。",
+          "type": "机制/基础概念",
+          "answerable": true,
+          "concept_id": "SEM-10",
+          "language": "zh",
+          "topic": "metabolism",
+          "evidence": [
+            {
+              "document_id": "doc_564a225b8179ec71b3811aa4",
+              "start_offset": 0,
+              "end_offset": 819,
+              "sha256": "1f10a12199dea413e13315839f5ddddcb34b811704668a20862b9abe246686d8",
+              "pmid": null,
+              "pmcid": null,
+              "source_id": "openstax-biology-2e-m66463@5ae2f953cfe9"
+            }
+          ],
+          "human_review_status": null
+        },
+        {
+          "qid": "SEM-13-ZH",
+          "question": "氧在细胞呼吸电子传递链的末端起什么作用？",
+          "reference_answer": "作为最终电子受体，结合电子和质子形成水。",
+          "type": "机制/基础概念",
+          "answerable": true,
+          "concept_id": "SEM-13",
+          "language": "zh",
+          "topic": "mitochondria",
+          "evidence": [
+            {
+              "document_id": "doc_caca6cd04023d11a9a10976f",
+              "start_offset": 6546,
+              "end_offset": 7375,
+              "sha256": "9339402c4e680c65a417bded438655992775e7674c890397895df8583fa00dc7",
+              "pmid": null,
+              "pmcid": null,
+              "source_id": "openstax-biology-2e-m66468@5ae2f953cfe9"
+            }
+          ],
+          "human_review_status": null
+        },
+        {
+          "qid": "SEM-16-ZH",
+          "question": "哺乳动物细胞未折叠蛋白反应的三个主要感受器是什么？",
+          "reference_answer": "IRE1α、PERK和ATF6。",
+          "type": "机制/基础概念",
+          "answerable": true,
+          "concept_id": "SEM-16",
+          "language": "zh",
+          "topic": "endoplasmic_reticulum",
+          "evidence": [
+            {
+              "document_id": "doc_0855999a32b9dd86714701e9",
+              "start_offset": 898,
+              "end_offset": 1162,
+              "sha256": "113fceebbea65d53de633730b760e6ed7a787e71873329bbf557ed2da24e7be5",
+              "pmid": "33946669",
+              "pmcid": "PMC8146082",
+              "source_id": "PMC8146082-fulltext"
+            }
+          ],
+          "human_review_status": null
+        },
+        {
+          "qid": "SEM-17-ZH",
+          "question": "p53间接抑制细胞周期相关基因时，p21发挥什么作用？",
+          "reference_answer": "p21是细胞周期蛋白依赖性激酶抑制剂；p53对许多细胞周期基因的间接抑制依赖p21。",
+          "type": "机制/基础概念",
+          "answerable": true,
+          "concept_id": "SEM-17",
+          "language": "zh",
+          "topic": "cell_cycle",
+          "evidence": [
+            {
+              "document_id": "doc_46254a458103555bbef9bc23",
+              "start_offset": 8358,
+              "end_offset": 9084,
+              "sha256": "e150b470cf7a5ac721c4c032adb87d7c54024c5f499b48f447ebb99f9bf55e87",
+              "pmid": "35361964",
+              "pmcid": "PMC9090780",
+              "source_id": "PMC9090780-fulltext"
+            }
+          ],
+          "human_review_status": null
+        },
+        {
+          "qid": "SEM-18-ZH",
+          "question": "人类过氧化物酶体膜上有哪些主要的ABCD家族转运蛋白？",
+          "reference_answer": "ABCD1、ABCD2和ABCD3。",
+          "type": "机制/基础概念",
+          "answerable": true,
+          "concept_id": "SEM-18",
+          "language": "zh",
+          "topic": "peroxisome",
+          "evidence": [
+            {
+              "document_id": "doc_fbefea30b077a17428e2eebf",
+              "start_offset": 1273,
+              "end_offset": 1337,
+              "sha256": "3e679cbada9e85b40e32f34fa09536afe7d34026471b05b4c99c6bb255c08dba",
+              "pmid": "34198763",
+              "pmcid": "PMC8201181",
+              "source_id": "PMC8201181-fulltext"
+            }
+          ],
+          "human_review_status": null
+        },
+        {
+          "qid": "SEM-ABSENT-01",
+          "question": "请仅依据当前资料库，给出DOI为10.0000/biokb-semantic-no-paper-01的论文作者和研究结论。",
+          "reference_answer": "不编造作者或研究结果；说明当前证据没有该指定DOI的论文。",
+          "type": "指定来源缺失",
+          "answerable": false,
+          "concept_id": "SEM-ABSENT-01",
+          "language": "zh",
+          "topic": "source_identity",
+          "absence_basis": {
+            "kind": "精确DOI目录缺失，仅验证指定来源身份",
+            "doi": "10.0000/biokb-semantic-no-paper-01",
+            "checked_documents": 134
+          },
+          "evidence": [],
+          "human_review_status": null
+        },
+        {
+          "qid": "SEM-ABSENT-02",
+          "question": "请仅依据当前资料库，给出DOI为10.0000/biokb-semantic-no-paper-02的论文作者和研究结论。",
+          "reference_answer": "不编造作者或研究结果；说明当前证据没有该指定DOI的论文。",
+          "type": "指定来源缺失",
+          "answerable": false,
+          "concept_id": "SEM-ABSENT-02",
+          "language": "zh",
+          "topic": "source_identity",
+          "absence_basis": {
+            "kind": "精确DOI目录缺失，仅验证指定来源身份",
+            "doi": "10.0000/biokb-semantic-no-paper-02",
+            "checked_documents": 134
+          },
+          "evidence": [],
+          "human_review_status": null
+        }
+      ]
+    }
+  },
+  "question_ids": [
+    "SEM-02-ZH",
+    "SEM-03-ZH",
+    "SEM-05-ZH",
+    "SEM-06-ZH",
+    "SEM-07-ZH",
+    "SEM-10-ZH",
+    "SEM-13-ZH",
+    "SEM-16-ZH",
+    "SEM-17-ZH",
+    "SEM-18-ZH",
+    "SEM-ABSENT-01",
+    "SEM-ABSENT-02"
+  ],
+  "planned_answers": 12,
+  "database_sha256": "f7450e256fb1777e358508974d406bf530d75af3306f46a9015b6fa2bf267f1c",
+  "snapshot_sha256": "f7450e256fb1777e358508974d406bf530d75af3306f46a9015b6fa2bf267f1c",
+  "corpus": {
+    "sha256": "2dbf872833067458ba5457b7bfd31e4bdd371e8746b13a4f3add714ea4e42fcd",
+    "documents": 134,
+    "eligible_documents": 134
+  },
+  "index_revision": 136,
+  "configuration": {
+    "embedding_backend": "onnx_e5",
+    "embedding_model": "intfloat/multilingual-e5-small",
+    "embedding_key_configured": false,
+    "llm_backend": "openai_compatible",
+    "llm_model": "biokb-qwen2.5-3b",
+    "llm_key_configured": false,
+    "retrieval": "hybrid",
+    "top_k": 5,
+    "chunk_size": 800,
+    "chunk_overlap": 120,
+    "request_timeout": 300,
+    "max_context_chars": 6000,
+    "authentication_required": false,
+    "answer_mode": "generated",
+    "retrieval_candidates": 50,
+    "rrf_constant": 60,
+    "dense_min_score": 0.12,
+    "max_evidence_per_document": 2,
+    "reranker_backend": "disabled",
+    "reranker_model": "",
+    "embedding_revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "local_embedding_configured": true,
+    "embedding_threads": 2,
+    "query_term_expansion": true,
+    "query_term_expansion_version": "cell-biology-terms-v1",
+    "query_term_expansion_sha256": "887449ff90e3ffa8a1e57c2ff9afe176f9c8423ce603472e50cf5452bfa71f41",
+    "llm_response_format": "json_schema",
+    "llm_max_tokens": 768,
+    "llm_output_mode": "claims"
+  },
+  "arms": [
+    {
+      "name": "semantic_rag",
+      "strategy": "hybrid",
+      "top_k": 5,
+      "neighbors": 0,
+      "document_cap": 2
+    }
+  ],
+  "profile": "deployment",
+  "generation_fingerprint": "6b21fa82caaab445f7408667",
+  "embedding_fingerprint": "6e6d83f8e9532cbdd2e0762f",
+  "reranker_fingerprint": "0776a2dfd88e1cd1524664c4",
+  "prompt_version": "evidence-v6-structured-claims",
+  "no_rag_prompt_version": "no-retrieval-v1",
+  "human_review_status": null,
+  "latency_scope": "查询内随机对照组顺序；共享缓存与网络，不作受控速度结论"
+}
