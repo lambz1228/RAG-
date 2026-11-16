@@ -1,0 +1,26 @@
+{
+  "scope": "固定配置问答对照；正确性待人工盲评",
+  "dataset_sha256": "b9da2830e93243744f1896eb874787143af03ed3b4e00a361051ccfda22a022c",
+  "review_file_sha256": "d6acf20fc4c024f912dd36ef470e510709a62204f616da99b41cabb782cd8f33",
+  "protocol_sha256": "2d46f0d346bbf3cafb1e656f8d0f811f8ee1ae9c1ee86c4e701978dbeaddbe57",
+  "reviewed_answers": 0,
+  "planned_answers": 12,
+  "complete": false,
+  "reviewer_identity_verified": false,
+  "note": "仅核对填写完整性，不能证明评分者身份或事实判断；开发题评分不得改称独立测试成绩。无检索组引用支持率不适用。",
+  "arms": {
+    "semantic_rag": {
+      "planned": 12,
+      "reviewed": 0,
+      "review_complete": false,
+      "errors": 0,
+      "provider_fallbacks": 0,
+      "modes": {
+        "generated": 9,
+        "insufficient_evidence": 3
+      },
+      "metrics": null,
+      "status": "pending_reviews"
+    }
+  }
+}

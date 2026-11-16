@@ -1,0 +1,2 @@
+﻿答卷号,答卷摘要,问题,回答,运行状态,引用原文,事实正确性(0/1/2),证据支持(0/1/2),完整性(0/1/2),拒答恰当性(恰当/漏答/误答),无支持断言数,评分者,评分时间,备注
+B00001,2284caa49a4466d69b1130c52945f1583aed6ed712b9d6279b7fb40d03e98fca,人类过氧化物酶体膜上有哪些主要的ABCD家族转运蛋白？,人类过氧化物酶体膜上存在ABCD家族转运蛋白 [3],完成,"[{""number"": 3, ""text"": """", ""title"": ""Peroxisomal ABC Transporters: An Update."", ""document_id"": ""doc_fbefea30b077a17428e2eebf"", ""start_offset"": 1218, ""end_offset"": 1932, ""url"": ""https://europepmc.org/article/MED/34198763"", ""text_sha256"": ""3d28e7e118272a1f51883393e26f505c30586276e3f5e4be37bf3add472f4c70""}]",,,,,,,,

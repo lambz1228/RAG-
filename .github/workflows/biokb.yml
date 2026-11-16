@@ -20,7 +20,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: pip
       - name: 安装声明依赖
-        run: python -m pip install -e ".[dev]"
+        run: python -m pip install -e ".[dev,local-embedding]"
       - name: 代码检查与主线测试
         run: |
           python -m ruff check src/biokb tests/biokb scripts

@@ -235,3 +235,49 @@ def test_partial_run_cannot_be_mistaken_for_complete_review(review_run):
     bundle["keys"] = bundle["keys"][:-1]
     with pytest.raises(KnowledgeError, match="不完整"):
         summarize_bundle(bundle, (review_run / "盲评表.csv").read_bytes())
+
+
+def test_book_source_ids_and_bilingual_metadata_bind_to_frozen_dataset(services, tmp_path):
+    from scripts.build_taskbook_dataset import build
+
+    services.ingestion.ingest(
+        "book.json",
+        json.dumps(
+            {
+                "title": "Controlled book",
+                "source_id": "controlled-book-v1",
+                "content": "Controlled anchor starts. "
+                + "Book source text. " * 30
+                + "Controlled anchor ends.",
+            }
+        ).encode(),
+    )
+    frozen = tmp_path.parent / (tmp_path.name + "-book-frozen")
+    freeze_corpus(services.settings.data_dir, frozen)
+    specs = tmp_path / "specs.json"
+    specs.write_text(
+        json.dumps(
+            {
+                "items": [
+                    {
+                        "qid": "B1",
+                        "concept_id": "C1",
+                        "language": "zh",
+                        "topic": "cell_basics",
+                        "question": "受控书籍问题",
+                        "reference_answer": "受控草稿",
+                        "type": "基础",
+                        "answerable": True,
+                        "source": "controlled-book-v1",
+                        "start_marker": "Controlled anchor starts.",
+                        "end_marker": "Controlled anchor ends.",
+                    }
+                ]
+            }
+        )
+    )
+    output = tmp_path / "dataset.json"
+    result = build(frozen, specs, output)
+    assert result["items"][0]["language"] == "zh"
+    assert result["items"][0]["evidence"][0]["source_id"] == "controlled-book-v1"
+    assert result["human_review_status"] is None and b"\r\n" not in output.read_bytes()

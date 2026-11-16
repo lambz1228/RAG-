@@ -41,12 +41,15 @@ def summarize(run):
             "academic_correctness_rate": None,
         }
     return {
-        "scope": "12题开发运行的技术诊断；结构通过与区间覆盖不是正确率或幻觉率",
+        "scope": f"{summary['question_count']}题开发运行的技术诊断；结构通过与区间覆盖不是正确率或幻觉率",
         "dataset_sha256": protocol["dataset"]["sha256"],
         "database_sha256": protocol["database_sha256"],
         "generation_fingerprint": protocol["generation_fingerprint"],
         "embedding_fingerprint": protocol["embedding_fingerprint"],
         "prompt_version": protocol["prompt_version"],
+        "generation_validation_version": protocol.get(
+            "generation_validation_version", "legacy-citation-only"
+        ),
         "configuration": protocol["configuration"],
         "profile": protocol["profile"],
         "protocol_sha256": hashlib.sha256((run / "protocol.json").read_bytes()).hexdigest(),

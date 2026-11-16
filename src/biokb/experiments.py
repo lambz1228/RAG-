@@ -17,7 +17,7 @@ from .config import Settings
 from .container import build_services
 from .errors import KnowledgeError, ProviderError
 from .providers import PROMPT_VERSION, UNGROUNDED_PROMPT_VERSION
-from .rag import RAGService
+from .rag import GENERATION_VALIDATION_VERSION, RAGService
 from .retrieval import validate_query
 
 
@@ -51,7 +51,13 @@ CORE_ARMS = (
     Arm("hybrid", "hybrid"),
     Arm("hybrid_neighbors", "hybrid", neighbors=1),
 )
-PROFILES = {"taskbook": TASKBOOK_ARMS, "core": CORE_ARMS, "rerank": RERANK_ARMS}
+DEPLOYMENT_ARMS = (Arm("semantic_rag", "hybrid"),)
+PROFILES = {
+    "taskbook": TASKBOOK_ARMS,
+    "core": CORE_ARMS,
+    "rerank": RERANK_ARMS,
+    "deployment": DEPLOYMENT_ARMS,
+}
 OFFLINE_ARMS = (
     Arm("bm25", "bm25"),
     Arm("hybrid", "hybrid"),
@@ -253,7 +259,7 @@ def run_experiment(
     if expected and expected != before:
         raise KnowledgeError("正式库与题库冻结时的数据库摘要不同")
     if profile not in PROFILES:
-        raise KnowledgeError("实验配置必须为 taskbook、core 或 rerank")
+        raise KnowledgeError("实验配置必须为 taskbook、core、rerank 或 deployment")
     if not offline and (settings.embedding_backend == "hash" or settings.llm_backend == "disabled"):
         raise KnowledgeError("真实模型实验需要向量与生成模型；离线演示请显式使用 --offline")
     if not offline and profile == "rerank" and settings.reranker_backend == "disabled":
@@ -319,6 +325,7 @@ def run_experiment(
             "embedding_fingerprint": services.retrieval.embedder.fingerprint,
             "reranker_fingerprint": services.retrieval.reranker.fingerprint,
             "prompt_version": PROMPT_VERSION,
+            "generation_validation_version": GENERATION_VALIDATION_VERSION,
             "no_rag_prompt_version": UNGROUNDED_PROMPT_VERSION,
             "human_review_status": None,
             "latency_scope": "查询内随机对照组顺序；共享缓存与网络，不作受控速度结论",

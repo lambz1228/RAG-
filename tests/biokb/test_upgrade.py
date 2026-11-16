@@ -177,6 +177,9 @@ def test_jobs_recover_interrupted_and_completed_records(services):
 
 def test_revision_keeps_original_database_and_raw_files(services, corpus, tmp_path):
     source = services.settings.data_dir
+    acquisition = source / "sources/official/raw.xml"
+    acquisition.parent.mkdir(parents=True)
+    acquisition.write_bytes(b"controlled original response")
     before = hashlib.sha256(services.settings.database_path.read_bytes()).hexdigest()
     target = tmp_path.parent / (tmp_path.name + "-revision")
     report = create_revision(source, target)
@@ -185,6 +188,7 @@ def test_revision_keeps_original_database_and_raw_files(services, corpus, tmp_pa
     assert Repository(target / "knowledge.sqlite3").stats()["documents"] == 3
     for path in (source / "uploads").iterdir():
         assert path.read_bytes() == (target / "uploads" / path.name).read_bytes()
+    assert (target / "sources/official/raw.xml").read_bytes() == acquisition.read_bytes()
     with pytest.raises(KnowledgeError):
         create_revision(source, target)
 

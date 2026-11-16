@@ -1,0 +1,450 @@
+{
+  "schema_version": 1,
+  "protocol": {
+    "created_at_utc": "2026-11-16T02:53:17.588055+00:00",
+    "seed": 20261115,
+    "scope": "固定配置问答对照；正确性待人工盲评",
+    "dataset": {
+      "sha256": "38efdcef8c3ded60504500b8db5f30ffadfaab003e2f1a5162246693a500f049",
+      "manifest": {
+        "origin": "任务书开发草稿：原文锚点校验不等于领域正确性复核",
+        "split": "development",
+        "human_review_status": null,
+        "database_sha256": "f7450e256fb1777e358508974d406bf530d75af3306f46a9015b6fa2bf267f1c",
+        "corpus_manifest_sha256": "587f8e64468c7f595093414f4503f68f2f4375ccd035c2a7a535b8bf4d6990f3",
+        "spec_sha256": "6fc12cafb76108e432e6be79b20805372edad0761950527b7d7266ad57233a01",
+        "items": [
+          {
+            "qid": "SEM-18-ZH",
+            "question": "人类过氧化物酶体膜上有哪些主要的ABCD家族转运蛋白？",
+            "reference_answer": "ABCD1、ABCD2和ABCD3。",
+            "type": "机制/基础概念",
+            "answerable": true,
+            "concept_id": "SEM-18",
+            "language": "zh",
+            "topic": "peroxisome",
+            "evidence": [
+              {
+                "document_id": "doc_fbefea30b077a17428e2eebf",
+                "start_offset": 1273,
+                "end_offset": 1337,
+                "sha256": "3e679cbada9e85b40e32f34fa09536afe7d34026471b05b4c99c6bb255c08dba",
+                "pmid": "34198763",
+                "pmcid": "PMC8201181",
+                "source_id": "PMC8201181-fulltext"
+              }
+            ],
+            "human_review_status": null
+          }
+        ],
+        "scope": "已观察到逐字复述问题后的定向回归，不是独立测试，不与原12题混算"
+      }
+    },
+    "question_ids": [
+      "SEM-18-ZH"
+    ],
+    "planned_answers": 1,
+    "database_sha256": "f7450e256fb1777e358508974d406bf530d75af3306f46a9015b6fa2bf267f1c",
+    "snapshot_sha256": "f7450e256fb1777e358508974d406bf530d75af3306f46a9015b6fa2bf267f1c",
+    "corpus": {
+      "sha256": "2dbf872833067458ba5457b7bfd31e4bdd371e8746b13a4f3add714ea4e42fcd",
+      "documents": 134,
+      "eligible_documents": 134
+    },
+    "index_revision": 136,
+    "configuration": {
+      "embedding_backend": "onnx_e5",
+      "embedding_model": "intfloat/multilingual-e5-small",
+      "embedding_key_configured": false,
+      "llm_backend": "openai_compatible",
+      "llm_model": "biokb-qwen2.5-3b",
+      "llm_key_configured": false,
+      "retrieval": "hybrid",
+      "top_k": 5,
+      "chunk_size": 800,
+      "chunk_overlap": 120,
+      "request_timeout": 300,
+      "max_context_chars": 6000,
+      "authentication_required": false,
+      "answer_mode": "generated",
+      "retrieval_candidates": 50,
+      "rrf_constant": 60,
+      "dense_min_score": 0.12,
+      "max_evidence_per_document": 2,
+      "reranker_backend": "disabled",
+      "reranker_model": "",
+      "embedding_revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "local_embedding_configured": true,
+      "embedding_threads": 2,
+      "query_term_expansion": true,
+      "query_term_expansion_version": "cell-biology-terms-v1",
+      "query_term_expansion_sha256": "887449ff90e3ffa8a1e57c2ff9afe176f9c8423ce603472e50cf5452bfa71f41",
+      "llm_response_format": "json_schema",
+      "llm_max_tokens": 768,
+      "llm_output_mode": "claims"
+    },
+    "arms": [
+      {
+        "name": "semantic_rag",
+        "strategy": "hybrid",
+        "top_k": 5,
+        "neighbors": 0,
+        "document_cap": 2
+      }
+    ],
+    "profile": "deployment",
+    "generation_fingerprint": "d61406cd81ee9eea0c56217c",
+    "embedding_fingerprint": "6e6d83f8e9532cbdd2e0762f",
+    "reranker_fingerprint": "0776a2dfd88e1cd1524664c4",
+    "prompt_version": "evidence-v8-direct-information",
+    "generation_validation_version": "citation-and-exact-echo-v1",
+    "no_rag_prompt_version": "no-retrieval-v1",
+    "human_review_status": null,
+    "latency_scope": "查询内随机对照组顺序；共享缓存与网络，不作受控速度结论"
+  },
+  "protocol_text": "{\n  \"created_at_utc\": \"2026-11-16T02:53:17.588055+00:00\",\n  \"seed\": 20261115,\n  \"scope\": \"固定配置问答对照；正确性待人工盲评\",\n  \"dataset\": {\n    \"sha256\": \"38efdcef8c3ded60504500b8db5f30ffadfaab003e2f1a5162246693a500f049\",\n    \"manifest\": {\n      \"origin\": \"任务书开发草稿：原文锚点校验不等于领域正确性复核\",\n      \"split\": \"development\",\n      \"human_review_status\": null,\n      \"database_sha256\": \"f7450e256fb1777e358508974d406bf530d75af3306f46a9015b6fa2bf267f1c\",\n      \"corpus_manifest_sha256\": \"587f8e64468c7f595093414f4503f68f2f4375ccd035c2a7a535b8bf4d6990f3\",\n      \"spec_sha256\": \"6fc12cafb76108e432e6be79b20805372edad0761950527b7d7266ad57233a01\",\n      \"items\": [\n        {\n          \"qid\": \"SEM-18-ZH\",\n          \"question\": \"人类过氧化物酶体膜上有哪些主要的ABCD家族转运蛋白？\",\n          \"reference_answer\": \"ABCD1、ABCD2和ABCD3。\",\n          \"type\": \"机制/基础概念\",\n          \"answerable\": true,\n          \"concept_id\": \"SEM-18\",\n          \"language\": \"zh\",\n          \"topic\": \"peroxisome\",\n          \"evidence\": [\n            {\n              \"document_id\": \"doc_fbefea30b077a17428e2eebf\",\n              \"start_offset\": 1273,\n              \"end_offset\": 1337,\n              \"sha256\": \"3e679cbada9e85b40e32f34fa09536afe7d34026471b05b4c99c6bb255c08dba\",\n              \"pmid\": \"34198763\",\n              \"pmcid\": \"PMC8201181\",\n              \"source_id\": \"PMC8201181-fulltext\"\n            }\n          ],\n          \"human_review_status\": null\n        }\n      ],\n      \"scope\": \"已观察到逐字复述问题后的定向回归，不是独立测试，不与原12题混算\"\n    }\n  },\n  \"question_ids\": [\n    \"SEM-18-ZH\"\n  ],\n  \"planned_answers\": 1,\n  \"database_sha256\": \"f7450e256fb1777e358508974d406bf530d75af3306f46a9015b6fa2bf267f1c\",\n  \"snapshot_sha256\": \"f7450e256fb1777e358508974d406bf530d75af3306f46a9015b6fa2bf267f1c\",\n  \"corpus\": {\n    \"sha256\": \"2dbf872833067458ba5457b7bfd31e4bdd371e8746b13a4f3add714ea4e42fcd\",\n    \"documents\": 134,\n    \"eligible_documents\": 134\n  },\n  \"index_revision\": 136,\n  \"configuration\": {\n    \"embedding_backend\": \"onnx_e5\",\n    \"embedding_model\": \"intfloat/multilingual-e5-small\",\n    \"embedding_key_configured\": false,\n    \"llm_backend\": \"openai_compatible\",\n    \"llm_model\": \"biokb-qwen2.5-3b\",\n    \"llm_key_configured\": false,\n    \"retrieval\": \"hybrid\",\n    \"top_k\": 5,\n    \"chunk_size\": 800,\n    \"chunk_overlap\": 120,\n    \"request_timeout\": 300,\n    \"max_context_chars\": 6000,\n    \"authentication_required\": false,\n    \"answer_mode\": \"generated\",\n    \"retrieval_candidates\": 50,\n    \"rrf_constant\": 60,\n    \"dense_min_score\": 0.12,\n    \"max_evidence_per_document\": 2,\n    \"reranker_backend\": \"disabled\",\n    \"reranker_model\": \"\",\n    \"embedding_revision\": \"614241f622f53c4eeff9890bdc4f31cfecc418b3\",\n    \"local_embedding_configured\": true,\n    \"embedding_threads\": 2,\n    \"query_term_expansion\": true,\n    \"query_term_expansion_version\": \"cell-biology-terms-v1\",\n    \"query_term_expansion_sha256\": \"887449ff90e3ffa8a1e57c2ff9afe176f9c8423ce603472e50cf5452bfa71f41\",\n    \"llm_response_format\": \"json_schema\",\n    \"llm_max_tokens\": 768,\n    \"llm_output_mode\": \"claims\"\n  },\n  \"arms\": [\n    {\n      \"name\": \"semantic_rag\",\n      \"strategy\": \"hybrid\",\n      \"top_k\": 5,\n      \"neighbors\": 0,\n      \"document_cap\": 2\n    }\n  ],\n  \"profile\": \"deployment\",\n  \"generation_fingerprint\": \"d61406cd81ee9eea0c56217c\",\n  \"embedding_fingerprint\": \"6e6d83f8e9532cbdd2e0762f\",\n  \"reranker_fingerprint\": \"0776a2dfd88e1cd1524664c4\",\n  \"prompt_version\": \"evidence-v8-direct-information\",\n  \"generation_validation_version\": \"citation-and-exact-echo-v1\",\n  \"no_rag_prompt_version\": \"no-retrieval-v1\",\n  \"human_review_status\": null,\n  \"latency_scope\": \"查询内随机对照组顺序；共享缓存与网络，不作受控速度结论\"\n}\n",
+  "keys": [
+    {
+      "答卷号": "B00001",
+      "qid": "SEM-18-ZH",
+      "arm": "semantic_rag",
+      "answer_sha256": "2284caa49a4466d69b1130c52945f1583aed6ed712b9d6279b7fb40d03e98fca",
+      "protocol_sha256": "731503d86292d74cd2c14742e280353fd071578b1cbd9cc1a9e5313250090a88",
+      "reference": {
+        "qid": "SEM-18-ZH",
+        "question": "人类过氧化物酶体膜上有哪些主要的ABCD家族转运蛋白？",
+        "reference_answer": "ABCD1、ABCD2和ABCD3。",
+        "type": "机制/基础概念",
+        "answerable": true,
+        "concept_id": "SEM-18",
+        "language": "zh",
+        "topic": "peroxisome",
+        "evidence": [
+          {
+            "document_id": "doc_fbefea30b077a17428e2eebf",
+            "start_offset": 1273,
+            "end_offset": 1337,
+            "sha256": "3e679cbada9e85b40e32f34fa09536afe7d34026471b05b4c99c6bb255c08dba",
+            "pmid": "34198763",
+            "pmcid": "PMC8201181",
+            "source_id": "PMC8201181-fulltext"
+          }
+        ],
+        "human_review_status": null
+      }
+    }
+  ],
+  "results": [
+    {
+      "qid": "SEM-18-ZH",
+      "arm": "semantic_rag",
+      "answer": "人类过氧化物酶体膜上存在ABCD家族转运蛋白 [3]",
+      "mode": "generated",
+      "citations": [
+        {
+          "number": 1,
+          "used": false,
+          "chunk_id": "doc_064f4453a2712c1ae0c61366_00052",
+          "document_id": "doc_064f4453a2712c1ae0c61366",
+          "paper_id": "paper_8d263e3f7e832c7b6886c4fc",
+          "title": "The peroxisome: an update on mysteries 3.0.",
+          "filename": "PMC10822820.json",
+          "text": "",
+          "locator": "字符 31576–32375",
+          "start_offset": 31575,
+          "end_offset": 32375,
+          "metadata": {
+            "title": "The peroxisome: an update on mysteries 3.0.",
+            "source": "europe_pmc",
+            "source_id": "PMC10822820-fulltext",
+            "url": "https://europepmc.org/article/MED/38244103",
+            "doi": "10.1007/s00418-023-02259-5",
+            "journal": "Histochemistry and cell biology",
+            "year": "2024",
+            "authors": [
+              "Kumar R",
+              "Islinger M",
+              "Worthy H",
+              "Carmichael R",
+              "Schrader M"
+            ],
+            "topic": "peroxisome",
+            "content_type": "fulltext",
+            "pmid": "38244103",
+            "pmcid": "PMC10822820",
+            "license": "https://creativecommons.org/licenses/by/4.0/",
+            "publication_types": [
+              "review-article",
+              "Review",
+              "Journal Article"
+            ],
+            "xml_sha256": "f3d0c0b46c1abd65ebccb40705882aff7791e1ef7febb6bd723d8482a5d6e7fb",
+            "quality": {
+              "version": "quality-v1",
+              "content_type": "fulltext",
+              "status": "unreviewed",
+              "eligible": true,
+              "reasons": [],
+              "assessment": "规则自动检查，未经人工学术审核"
+            },
+            "processing": {
+              "chunk_size": 800,
+              "chunk_overlap": 120,
+              "version": "2.1.0"
+            }
+          },
+          "score": 0.02895,
+          "bm25_score": 9.610255,
+          "dense_score": 0.886685,
+          "text_sha256": "cadd0620804bc4cb5d1f3549d379b83dd9d4fcb73a62ac8e88d891e3f200a4ff"
+        },
+        {
+          "number": 2,
+          "used": false,
+          "chunk_id": "doc_e837145989eafda693943478_00006",
+          "document_id": "doc_e837145989eafda693943478",
+          "paper_id": "paper_2af1dc3bc501fdd720ccb78c",
+          "title": "Peroxisomal Stress Response and Inter-Organelle Communication in Cellular Homeostasis and Aging.",
+          "filename": "PMC8868334.json",
+          "text": "",
+          "locator": "字符 3279–3972",
+          "start_offset": 3278,
+          "end_offset": 3972,
+          "metadata": {
+            "title": "Peroxisomal Stress Response and Inter-Organelle Communication in Cellular Homeostasis and Aging.",
+            "source": "europe_pmc",
+            "source_id": "PMC8868334-fulltext",
+            "url": "https://europepmc.org/article/MED/35204075",
+            "doi": "10.3390/antiox11020192",
+            "journal": "Antioxidants (Basel, Switzerland)",
+            "year": "2022",
+            "authors": [
+              "Kim J",
+              "Bai H"
+            ],
+            "topic": "peroxisome",
+            "content_type": "fulltext",
+            "pmid": "35204075",
+            "pmcid": "PMC8868334",
+            "license": "https://creativecommons.org/licenses/by/4.0/",
+            "publication_types": [
+              "review-article",
+              "Review",
+              "Journal Article"
+            ],
+            "xml_sha256": "583c733dac0928af57c86ab4ae160a82dce4df786414b66813ebb54f6f237a64",
+            "quality": {
+              "version": "quality-v1",
+              "content_type": "fulltext",
+              "status": "unreviewed",
+              "eligible": true,
+              "reasons": [],
+              "assessment": "规则自动检查，未经人工学术审核"
+            },
+            "processing": {
+              "chunk_size": 800,
+              "chunk_overlap": 120,
+              "version": "2.1.0"
+            }
+          },
+          "score": 0.027273,
+          "bm25_score": 9.641452,
+          "dense_score": 0.882114,
+          "text_sha256": "2720ebb0d4d87a6ad72eb1f9659716156d309580569408d9b51cd29d86496f10"
+        },
+        {
+          "number": 3,
+          "used": true,
+          "chunk_id": "doc_fbefea30b077a17428e2eebf_00002",
+          "document_id": "doc_fbefea30b077a17428e2eebf",
+          "paper_id": "paper_b94401bb2fd378424aecf1a5",
+          "title": "Peroxisomal ABC Transporters: An Update.",
+          "filename": "PMC8201181.json",
+          "text": "",
+          "locator": "字符 1219–1932",
+          "start_offset": 1218,
+          "end_offset": 1932,
+          "metadata": {
+            "title": "Peroxisomal ABC Transporters: An Update.",
+            "source": "europe_pmc",
+            "source_id": "PMC8201181-fulltext",
+            "url": "https://europepmc.org/article/MED/34198763",
+            "doi": "10.3390/ijms22116093",
+            "journal": "International journal of molecular sciences",
+            "year": "2021",
+            "authors": [
+              "Tawbeh A",
+              "Gondcaille C",
+              "Trompier D",
+              "Savary S"
+            ],
+            "topic": "peroxisome",
+            "content_type": "fulltext",
+            "pmid": "34198763",
+            "pmcid": "PMC8201181",
+            "license": "https://creativecommons.org/licenses/by/4.0/",
+            "publication_types": [
+              "review-article",
+              "Review",
+              "Journal Article"
+            ],
+            "xml_sha256": "cd90e77db6d1371d5b8e2cfacbbc1694bf51e98345258e48175ec5e8d71ca9e5",
+            "quality": {
+              "version": "quality-v1",
+              "content_type": "fulltext",
+              "status": "unreviewed",
+              "eligible": true,
+              "reasons": [],
+              "assessment": "规则自动检查，未经人工学术审核"
+            },
+            "processing": {
+              "chunk_size": 800,
+              "chunk_overlap": 120,
+              "version": "2.1.0"
+            }
+          },
+          "score": 0.026494,
+          "bm25_score": 8.825001,
+          "dense_score": 0.88908,
+          "text_sha256": "3d28e7e118272a1f51883393e26f505c30586276e3f5e4be37bf3add472f4c70"
+        },
+        {
+          "number": 4,
+          "used": false,
+          "chunk_id": "doc_e837145989eafda693943478_00079",
+          "document_id": "doc_e837145989eafda693943478",
+          "paper_id": "paper_2af1dc3bc501fdd720ccb78c",
+          "title": "Peroxisomal Stress Response and Inter-Organelle Communication in Cellular Homeostasis and Aging.",
+          "filename": "PMC8868334.json",
+          "text": "",
+          "locator": "字符 46454–47059",
+          "start_offset": 46453,
+          "end_offset": 47059,
+          "metadata": {
+            "title": "Peroxisomal Stress Response and Inter-Organelle Communication in Cellular Homeostasis and Aging.",
+            "source": "europe_pmc",
+            "source_id": "PMC8868334-fulltext",
+            "url": "https://europepmc.org/article/MED/35204075",
+            "doi": "10.3390/antiox11020192",
+            "journal": "Antioxidants (Basel, Switzerland)",
+            "year": "2022",
+            "authors": [
+              "Kim J",
+              "Bai H"
+            ],
+            "topic": "peroxisome",
+            "content_type": "fulltext",
+            "pmid": "35204075",
+            "pmcid": "PMC8868334",
+            "license": "https://creativecommons.org/licenses/by/4.0/",
+            "publication_types": [
+              "review-article",
+              "Review",
+              "Journal Article"
+            ],
+            "xml_sha256": "583c733dac0928af57c86ab4ae160a82dce4df786414b66813ebb54f6f237a64",
+            "quality": {
+              "version": "quality-v1",
+              "content_type": "fulltext",
+              "status": "unreviewed",
+              "eligible": true,
+              "reasons": [],
+              "assessment": "规则自动检查，未经人工学术审核"
+            },
+            "processing": {
+              "chunk_size": 800,
+              "chunk_overlap": 120,
+              "version": "2.1.0"
+            }
+          },
+          "score": 0.026374,
+          "bm25_score": 9.039931,
+          "dense_score": 0.885779,
+          "text_sha256": "82dd380d373712c6722cd7dab75e7f17a43f6639d214aa9e1d90c9c022cd1709"
+        },
+        {
+          "number": 5,
+          "used": false,
+          "chunk_id": "doc_064f4453a2712c1ae0c61366_00086",
+          "document_id": "doc_064f4453a2712c1ae0c61366",
+          "paper_id": "paper_8d263e3f7e832c7b6886c4fc",
+          "title": "The peroxisome: an update on mysteries 3.0.",
+          "filename": "PMC10822820.json",
+          "text": "",
+          "locator": "字符 51628–52420",
+          "start_offset": 51627,
+          "end_offset": 52420,
+          "metadata": {
+            "title": "The peroxisome: an update on mysteries 3.0.",
+            "source": "europe_pmc",
+            "source_id": "PMC10822820-fulltext",
+            "url": "https://europepmc.org/article/MED/38244103",
+            "doi": "10.1007/s00418-023-02259-5",
+            "journal": "Histochemistry and cell biology",
+            "year": "2024",
+            "authors": [
+              "Kumar R",
+              "Islinger M",
+              "Worthy H",
+              "Carmichael R",
+              "Schrader M"
+            ],
+            "topic": "peroxisome",
+            "content_type": "fulltext",
+            "pmid": "38244103",
+            "pmcid": "PMC10822820",
+            "license": "https://creativecommons.org/licenses/by/4.0/",
+            "publication_types": [
+              "review-article",
+              "Review",
+              "Journal Article"
+            ],
+            "xml_sha256": "f3d0c0b46c1abd65ebccb40705882aff7791e1ef7febb6bd723d8482a5d6e7fb",
+            "quality": {
+              "version": "quality-v1",
+              "content_type": "fulltext",
+              "status": "unreviewed",
+              "eligible": true,
+              "reasons": [],
+              "assessment": "规则自动检查，未经人工学术审核"
+            },
+            "processing": {
+              "chunk_size": 800,
+              "chunk_overlap": 120,
+              "version": "2.1.0"
+            }
+          },
+          "score": 0.026289,
+          "bm25_score": 9.223404,
+          "dense_score": 0.884198,
+          "text_sha256": "3b6d16c4b6a8ec5730974265077dbe03f1b3738720276118cac685e9c2733975"
+        }
+      ],
+      "context": {
+        "neighbors": 0,
+        "source_count": 3,
+        "max_chars": 6000,
+        "used_chars": 3607,
+        "retrieved_chunks": 50,
+        "used_chunks": 5
+      },
+      "warnings": [
+        "已按证据数量、文献覆盖、重复程度和上下文预算筛选完整片段"
+      ],
+      "generation_validation": {
+        "attempts": 1,
+        "format_repair": false,
+        "validation_errors": [],
+        "response_sha256": [
+          "f6ca12299107d9cbea510e6b4ec3b8e4237640ed893450ed5af38b43938af99b"
+        ],
+        "validation_version": "citation-and-exact-echo-v1",
+        "citation_rendering": "structured-claims-v1",
+        "raw_response_sha256": "96c6df21d2e7fbc3c6b5b609fa2759086c6bacd267c3e5a163956f119a66799a"
+      },
+      "context_span_coverage": 1.0,
+      "cited_span_coverage": 1.0,
+      "latency_ms": 37843.92
+    }
+  ]
+}

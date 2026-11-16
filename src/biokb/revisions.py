@@ -24,8 +24,9 @@ def create_revision(source: Path, target: Path) -> dict:
     with closing(sqlite3.connect(database.as_uri() + "?mode=ro", uri=True)) as original:
         with closing(sqlite3.connect(target / "knowledge.sqlite3")) as destination:
             original.backup(destination)
-    if (source / "uploads").is_dir():
-        shutil.copytree(source / "uploads", target / "uploads")
+    for name in ("uploads", "sources"):
+        if (source / name).is_dir():
+            shutil.copytree(source / name, target / name)
     repository = Repository(target / "knowledge.sqlite3")
     entries = []
     with repository.connection() as conn:

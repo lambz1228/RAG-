@@ -27,7 +27,7 @@ def build(corpus, specs, output):
         ]
     lookup = {}
     for doc in docs:
-        for field in ("pmid", "pmcid"):
+        for field in ("pmid", "pmcid", "source_id"):
             if doc["metadata"].get(field):
                 key = str(doc["metadata"][field])
                 if key in lookup:
@@ -40,11 +40,17 @@ def build(corpus, specs, output):
             raise ValueError("开发题号重复")
         seen.add(row["qid"])
         item = {k: row[k] for k in ("qid", "question", "reference_answer", "type", "answerable")}
+        for key in ("concept_id", "language", "topic"):
+            if key in row:
+                item[key] = row[key]
         spans = row.get("evidence_specs", [row] if row["answerable"] else [])
         evidence = []
         for span in spans:
             doc = lookup[span["source"]]
             text = doc["text"]
+            expected = span.get("expected_document_sha256")
+            if expected and hashlib.sha256(text.encode()).hexdigest() != expected:
+                raise ValueError("参考资料全文摘要与题目草稿登记不一致")
             start = text.index(span["start_marker"])
             end = text.index(span["end_marker"], start) + len(span["end_marker"])
             evidence.append(
@@ -55,6 +61,7 @@ def build(corpus, specs, output):
                     "sha256": hashlib.sha256(text[start:end].encode()).hexdigest(),
                     "pmid": doc["metadata"].get("pmid"),
                     "pmcid": doc["metadata"].get("pmcid"),
+                    "source_id": doc["metadata"].get("source_id"),
                 }
             )
         if not row["answerable"]:
@@ -79,8 +86,8 @@ def build(corpus, specs, output):
         "items": items,
     }
     output.parent.mkdir(parents=True, exist_ok=True)
-    with output.open("x", encoding="utf-8") as handle:
-        handle.write(json.dumps(dataset, ensure_ascii=False, indent=2) + "\n")
+    with output.open("xb") as handle:
+        handle.write((json.dumps(dataset, ensure_ascii=False, indent=2) + "\n").encode("utf-8"))
     write_json(
         output.with_suffix(".validation.json"),
         {

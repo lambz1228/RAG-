@@ -14,7 +14,7 @@ from .providers import Embedder
 from .quality import assess_document, matches_filters, validate_filters
 from .reranking import Reranker
 from .storage import Repository
-from .text import tokenize
+from .text import TERM_EXPANSION_VERSION, expand_semantic_query, tokenize
 
 
 def validate_query(query: str, top_k: int) -> str:
@@ -105,6 +105,9 @@ class RetrievalService:
             and matches_filters(row["metadata"], filters)
         ]
         query_tokens = set(tokenize(query))
+        encoded_query, expansion_terms = (
+            expand_semantic_query(query) if self.settings.query_term_expansion else (query, [])
+        )
         if not query_tokens:
             raise KnowledgeError("问题中没有可检索的文字")
         bm25: dict[int, float] = {}
@@ -126,13 +129,18 @@ class RetrievalService:
                     "当前向量模型与已存索引不一致，请先重建向量索引；也可使用 BM25 检索"
                 )
             with self._lock:
-                query_vector = self._query_cache.get(query)
+                query_vector = self._query_cache.get(encoded_query)
                 if query_vector is not None:
-                    self._query_cache.move_to_end(query)
+                    self._query_cache.move_to_end(encoded_query)
             if query_vector is None:
-                query_vector = self.embedder.embed_batch([query])[0]
+                encode_query = getattr(self.embedder, "embed_query", None)
+                query_vector = (
+                    encode_query(encoded_query)
+                    if encode_query
+                    else self.embedder.embed_batch([encoded_query])[0]
+                )
                 with self._lock:
-                    self._query_cache[query] = query_vector
+                    self._query_cache[encoded_query] = query_vector
                     if len(self._query_cache) > 128:
                         self._query_cache.popitem(last=False)
             if any(len(rows[i]["vector"]) != len(query_vector) for i in indices):
@@ -192,6 +200,12 @@ class RetrievalService:
             hits = self.reranker.rank(query, hits)[:top_k]
         return {
             "query": query,
+            "query_expansion": {
+                "version": TERM_EXPANSION_VERSION
+                if self.settings.query_term_expansion and strategy != "bm25"
+                else "",
+                "terms": expansion_terms if strategy != "bm25" else [],
+            },
             "strategy": strategy,
             "hits": hits,
             "warnings": warnings,

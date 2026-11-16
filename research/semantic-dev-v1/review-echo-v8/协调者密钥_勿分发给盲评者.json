@@ -1,0 +1,31 @@
+[
+  {
+    "答卷号": "B00001",
+    "qid": "SEM-18-ZH",
+    "arm": "semantic_rag",
+    "answer_sha256": "2284caa49a4466d69b1130c52945f1583aed6ed712b9d6279b7fb40d03e98fca",
+    "protocol_sha256": "731503d86292d74cd2c14742e280353fd071578b1cbd9cc1a9e5313250090a88",
+    "reference": {
+      "qid": "SEM-18-ZH",
+      "question": "人类过氧化物酶体膜上有哪些主要的ABCD家族转运蛋白？",
+      "reference_answer": "ABCD1、ABCD2和ABCD3。",
+      "type": "机制/基础概念",
+      "answerable": true,
+      "concept_id": "SEM-18",
+      "language": "zh",
+      "topic": "peroxisome",
+      "evidence": [
+        {
+          "document_id": "doc_fbefea30b077a17428e2eebf",
+          "start_offset": 1273,
+          "end_offset": 1337,
+          "sha256": "3e679cbada9e85b40e32f34fa09536afe7d34026471b05b4c99c6bb255c08dba",
+          "pmid": "34198763",
+          "pmcid": "PMC8201181",
+          "source_id": "PMC8201181-fulltext"
+        }
+      ],
+      "human_review_status": null
+    }
+  }
+]

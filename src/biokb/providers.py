@@ -16,7 +16,7 @@ from .config import Settings
 from .errors import ProviderError
 from .text import tokenize
 
-PROMPT_VERSION = "evidence-v6-structured-claims"
+PROMPT_VERSION = "evidence-v8-direct-information"
 UNGROUNDED_PROMPT_VERSION = "no-retrieval-v1"
 
 
@@ -76,6 +76,16 @@ class Embedder(Protocol):
 class EmbeddingProvider:
     def __init__(self, settings: Settings):
         self.settings = settings
+        if settings.embedding_backend == "onnx_e5":
+            from .local_embedding import LocalE5
+
+            self._local = LocalE5(
+                settings.embedding_model_path,
+                settings.embedding_revision,
+                settings.embedding_threads,
+            )
+            self.fingerprint = self._local.fingerprint
+            return
         config = {
             "backend": settings.embedding_backend,
             "model": settings.embedding_model,
@@ -97,6 +107,10 @@ class EmbeddingProvider:
             return []
         if self.settings.embedding_backend == "hash":
             return [self._hash(text) for text in texts]
+        if self.settings.embedding_backend == "onnx_e5":
+            return [
+                normalize_vector(vector, 384) for vector in self._local.encode(texts, "document")
+            ]
         output: list[list[float]] = []
         base = self.settings.embedding_base_url.rstrip("/")
         for start in range(0, len(texts), 16):
@@ -133,6 +147,11 @@ class EmbeddingProvider:
             for vector in vectors:
                 output.append(normalize_vector(vector, len(output[0]) if output else None))
         return output
+
+    def embed_query(self, query: str) -> list[float]:
+        if self.settings.embedding_backend == "onnx_e5":
+            return normalize_vector(self._local.encode([query], "query")[0], 384)
+        return self.embed_batch([query])[0]
 
     def _hash(self, text: str) -> list[float]:
         dimensions = self.settings.embedding_dimensions
@@ -310,6 +329,9 @@ class LanguageModel:
                 "输出JSON，包含status、claims、explanation。status取answered、partial或insufficient。"
                 "claims逐条提供中文text和直接支持该论断的citations编号数组；text本身不写引用编号。"
                 "明确回答问题所问的对象、条件和数值，不能将具体细胞器省略为笼统的细胞器。"
+                "不得复述问题来代替回答；应给出问题所问的信息，不能仅加引用后照抄问句。"
+                "问题询问哪些成员或名称时，必须列出证据中的具体名称，不能仅说存在该类对象。"
+                "询问原因时说明因果，询问步骤时给出步骤；没有足够信息则标partial或insufficient。"
                 "缺少部分信息时标partial；没有依据时标insufficient且claims必须为空。"
                 "explanation只解释缺失信息，不作为额外的事实回答。不要输出诊疗处方。"
             )
@@ -342,6 +364,15 @@ class LanguageModel:
             {"role": "user", "content": json.dumps(user_payload, ensure_ascii=False)},
         ]
         if correction:
+            claims_mode = grounded and self.settings.llm_output_mode == "claims"
+            repair_contract = (
+                "返回status、claims、explanation。每条claim的text直接回答问题，不写引用编号；"
+                "其citations数组只填直接支持该论断的来源编号。不能复述问题。"
+                "无依据则status=insufficient，claims为空。"
+                if claims_mode
+                else "返回status、answer、citations；answer正文写引用编号，citations与其一致。"
+                "无依据则status=insufficient，citations为空且正文不带引用编号。"
+            )
             messages.append(
                 {
                     "role": "assistant",
@@ -352,11 +383,10 @@ class LanguageModel:
                 {
                     "role": "user",
                     "content": (
-                        "上一条JSON未通过引用格式校验：" + correction["error"] + "。"
-                        "请返回修正后的完整JSON，包含status、answer、citations。"
-                        "必须在answer字符串内直接写[1]这样的引用，再将实际使用的数字写入citations。"
-                        "只保留本次原文证据支持的事实，不能仅为了格式通过而追加不支持的引用。"
-                        "证据不足时citations必须为空且answer不带引用编号。允许编号："
+                        "上一轮输出未通过检查：" + correction["error"] + "。"
+                        "依据相同问题和相同原文纠正输出；不能新增或替换证据。"
+                        + repair_contract
+                        + "只保留原文支持的事实。允许编号："
                         + json.dumps(list(range(1, len(evidence) + 1)))
                     ),
                 }
