@@ -1,0 +1,29 @@
+{
+  "source_id": "pmc-11940761",
+  "source": "pubmed_central",
+  "content_type": "knowledge_note",
+  "topic": "线粒体动力学",
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11940761/",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "source_sections": "原文摘要和线粒体融合章节",
+  "publication_types": [
+    "Review"
+  ],
+  "content": "线粒体融合需要分别协调外膜和内膜的融合。外膜融合涉及 MFN1、MFN2，内膜融合涉及 OPA1。该综述关注 MFN2 和 OPA1 功能异常时线粒体形态、氧化磷酸化和线粒体自噬的变化，以及这些变化在不同细胞中的表现。",
+  "title": "The Balance of MFN2 and OPA1 in Mitochondrial Dynamics, Cellular Homeostasis, and Disease",
+  "authors": [
+    "Paola Zanfardino",
+    "Alessandro Amati",
+    "Mirko Perrone",
+    "Vittoria Petruzzella"
+  ],
+  "journal": "Biomolecules",
+  "volume": "15",
+  "issue": "3",
+  "pages": "433",
+  "pmid": "40149969",
+  "pmcid": "PMC11940761",
+  "doi": "10.3390/biom15030433",
+  "year": "2025"
+}

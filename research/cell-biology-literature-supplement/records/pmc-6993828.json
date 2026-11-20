@@ -1,0 +1,26 @@
+{
+  "source_id": "pmc-6993828",
+  "source": "pubmed_central",
+  "content_type": "knowledge_note",
+  "topic": "细胞周期与染色体分离",
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6993828/",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "source_sections": "原文摘要",
+  "publication_types": [
+    "Review"
+  ],
+  "content": "染色体双极附着指一对姐妹染色单体的动粒分别连接到由两个纺锤极伸来的微管。检查点未解除时，细胞延缓解除姐妹染色单体之间的黏连。该综述以有丝分裂激酶 Cdk1 为切入点，讨论检查点维持和后期启动之间的调控。",
+  "title": "Recent advances in understanding the role of Cdk1 in the Spindle Assembly Checkpoint",
+  "authors": [
+    "Angela Flavia Serpico",
+    "Domenico Grieco"
+  ],
+  "journal": "F1000Research",
+  "volume": "9",
+  "pages": "F1000 Faculty Rev-57",
+  "pmid": "32047615",
+  "pmcid": "PMC6993828",
+  "doi": "10.12688/f1000research.21185.1",
+  "year": "2020"
+}

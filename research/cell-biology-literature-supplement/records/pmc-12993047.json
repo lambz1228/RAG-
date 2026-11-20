@@ -1,0 +1,30 @@
+{
+  "source_id": "pmc-12993047",
+  "source": "pubmed_central",
+  "content_type": "knowledge_note",
+  "topic": "蛋白质降解",
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12993047/",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "source_sections": "原文摘要",
+  "publication_types": [
+    "Review"
+  ],
+  "content": "Snail 是参与上皮—间质转化的转录因子，其作用受到蛋白稳定性的控制。综述说明磷酸化等修饰如何与泛素化及蛋白酶体降解相衔接，并讨论伴侣介导自噬参与清除 Snail 的证据。两条降解路线有不同的识别和转运步骤。",
+  "title": "Regulatory mechanisms for Snail protein stability: ubiquitin–proteasome system and chaperone-mediated autophagy",
+  "authors": [
+    "Minju Kim",
+    "Keun-Seok Hong",
+    "Taeyoung Kim",
+    "Ki-Jun Ryu",
+    "Jiyun Yoo"
+  ],
+  "journal": "Experimental & Molecular Medicine",
+  "volume": "58",
+  "issue": "2",
+  "pages": "408–415",
+  "pmid": "41708999",
+  "pmcid": "PMC12993047",
+  "doi": "10.1038/s12276-026-01667-6",
+  "year": "2026"
+}

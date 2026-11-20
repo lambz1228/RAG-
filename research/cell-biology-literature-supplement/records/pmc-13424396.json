@@ -1,0 +1,28 @@
+{
+  "source_id": "pmc-13424396",
+  "source": "pubmed_central",
+  "content_type": "knowledge_note",
+  "topic": "细胞信号与机械转导",
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13424396/",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "source_sections": "原文摘要",
+  "publication_types": [
+    "Review"
+  ],
+  "content": "内耳毛细胞把声音引起的机械振动转换为细胞电信号。毛束的结构、其内部传力装置和机械敏感通道共同参与转换。该综述从毛细胞的结构和分子组成出发，讨论机械转导装置失去正常功能时出现的听觉异常。",
+  "title": "Molecular identity of the mechanotransduction machinery in inner ear hair cells and mechanotransduction-linked hearing loss",
+  "authors": [
+    "Yanyan Jia",
+    "Huawei Li",
+    "Wenyan Li"
+  ],
+  "journal": "Fundamental Research",
+  "volume": "6",
+  "issue": "4",
+  "pages": "2654–2669",
+  "pmid": "42539806",
+  "pmcid": "PMC13424396",
+  "doi": "10.1016/j.fmre.2025.01.019",
+  "year": "2026"
+}

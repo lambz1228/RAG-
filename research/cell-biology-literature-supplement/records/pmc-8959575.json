@@ -1,0 +1,26 @@
+{
+  "source_id": "pmc-8959575",
+  "source": "pubmed_central",
+  "content_type": "knowledge_note",
+  "topic": "线粒体动力学",
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8959575/",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "source_sections": "原文摘要",
+  "publication_types": [
+    "Review"
+  ],
+  "content": "线粒体可以借分裂和融合重组网络，以适应环境和细胞发育阶段的改变。两种过程共同影响线粒体群体的维持。该综述关注肿瘤进展与转移过程中线粒体动力学的变化，讨论时应保留肿瘤类型和实验背景。",
+  "title": "Mitochondrial Fission and Fusion in Tumor Progression to Metastasis",
+  "authors": [
+    "Dillon P. Boulton",
+    "M. Cecilia Caino"
+  ],
+  "journal": "Frontiers in Cell and Developmental Biology",
+  "volume": "10",
+  "pages": "849962",
+  "pmid": "35356277",
+  "pmcid": "PMC8959575",
+  "doi": "10.3389/fcell.2022.849962",
+  "year": "2022"
+}

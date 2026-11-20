@@ -1,0 +1,28 @@
+{
+  "source_id": "pmc-7025494",
+  "source": "pubmed_central",
+  "content_type": "knowledge_note",
+  "topic": "细胞信号与机械转导",
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7025494/",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "source_sections": "原文摘要",
+  "publication_types": [
+    "Review"
+  ],
+  "content": "Hippo 通路的活性可受到细胞形态、细胞骨架和外界力学环境变化的影响。综述用细胞迁移和肿瘤转移说明力学线索如何经 Hippo 信号影响细胞行为，并讨论不同细胞状态下机械输入与生化调控的关系。",
+  "title": "Hippo Signaling-Mediated Mechanotransduction in Cell Movement and Cancer Metastasis",
+  "authors": [
+    "Yu-Chiuan Chang",
+    "Jhen-Wei Wu",
+    "Chueh-Wen Wang",
+    "Anna C.-C. Jang"
+  ],
+  "journal": "Frontiers in Molecular Biosciences",
+  "volume": "6",
+  "pages": "157",
+  "pmid": "32118029",
+  "pmcid": "PMC7025494",
+  "doi": "10.3389/fmolb.2019.00157",
+  "year": "2019"
+}

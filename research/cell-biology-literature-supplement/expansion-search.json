@@ -1,0 +1,316 @@
+{
+  "searched_on": "2026-11-20",
+  "providers": {
+    "search": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi",
+    "verification": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
+  },
+  "selection": "PMC 主题检索每组按相关性取前 12 条，结合定向检索补充，按题名摘要范围筛选并去重。检查 PMC JATS 许可与 PubMed 标识一致性；年份按 PubMed 卷期著录。部分基础综述在定向补充阶段选入。",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "counts": {
+    "knowledge_note": 36,
+    "reference_stub": 16
+  },
+  "topics": [
+    {
+      "topic": "细胞周期与染色体分离",
+      "pmc_query": "(\"spindle assembly checkpoint\"[Title] OR \"chromosome segregation\"[Title] OR \"cell cycle checkpoint\"[Title]) AND review[article type] AND cc by license[filter] AND 2020:2026[dp]",
+      "candidate_pmcs": [
+        "PMC11794522",
+        "PMC10978661",
+        "PMC8066494",
+        "PMC6993828",
+        "PMC11435222",
+        "PMC11675298",
+        "PMC7926803",
+        "PMC12985659",
+        "PMC11169569",
+        "PMC8242196",
+        "PMC10354812",
+        "PMC11505109"
+      ],
+      "selected_pmcs": [
+        "PMC11794522",
+        "PMC8066494",
+        "PMC6993828"
+      ]
+    },
+    {
+      "topic": "胞质分裂",
+      "pmc_query": "(\"cytokinesis\"[Title] OR \"contractile ring\"[Title]) AND review[article type] AND cc by license[filter] AND 2020:2026[dp]",
+      "candidate_pmcs": [
+        "PMC9776629",
+        "PMC8600141",
+        "PMC12028594",
+        "PMC11433133",
+        "PMC8017176",
+        "PMC12916326",
+        "PMC10890238",
+        "PMC10890454",
+        "PMC7314909",
+        "PMC12804373",
+        "PMC12803953",
+        "PMC9656288"
+      ],
+      "selected_pmcs": [
+        "PMC9776629",
+        "PMC8600141",
+        "PMC11433133"
+      ]
+    },
+    {
+      "topic": "细胞衰老",
+      "pmc_query": "(\"cellular senescence\"[Title] OR \"senescence-associated secretory phenotype\"[Title]) AND review[article type] AND cc by license[filter] AND 2020:2026[dp]",
+      "candidate_pmcs": [
+        "PMC8039141",
+        "PMC12467123",
+        "PMC13406687",
+        "PMC7824096",
+        "PMC8864518",
+        "PMC10652302",
+        "PMC10775505",
+        "PMC7347005",
+        "PMC9818427",
+        "PMC13223029",
+        "PMC12159025",
+        "PMC13572038"
+      ],
+      "selected_pmcs": [
+        "PMC12467123",
+        "PMC10775505",
+        "PMC9818427"
+      ]
+    },
+    {
+      "topic": "细胞骨架",
+      "pmc_query": "(\"actin cytoskeleton\"[Title] OR \"microtubule dynamics\"[Title] OR \"intermediate filaments\"[Title]) AND review[article type] AND cc by license[filter] AND 2020:2026[dp]",
+      "candidate_pmcs": [
+        "PMC9729668",
+        "PMC12239979",
+        "PMC13639344",
+        "PMC7017239",
+        "PMC8725978",
+        "PMC9096236",
+        "PMC7408014",
+        "PMC13080061",
+        "PMC13765934",
+        "PMC8392029",
+        "PMC7554939",
+        "PMC8880164"
+      ],
+      "selected_pmcs": [
+        "PMC9729668",
+        "PMC7017239",
+        "PMC8725978"
+      ]
+    },
+    {
+      "topic": "细胞连接与细胞极性",
+      "pmc_query": "(\"tight junctions\"[Title] OR \"adherens junctions\"[Title] OR \"epithelial cell polarity\"[Title]) AND review[article type] AND cc by license[filter] AND 2020:2026[dp]",
+      "candidate_pmcs": [
+        "PMC11363436",
+        "PMC8265563",
+        "PMC7025593",
+        "PMC7652731",
+        "PMC9281564",
+        "PMC7975691",
+        "PMC9967084",
+        "PMC10971033",
+        "PMC10706136",
+        "PMC7187240",
+        "PMC8268081",
+        "PMC8176953"
+      ],
+      "selected_pmcs": [
+        "PMC8265563",
+        "PMC7025593",
+        "PMC10706136"
+      ]
+    },
+    {
+      "topic": "内质网与蛋白质稳态",
+      "pmc_query": "(\"unfolded protein response\"[Title] OR \"endoplasmic reticulum stress\"[Title]) AND review[article type] AND cc by license[filter] AND 2020:2026[dp]",
+      "candidate_pmcs": [
+        "PMC7503386",
+        "PMC12592176",
+        "PMC12450955",
+        "PMC13579138",
+        "PMC7698446",
+        "PMC12517228",
+        "PMC12940255",
+        "PMC9865308",
+        "PMC13238395",
+        "PMC10879178",
+        "PMC7701511",
+        "PMC12939415"
+      ],
+      "selected_pmcs": [
+        "PMC7503386",
+        "PMC12940255",
+        "PMC13579138"
+      ]
+    },
+    {
+      "topic": "高尔基体与囊泡运输",
+      "pmc_query": "(\"Golgi apparatus\"[Title] OR \"Golgi trafficking\"[Title] OR \"COPII\"[Title]) AND review[article type] AND cc by license[filter] AND 2020:2026[dp]",
+      "candidate_pmcs": [
+        "PMC7835409",
+        "PMC11463966",
+        "PMC12116067",
+        "PMC9429938",
+        "PMC9475550",
+        "PMC7711842",
+        "PMC7300426",
+        "PMC7594496",
+        "PMC11919764",
+        "PMC13226660",
+        "PMC11600210",
+        "PMC10920636"
+      ],
+      "selected_pmcs": [
+        "PMC7835409",
+        "PMC6616279",
+        "PMC12811389"
+      ]
+    },
+    {
+      "topic": "线粒体动力学",
+      "pmc_query": "(\"mitochondrial dynamics\"[Title] OR \"mitochondrial fission\"[Title]) AND review[article type] AND cc by license[filter] AND 2020:2026[dp]",
+      "candidate_pmcs": [
+        "PMC10057413",
+        "PMC12477198",
+        "PMC9736104",
+        "PMC11012338",
+        "PMC10143663",
+        "PMC10295595",
+        "PMC8959575",
+        "PMC13586545",
+        "PMC9502208",
+        "PMC11897009",
+        "PMC11898645",
+        "PMC8027123"
+      ],
+      "selected_pmcs": [
+        "PMC11940761",
+        "PMC10452872",
+        "PMC8959575"
+      ]
+    },
+    {
+      "topic": "程序性细胞死亡",
+      "pmc_query": "(\"intrinsic apoptosis\"[Title] OR \"ferroptosis\"[Title] OR \"mitochondrial apoptosis\"[Title]) AND review[article type] AND cc by license[filter] AND 2020:2026[dp]",
+      "candidate_pmcs": [
+        "PMC9376317",
+        "PMC13784538",
+        "PMC8494591",
+        "PMC10805512",
+        "PMC10740598",
+        "PMC10136912",
+        "PMC11173094",
+        "PMC11701165",
+        "PMC10295722",
+        "PMC8671613",
+        "PMC11422203",
+        "PMC11272585"
+      ],
+      "selected_pmcs": [
+        "PMC11346437",
+        "PMC9376317",
+        "PMC10136912"
+      ]
+    },
+    {
+      "topic": "细胞信号与机械转导",
+      "pmc_query": "(\"mechanotransduction\"[Title] OR \"Hippo signaling\"[Title] OR \"canonical Wnt\"[Title]) AND review[article type] AND cc by license[filter] AND 2020:2026[dp]",
+      "candidate_pmcs": [
+        "PMC13424396",
+        "PMC8619244",
+        "PMC8728022",
+        "PMC7025494",
+        "PMC9265324",
+        "PMC9688440",
+        "PMC12716060",
+        "PMC10724326",
+        "PMC7913907",
+        "PMC8138185",
+        "PMC13046396",
+        "PMC7291067"
+      ],
+      "selected_pmcs": [
+        "PMC13424396",
+        "PMC8619244",
+        "PMC7025494"
+      ]
+    },
+    {
+      "topic": "核孔与核质运输",
+      "pmc_query": "(\"nuclear pore complex\"[Title] OR \"nucleocytoplasmic transport\"[Title]) AND review[article type] AND cc by license[filter] AND 2020:2026[dp]",
+      "candidate_pmcs": [
+        "PMC8421043",
+        "PMC8583845",
+        "PMC12017851",
+        "PMC12666860",
+        "PMC8916845",
+        "PMC9100368",
+        "PMC8073804",
+        "PMC9680827",
+        "PMC10591098",
+        "PMC7764596",
+        "PMC8072611",
+        "PMC8620263"
+      ],
+      "selected_pmcs": [
+        "PMC8421043",
+        "PMC8583845",
+        "PMC8916845"
+      ]
+    },
+    {
+      "topic": "蛋白质降解",
+      "pmc_query": "(\"ubiquitin-proteasome system\"[Title] OR \"proteasome assembly\"[Title] OR \"chaperone-mediated autophagy\"[Title]) AND review[article type] AND cc by license[filter] AND 2020:2026[dp]",
+      "candidate_pmcs": [
+        "PMC12993047",
+        "PMC9306563",
+        "PMC11983301",
+        "PMC7908825",
+        "PMC12495026",
+        "PMC10136670",
+        "PMC12417491",
+        "PMC10807858",
+        "PMC11368560",
+        "PMC10022722",
+        "PMC9161090",
+        "PMC8700063"
+      ],
+      "selected_pmcs": [
+        "PMC12993047",
+        "PMC7908825",
+        "PMC12417491"
+      ]
+    }
+  ],
+  "supplementary_pmcids": [
+    "PMC6616279",
+    "PMC12811389",
+    "PMC11940761",
+    "PMC10452872",
+    "PMC11346437"
+  ],
+  "chinese_reference_ids": [
+    "chinese-bulletin-4148",
+    "chinese-bulletin-3938",
+    "cnki-senescence-features",
+    "cnki-senescence-models",
+    "chinese-bulletin-3679",
+    "chinese-bulletin-1698",
+    "chinese-bulletin-tubulin-ptm",
+    "sinomed-2020362234",
+    "ccj-169142147",
+    "chinese-bulletin-3841",
+    "chinese-bulletin-2533",
+    "chinese-bulletin-3284",
+    "chinese-bulletin-2735",
+    "advances-mechanics-nuclear-biomechanics",
+    "rrj-cytokinesis-micronucleus",
+    "chinese-bulletin-4068"
+  ]
+}

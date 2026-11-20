@@ -1,0 +1,29 @@
+{
+  "source_id": "pmc-9376317",
+  "source": "pubmed_central",
+  "content_type": "knowledge_note",
+  "topic": "程序性细胞死亡",
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9376317/",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "source_sections": "原文摘要",
+  "publication_types": [
+    "Review"
+  ],
+  "content": "铁死亡是一种与铁依赖性脂质过氧化有关的受调控细胞死亡。脂质合成、改造和过氧化可改变膜内可被氧化的底物及其积累程度，从而影响细胞对铁死亡的易感性。该综述以肿瘤细胞的脂质代谢重编程为主要背景。",
+  "title": "Lipid metabolism in ferroptosis and ferroptosis-based cancer therapy",
+  "authors": [
+    "Yonghao Sun",
+    "Zuoxing Xue",
+    "Tao Huang",
+    "Xiangyu Che",
+    "Guangzhen Wu"
+  ],
+  "journal": "Frontiers in Oncology",
+  "volume": "12",
+  "pages": "941618",
+  "pmid": "35978815",
+  "pmcid": "PMC9376317",
+  "doi": "10.3389/fonc.2022.941618",
+  "year": "2022"
+}

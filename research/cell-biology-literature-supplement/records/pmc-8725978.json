@@ -1,0 +1,29 @@
+{
+  "source_id": "pmc-8725978",
+  "source": "pubmed_central",
+  "content_type": "knowledge_note",
+  "topic": "细胞骨架",
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8725978/",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "source_sections": "原文摘要",
+  "publication_types": [
+    "Review"
+  ],
+  "content": "肌动蛋白骨架和肌动蛋白结合蛋白与线粒体的移动、形态变化及代谢相互联系。综述特别讨论了 gelsolin（凝溶胶蛋白）在部分线粒体氧化磷酸化障碍中的研究。对于部分肌动蛋白结合蛋白，进一步确认其调控机制仍需更多证据。",
+  "title": "Regulation of Mitochondrial Function by the Actin Cytoskeleton",
+  "authors": [
+    "María Illescas",
+    "Ana Peñas",
+    "Joaquín Arenas",
+    "Miguel A. Martín",
+    "Cristina Ugalde"
+  ],
+  "journal": "Frontiers in Cell and Developmental Biology",
+  "volume": "9",
+  "pages": "795838",
+  "pmid": "34993202",
+  "pmcid": "PMC8725978",
+  "doi": "10.3389/fcell.2021.795838",
+  "year": "2021"
+}
