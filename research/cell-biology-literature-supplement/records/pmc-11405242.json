@@ -1,0 +1,23 @@
+{
+  "source_id": "pmc-11405242",
+  "source": "pubmed_central",
+  "title": "Transport mechanisms between the endocytic, recycling, and biosynthetic pathways via endosomes and the trans-Golgi network",
+  "authors": [
+    "Junko Y. Toshima",
+    "Jiro Toshima"
+  ],
+  "journal": "Frontiers in Cell and Developmental Biology",
+  "year": 2024,
+  "volume": "12",
+  "pages": "1464337",
+  "doi": "10.3389/fcell.2024.1464337",
+  "pmid": "39291266",
+  "pmcid": "PMC11405242",
+  "topic": "膜运输与细胞器",
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11405242/",
+  "content_type": "knowledge_note",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "source_sections": "摘要和第 1 节",
+  "content": "内吞货物到达分选区室后，可以回到质膜，也可以经晚期内体进入溶酶体或液泡降解。在生物合成途径中，部分新合成蛋白从反式高尔基网络（TGN）经内体送往降解区室。内体与 TGN 之间的双向转运使内吞、回收和生物合成途径在这些分选站交汇。\n\n哺乳动物常用 Rab 蛋白的定位区分早期、晚期和回收内体。Rab5 在哺乳动物中主要标记早期内体，在酵母中分布范围更广，因此跨物种比较时还应核对区室承担的分选功能。"
+}

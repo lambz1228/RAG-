@@ -1,0 +1,25 @@
+{
+  "source_id": "pmc-12352500",
+  "source": "pubmed_central",
+  "title": "Key Mechanisms in Lysosome Stability, Degradation and Repair",
+  "authors": [
+    "Rui Zhang",
+    "Marc A. Vooijs",
+    "Tom Gh Keulers"
+  ],
+  "journal": "Molecular and Cellular Biology",
+  "year": 2025,
+  "volume": "45",
+  "pages": "212–224",
+  "doi": "10.1080/10985549.2025.2494762",
+  "pmid": "40340648",
+  "pmcid": "PMC12352500",
+  "topic": "膜运输与细胞器",
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12352500/",
+  "content_type": "knowledge_note",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "source_sections": "摘要和溶酶体膜损伤修复相关章节",
+  "content": "溶酶体依赖酸性环境和完整的膜发挥降解与回收功能。膜受损后，溶酶体内的酶等成分可能漏入细胞质，影响细胞稳态。\n\n综述讨论了两种损伤应对方式。ESCRT 介导的膜修复有助于恢复溶酶体膜完整性。溶酶体自噬（lysophagy）则把受损的溶酶体作为选择性自噬的货物加以清除。",
+  "issue": "5"
+}

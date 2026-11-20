@@ -2,6 +2,8 @@
 
 示例文献的作者、标题、DOI、Europe PMC 原文接口、CC BY 4.0 许可与原始 XML 摘要保存在 `examples/open_demo/manifest.json`。转换后的 JSON 只提取正文段落，不包含图片、表格、补充材料和审稿附录。文献内容仍由原作者拥有著作权；按文章许可署名与使用。
 
+[细胞生物学补充文献](research/cell-biology-literature-supplement/README.md)中的中文论文仅收录题录。三篇英文开放综述的条目为中文归纳笔记，按 CC BY 4.0 署名，并在 JSON 中保留原作者、原文 DOI、许可链接及对应章节。
+
 Python 依赖由 `pyproject.toml` 声明，使用各自许可。模型由用户自行配置或下载，不随仓库分发。
 
 教材基础层取自OpenStax / Rice University的Biology 2e，主要作者为Mary Ann Clark、Jung Choi、Matthew Douglas。登记的官方源修订适用CC BY-NC-SA 4.0；提取正文、移除图片表格及练习、转为文本的处理已注明，教材文本继续按该许可用于非商业用途。来源、逐模块摘要和完整原始许可的摘要见 `research/cell-biology-expanded-v2/foundation-sources.json`，本仓库不分发教材正文或模型权重。

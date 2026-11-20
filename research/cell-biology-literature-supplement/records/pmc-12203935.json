@@ -1,0 +1,25 @@
+{
+  "source_id": "pmc-12203935",
+  "source": "pubmed_central",
+  "title": "ESCRTing the RABs through conversion",
+  "authors": [
+    "Jachen A. Solinger",
+    "Daniel P. Ott",
+    "Anne Spang"
+  ],
+  "journal": "Biochemical Society Transactions",
+  "year": 2025,
+  "volume": "53",
+  "pages": "431–445",
+  "doi": "10.1042/BST20253007",
+  "pmid": "40605338",
+  "pmcid": "PMC12203935",
+  "topic": "膜运输与细胞器",
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12203935/",
+  "content_type": "knowledge_note",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "source_sections": "摘要和总结章节",
+  "content": "早期内体接收内吞货物后，ESCRT-0 和 ESCRT-I 可识别带有泛素标记的货物。ESCRT 系统将这些货物送入内体腔内形成的小囊泡。成熟的晚期内体可与溶酶体融合，货物随后被降解。\n\n内体成熟还伴随 Rab5 向 Rab7 的转换。综述以 RABEX5 和 MON1/CCZ1 的调控为例，说明货物分选与内体膜身份的转换可以相互协调。文中讨论了几种可能参与协调的机制。",
+  "issue": "2"
+}
