@@ -94,6 +94,23 @@ def plain(value) -> str:
     return " ".join(re.sub(r"<[^>]+>", " ", html.unescape(str(value or ""))).split())
 
 
+def validate_search(topic, keywords, year_from, year_to, page, page_size, open_access):
+    if not isinstance(topic, str) or topic not in TOPICS:
+        raise KnowledgeError("请选择支持的细胞生物学主题")
+    if not isinstance(keywords, str) or len(keywords) > 200:
+        raise KnowledgeError("补充关键词最多 200 个字符")
+    if (
+        any(type(v) is not int for v in (year_from, year_to, page, page_size))
+        or not 1900 <= year_from <= year_to <= datetime.now(timezone.utc).year
+        or not 1 <= page <= 100
+        or not 1 <= page_size <= 20
+    ):
+        raise KnowledgeError("年份或分页参数不正确")
+    if type(open_access) is not bool:
+        raise KnowledgeError("开放获取选项必须为布尔值")
+    return re.findall(r"[\w-]+", keywords)
+
+
 class LiteratureService:
     def __init__(self, ingestion, settings, session=None):
         self.ingestion, self.settings = ingestion, settings
@@ -130,22 +147,21 @@ class LiteratureService:
         page=1,
         page_size=10,
         open_access=True,
+        *,
+        cursor=None,
     ):
-        if topic not in TOPICS:
-            raise KnowledgeError("请选择支持的细胞生物学主题")
-        if not isinstance(keywords, str) or len(keywords) > 200:
-            raise KnowledgeError("补充关键词最多 200 个字符")
-        if (
-            any(type(v) is not int for v in (year_from, year_to, page, page_size))
-            or not 1900 <= year_from <= year_to <= datetime.now(timezone.utc).year
-            or not 1 <= page <= 100
-            or not 1 <= page_size <= 20
-        ):
-            raise KnowledgeError("年份或分页参数不正确")
-        if type(open_access) is not bool:
-            raise KnowledgeError("开放获取选项必须为布尔值")
         # 将补充词作为普通词项，不允许它关闭主题、年份或开放获取限制。
-        words = re.findall(r"[\w-]+", keywords, flags=re.UNICODE)
+        words = validate_search(topic, keywords, year_from, year_to, page, page_size, open_access)
+        if (
+            cursor is not None
+            and (
+                not isinstance(cursor, str) or not re.fullmatch(r"[A-Za-z0-9+/=_-]{1,512}", cursor)
+            )
+            or page > 1
+            and cursor is None
+        ):
+            raise KnowledgeError("Europe PMC 后续页面须使用上一页返回的检索游标")
+        cursor = cursor or "*"
         extra = " AND ".join('TITLE_ABS:"' + word + '"' for word in words)
         query = f"({TOPICS[topic]['query']}) AND SRC:MED AND FIRST_PDATE:[{year_from}-01-01 TO {year_to}-12-31]"
         if extra:
@@ -159,7 +175,7 @@ class LiteratureService:
                 "format": "json",
                 "resultType": "core",
                 "pageSize": page_size,
-                "page": page,
+                "cursorMark": cursor,
                 "sort": "FIRST_PDATE_D desc",
             },
         )
@@ -170,13 +186,17 @@ class LiteratureService:
                 for row in data.get("resultList", {}).get("result", [])
                 if str(row.get("id", "")).isdigit()
             ]
+            next_cursor = data.get("nextCursorMark")
             return {
                 "items": items,
                 "total": int(data.get("hitCount", 0)),
                 "page": page,
                 "page_size": page_size,
+                "next_cursor": next_cursor
+                if isinstance(next_cursor, str) and next_cursor != cursor
+                else None,
                 "query": query,
-                "source": "Europe PMC / PubMed",
+                "source": "Europe PMC",
                 "retrieved_at_utc": datetime.now(timezone.utc).isoformat(),
             }
         except (ValueError, TypeError) as exc:

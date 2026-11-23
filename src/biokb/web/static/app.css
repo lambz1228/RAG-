@@ -288,6 +288,10 @@ h2{font-size:14px;color:#223752}
 .data-table th{background:#f8faff;color:#8596b0}.data-table td{border-color:#edf1f7}
 .steps li:before{background:#edf4ff;color:#3c78cf;box-shadow:none}
 .source-layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:24px;align-items:start}
+.source-controls{display:grid;gap:16px;min-width:0}
+.source-controls .source-composer{position:static}
+#literature-export-file{min-width:0;width:100%}
+#literature-export-errors{grid-column:1/-1;margin:0;padding-inline-start:20px;overflow-wrap:anywhere}
 .source-composer{display:grid;gap:18px;position:sticky;top:0;padding:20px}
 .source-composer h2{margin:0}.source-composer label{font-size:11px;color:#6d819d}
 .year-range{display:grid;grid-template-columns:1fr 1fr;gap:12px}

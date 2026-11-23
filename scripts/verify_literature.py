@@ -14,7 +14,7 @@ def verify(output):
     from playwright.sync_api import expect, sync_playwright
 
     output.mkdir(parents=True, exist_ok=False)
-    sample = json.loads((ROOT / "examples/open_demo/PMC12142011.json").read_text())
+    sample = json.loads((ROOT / "examples/open_demo/PMC12142011.json").read_text(encoding="utf-8"))
     response = {
         "hitCount": 1,
         "resultList": {
@@ -35,6 +35,7 @@ def verify(output):
     from unittest.mock import patch
 
     from biokb.literature import TOPICS, LiteratureService
+    from biokb.pubmed import PubMedService
 
     def official_fixture(self, path, params=None, **kwargs):
         return (
@@ -43,11 +44,20 @@ def verify(output):
             else (ROOT / "examples/open_demo/PMC12142011.xml").read_bytes()
         )
 
+    def pubmed_fixture(self, operation, params):
+        if operation == "esearch.fcgi":
+            return b'{"esearchresult":{"count":"1","idlist":["12345"]}}'
+        return b"""<PubmedArticleSet><PubmedArticle><MedlineCitation><PMID>12345</PMID>
+        <Article><ArticleTitle>Cell structure in PubMed</ArticleTitle><Abstract>
+        <AbstractText>The cytoskeleton contributes to the structure of the cell.</AbstractText>
+        </Abstract></Article></MedlineCitation></PubmedArticle></PubmedArticleSet>"""
+
     report = {"scope": "固定官方响应的浏览器功能测试；不代表在线检索与模型质量", "passed": False}
     try:
         with (
             tempfile.TemporaryDirectory() as temporary,
             patch.object(LiteratureService, "_get", official_fixture),
+            patch.object(PubMedService, "_get", pubmed_fixture),
             running_app(Settings(data_dir=Path(temporary))) as (url, services),
             sync_playwright() as engine,
         ):
@@ -83,6 +93,35 @@ def verify(output):
                 == "DNA replication and repair"
             )
             expect(page.locator("#literature-status")).to_contain_text("Open full text imported")
+            page.locator("#literature-source").select_option("pubmed")
+            expect(page.locator("#literature-open")).to_be_disabled()
+            expect(page.locator("#literature-fulltext")).to_be_disabled()
+            page.locator("#literature-form button[type=submit]").click()
+            expect(page.locator(".literature-card .source-tag")).to_have_text("PubMed")
+            page.locator(".literature-card").get_by_role(
+                "button", name="Add to knowledge base"
+            ).click()
+            expect(page.locator("#literature-status")).to_contain_text("Abstract imported")
+            assert services.repository.stats()["documents"] == 2
+            page.set_viewport_size({"width": 390, "height": 844})
+            page.locator("#literature-export-source").select_option("wanfang")
+            page.locator("#literature-export-file").set_input_files(
+                {
+                    "name": "bibliography.ris",
+                    "mimeType": "text/plain",
+                    "buffer": (
+                        "TY  - JOUR\nTI  - 细胞骨架结构\nAB  - 细胞骨架对细胞的形态和结构具有支持作用。\nER  -\n"
+                        "TY  - JOUR\nTI  - 仅有题录的记录\nER  -\n"
+                    ).encode(),
+                }
+            )
+            page.get_by_role("button", name="Import bibliography file").click()
+            expect(page.locator("#literature-export-status")).to_contain_text(
+                "Added 1 abstracts and 1 bibliographic records"
+            )
+            assert services.repository.stats()["documents"] == 4
+            page.screenshot(path=str(output / "literature_import_mobile.png"))
+            page.set_viewport_size({"width": 1440, "height": 1000})
             navigate(page, "ask")
             expect(page.locator(".chat-welcome")).to_be_visible()
             page.screenshot(path=str(output / "ask_en.png"))
@@ -107,6 +146,8 @@ def verify(output):
                     "官方检索响应展示",
                     "许可和标识校验后实际入库",
                     "来源保存",
+                    "PubMed 独立来源切换、检索和摘要入库",
+                    "移动端上传中文题录，摘要和仅题录分开统计",
                     "双语状态与新导航",
                     "390/820/1440px 无整页溢出",
                 ],

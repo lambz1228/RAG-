@@ -158,8 +158,8 @@ class Settings:
             raise KnowledgeError("术语扩展配置必须为布尔值")
         if type(self.query_translation) is not bool:
             raise KnowledgeError("英文查询转换配置必须为布尔值")
-        if self.query_translation and self.llm_backend != "openai_compatible":
-            raise KnowledgeError("英文查询转换需要配置兼容生成接口")
+        if self.query_translation and self.llm_backend not in {"ollama", "openai_compatible"}:
+            raise KnowledgeError("英文查询转换需要 Ollama 或 OpenAI 兼容生成接口")
         if self.embedding_backend not in {"hash", "ollama", "openai_compatible", "onnx_e5"}:
             raise KnowledgeError(
                 "BIOKB_EMBEDDING_BACKEND 仅支持 hash、ollama、openai_compatible、onnx_e5"

@@ -142,6 +142,7 @@ def clean_metadata(metadata: dict) -> dict:
         "license",
         "publication_types",
         "xml_sha256",
+        "source_metadata_sha256",
     ):
         value = metadata.get(key)
         if isinstance(value, (str, int, float, list)):

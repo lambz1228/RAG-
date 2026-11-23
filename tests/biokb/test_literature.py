@@ -128,3 +128,19 @@ def test_literature_api_search_and_input_guard(services, monkeypatch):
         client.post("/api/literature/import", json={"pmid": "https://example.com"}).status_code
         == 400
     )
+
+
+def test_europe_pmc_next_page_uses_returned_cursor(literature, monkeypatch):
+    def get(path, params):
+        pmid = "123" if params["cursorMark"] == "*" else "456"
+        return json.dumps(
+            {"hitCount": 2, "nextCursorMark": "YWJjZA==", "resultList": {"result": [{"id": pmid}]}}
+        ).encode()
+
+    monkeypatch.setattr(literature, "_get", get)
+    first = literature.search(page_size=1)
+    second = literature.search(page_size=1, page=2, cursor=first["next_cursor"])
+    assert first["items"][0]["pmid"] == "123"
+    assert second["items"][0]["pmid"] == "456" and second["next_cursor"] is None
+    with pytest.raises(KnowledgeError, match="游标"):
+        literature.search(page=2)

@@ -58,22 +58,41 @@ def test_translation_failure_keeps_original_hits_and_warning(services, corpus, m
 
 
 def test_translation_cache_persists_and_model_change_invalidates(services, monkeypatch):
-    import biokb.query_translation as module
-
     calls = []
 
     def post(url, payload, key, timeout):
         calls.append(payload)
         return {"choices": [{"message": {"content": '{"english_query":"What is ATP?"}'}}]}
 
-    monkeypatch.setattr(module, "post_json", post)
+    monkeypatch.setattr("biokb.providers.post_json", post)
     first = QueryTranslator(settings(services)).translate("什么是ATP？")
     second = QueryTranslator(settings(services)).translate("什么是ATP？")
     assert not first["cache_hit"] and second["cache_hit"]
     assert len(calls) == 1
-    assert calls[0]["thinking"]["type"] == "disabled"
+    assert calls[0]["response_format"] == {"type": "json_object"}
     QueryTranslator(replace(settings(services), llm_model="different")).translate("什么是ATP？")
     assert len(calls) == 2
+
+
+def test_ollama_translation_uses_native_json_and_separate_cache(services, monkeypatch):
+    calls = []
+
+    def post(url, payload, key, timeout):
+        calls.append((url, payload))
+        return {"message": {"content": '{"english_query":"What is ATP?"}'}}
+
+    monkeypatch.setattr("biokb.providers.post_json", post)
+    cloud = settings(services)
+    translator = QueryTranslator(replace(cloud, llm_backend="ollama").validate())
+    assert translator.fingerprint != QueryTranslator(cloud).fingerprint
+    first = translator.translate("什么是ATP？")
+    second = translator.translate("什么是ATP？")
+    assert first["english_query"] == "What is ATP?"
+    assert second["cache_hit"] and len(calls) == 1
+    url, payload = calls[0]
+    assert url == cloud.llm_base_url.rstrip("/") + "/api/chat"
+    assert payload["format"]["required"] == ["english_query"]
+    assert payload["think"] is False
 
 
 @pytest.mark.parametrize("value", [{}, {"english_query": "答案是中文"}, {"english_query": ""}])
@@ -95,14 +114,12 @@ def test_empty_library_does_not_request_translation(services, monkeypatch):
 
 
 def test_failed_translation_is_not_cached(services, monkeypatch):
-    import biokb.query_translation as module
-
     replies = iter(["invalid json", '{"english_query":"What is ATP?"}'])
 
     def post(*args):
         return {"choices": [{"message": {"content": next(replies)}}]}
 
-    monkeypatch.setattr(module, "post_json", post)
+    monkeypatch.setattr("biokb.providers.post_json", post)
     translator = QueryTranslator(settings(services))
     with pytest.raises(ProviderError):
         translator.translate("什么是ATP？")

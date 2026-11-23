@@ -49,7 +49,8 @@ def test_auto_judge_rejects_invalid_fields(key, value):
         validate(row)
 
 
-def test_auto_judge_binds_inputs_blinds_arms_and_keeps_failures(tmp_path, monkeypatch):
+@pytest.mark.parametrize("backend", ["ollama", "openai_compatible"])
+def test_auto_judge_binds_inputs_blinds_arms_and_keeps_failures(tmp_path, monkeypatch, backend):
     from biokb.config import Settings
 
     module = runpy.run_path(
@@ -102,16 +103,34 @@ def test_auto_judge_binds_inputs_blinds_arms_and_keeps_failures(tmp_path, monkey
         {"qid": "q1", "arm": "failed_arm", "error_type": "ProviderError"},
     ]
     (run / "results.jsonl").write_text("\n".join(json.dumps(r) for r in rows), encoding="utf-8")
-    monkeypatch.setattr(Settings, "from_env", classmethod(lambda cls: Settings()))
+    monkeypatch.setattr(
+        Settings,
+        "from_env",
+        classmethod(lambda cls: Settings(llm_backend=backend, llm_model="generator")),
+    )
     captured = []
 
     def post(url, payload, key, timeout):
-        captured.append(payload)
-        return {"choices": [{"message": {"content": json.dumps(judgment())}}]}
+        captured.append((url, payload))
+        message = {"content": json.dumps(judgment())}
+        if backend == "ollama":
+            return {"message": message}
+        return {"choices": [{"message": message}]}
 
-    monkeypatch.setitem(evaluate.__globals__, "post_json", post)
+    monkeypatch.setattr("biokb.providers.post_json", post)
+    with pytest.raises(ValueError, match="模型必须与被测模型不同"):
+        evaluate(run, dataset, tmp_path / "same-model", " generator ")
     report = evaluate(run, dataset, tmp_path / "judged", "judge")
-    assert "secret_arm" not in json.dumps(captured)
+    ((url, payload),) = captured
+    assert "secret_arm" not in json.dumps(payload)
+    assert payload["model"] == "judge"
+    if backend == "ollama":
+        assert url.endswith("/api/chat")
+        assert payload["think"] is False
+        assert set(payload["format"]["required"]) == set(judgment())
+    else:
+        assert url.endswith("/chat/completions")
+        assert payload["response_format"] == {"type": "json_object"}
     assert report["arms"]["secret_arm"]["scored"] == 1
     assert report["arms"]["failed_arm"]["failed"] == 1
     assert report["arms"]["failed_arm"]["fully_correct_rate"] is None

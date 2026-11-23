@@ -12,11 +12,13 @@ from werkzeug.exceptions import HTTPException
 
 from .. import __version__
 from ..answer_evaluation import summarize_bundle
+from ..bibliography import CHINESE_SOURCES, MAX_BYTES, import_export
 from ..config import Settings
 from ..container import Services, build_services
 from ..errors import KnowledgeError
 from ..literature import TOPICS, LiteratureService
 from ..papers import build_catalog, list_papers, resolve_scope
+from ..pubmed import PubMedService
 
 
 def create_app(settings: Settings | None = None, services: Services | None = None) -> Flask:
@@ -37,7 +39,15 @@ def create_app(settings: Settings | None = None, services: Services | None = Non
 
     app.extensions["biokb"] = services
     literature = LiteratureService(services.ingestion, settings)
+    pubmed = PubMedService(services.ingestion, settings)
     app.extensions["literature"] = literature
+    sources = {"europe_pmc": literature, "pubmed": pubmed}
+
+    def literature_source(data):
+        source = data.get("source", "europe_pmc")
+        if not isinstance(source, str) or source not in sources:
+            raise KnowledgeError("请选择支持的在线文献来源")
+        return source
 
     def body() -> dict:
         value = request.get_json(silent=True)
@@ -117,7 +127,12 @@ def create_app(settings: Settings | None = None, services: Services | None = Non
 
     @app.get("/")
     def index():
-        return render_template("index.html", version=__version__, literature_topics=TOPICS)
+        return render_template(
+            "index.html",
+            version=__version__,
+            literature_topics=TOPICS,
+            chinese_sources=CHINESE_SOURCES,
+        )
 
     @app.get("/favicon.ico")
     def favicon():
@@ -169,39 +184,69 @@ def create_app(settings: Settings | None = None, services: Services | None = Non
     @app.post("/api/literature/search")
     def literature_search():
         data = body()
+        source = literature_source(data)
         return jsonify(
             success=True,
-            **literature.search(
+            **sources[source].search(
                 data.get("topic", "mitochondria"),
                 data.get("keywords", ""),
                 data.get("year_from", 2021),
                 data.get("year_to", 2026),
                 data.get("page", 1),
                 data.get("page_size", 10),
-                data.get("open_access", True),
+                data.get("open_access", source == "europe_pmc"),
+                **(
+                    {"cursor": data.get("cursor")}
+                    if source == "europe_pmc" and "cursor" in data
+                    else {}
+                ),
             ),
         )
 
     @app.post("/api/literature/import")
     def literature_import():
         data = body()
+        source = literature_source(data)
         pmid, topic, fulltext = (
             data.get("pmid"),
             data.get("topic", "mitochondria"),
-            data.get("include_fulltext", True),
+            data.get("include_fulltext", source == "europe_pmc"),
         )
         import re
 
         if (
             not isinstance(pmid, str)
             or not re.fullmatch(r"[0-9]{1,10}", pmid)
+            or not isinstance(topic, str)
             or topic not in TOPICS
             or type(fulltext) is not bool
         ):
             raise KnowledgeError("论文编号、主题或全文选项不正确")
+        if source == "pubmed" and fulltext:
+            raise KnowledgeError("PubMed 直连仅导入摘要或题录，请使用 Europe PMC 获取开放全文")
+
+        def run(progress):
+            if source == "pubmed":
+                return pubmed.import_article(pmid, topic, progress)
+            return literature.import_article(pmid, topic, fulltext, progress)
+
+        job = services.jobs.submit("literature", run)
+        return jsonify(success=True, job=job), 202
+
+    @app.post("/api/literature/import-export")
+    def literature_import_export():
+        source, topic = request.form.get("source"), request.form.get("topic")
+        uploaded = request.files.get("file")
+        if source not in CHINESE_SOURCES or topic not in TOPICS or not uploaded:
+            raise KnowledgeError("请选择中文数据库、生物学主题和题录文件")
+        raw = uploaded.stream.read(MAX_BYTES + 1)
+        if not raw or len(raw) > MAX_BYTES:
+            raise KnowledgeError("题录文件须非空且不得超过 1 MB")
         job = services.jobs.submit(
             "literature",
-            lambda progress: literature.import_article(pmid, topic, fulltext, progress),
+            lambda progress: import_export(
+                services.ingestion, settings, raw, source, topic, progress
+            ),
         )
         return jsonify(success=True, job=job), 202
 

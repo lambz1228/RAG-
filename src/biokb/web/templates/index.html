@@ -94,8 +94,9 @@
 </section>
 <section data-panel="sources" hidden>
 <div class="page-heading"><div><p class="eyebrow">LITERATURE DISCOVERY</p><h1 data-i18n="文献采集">文献采集</h1><p data-i18n="从官方数据库发现细胞生物学论文，查看来源后再加入知识库。">从官方数据库发现细胞生物学论文，查看来源后再加入知识库。</p></div><span class="badge">Europe PMC / PubMed</span></div>
-<div class="source-layout"><form class="card source-composer" id="literature-form">
-<h2 data-i18n="研究范围">研究范围</h2>
+<div class="source-layout"><div class="source-controls"><form class="card source-composer" id="literature-form" aria-labelledby="literature-heading">
+<h2 id="literature-heading" data-i18n="研究范围">研究范围</h2>
+<label for="literature-source"><span data-i18n="在线文献来源">在线文献来源</span><select id="literature-source" name="source"><option value="europe_pmc">Europe PMC</option><option value="pubmed">PubMed (NCBI)</option></select></label>
 <label><span data-i18n="生物学主题">生物学主题</span><select id="literature-topic">
 {% for topic_id, topic in literature_topics.items() %}<option value="{{ topic_id }}" data-i18n="{{ topic.label }}">{{ topic.label }}</option>{% endfor %}</select></label>
 <label><span data-i18n="补充英文关键词">补充英文关键词</span><input id="literature-keywords" placeholder="例如：mitophagy、ATP、EGFR" data-i18n-placeholder="例如：mitophagy、ATP、EGFR" maxlength="200"/></label>
@@ -103,8 +104,18 @@
 <label class="checkbox-label"><input type="checkbox" id="literature-open" checked/><span data-i18n="仅发现开放获取论文">仅发现开放获取论文</span></label>
 <label class="checkbox-label"><input type="checkbox" id="literature-fulltext" checked/><span data-i18n="许可明确时优先导入全文">许可明确时优先导入全文</span></label>
 <button type="submit" data-i18n="检索生物文献">检索生物文献</button>
-<p class="muted" data-i18n="优先使用英文关键词；全文自动入库要求明确的 CC BY 或 CC0 许可。">优先使用英文关键词；全文自动入库要求明确的 CC BY 或 CC0 许可。</p>
-</form><div><div class="source-result-heading"><h2 data-i18n="发现的论文">发现的论文</h2><span id="literature-status" role="status" class="muted"></span></div>
+<p class="muted" data-i18n="Europe PMC 按许可导入开放全文，PubMed 导入摘要或题录。">Europe PMC 按许可导入开放全文，PubMed 导入摘要或题录。</p>
+</form>
+<form class="card source-composer" id="literature-export-form" aria-labelledby="literature-export-heading" action="/api/literature/import-export" method="post" enctype="multipart/form-data">
+<h2 id="literature-export-heading" data-i18n="导入中文文献题录">导入中文文献题录</h2>
+<label for="literature-export-source"><span data-i18n="中文数据库">中文数据库</span><select id="literature-export-source" name="source" required>{% for source_id, label in chinese_sources.items() %}<option value="{{ source_id }}" data-i18n="{{ label }}">{{ label }}</option>{% endfor %}</select></label>
+<label for="literature-export-topic"><span data-i18n="生物学主题">生物学主题</span><select id="literature-export-topic" name="topic" required>{% for topic_id, topic in literature_topics.items() %}<option value="{{ topic_id }}" data-i18n="{{ topic.label }}">{{ topic.label }}</option>{% endfor %}</select></label>
+<label for="literature-export-file"><span data-i18n="题录文件（必填）">题录文件（必填）</span><input id="literature-export-file" name="file" type="file" accept=".txt,.enw,.ris" aria-describedby="literature-export-help" required/></label>
+<p id="literature-export-help" class="muted" data-i18n="上传授权导出的 EndNote Tagged 或 RIS 文件，每批最多100条、1 MB。">上传授权导出的 EndNote Tagged 或 RIS 文件，每批最多100条、1 MB。</p>
+<button type="submit" data-i18n="导入题录文件">导入题录文件</button>
+<p id="literature-export-status" role="status" class="muted"></p>
+<ul id="literature-export-errors" class="muted" hidden></ul>
+</form></div><div><div class="source-result-heading"><h2 data-i18n="发现的论文">发现的论文</h2><span id="literature-status" role="status" class="muted"></span></div>
 <div id="literature-results"><div class="discovery-empty"><span data-icon="papers"></span><h2 data-i18n="从一个研究主题开始">从一个研究主题开始</h2><p data-i18n="选择左侧主题和年份，即可发现真实文献。发现结果不会自动进入知识库。">选择左侧主题和年份，即可发现真实文献。发现结果不会自动进入知识库。</p></div></div>
 <div class="pagination"><button id="literature-prev" class="secondary" disabled data-i18n="上一页">上一页</button><button id="literature-next" class="secondary" disabled data-i18n="下一页">下一页</button></div>
 <details class="search-expression"><summary data-i18n="查看实际检索式">查看实际检索式</summary><code id="literature-query"></code></details></div></div>

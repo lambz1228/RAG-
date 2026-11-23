@@ -405,14 +405,6 @@ class Repository:
                 ],
             }
 
-    def source_ids(self) -> set[str]:
-        """仅读取文档标识，供评估检查标准出处是否确实在库中。"""
-        with self.connection() as conn:
-            return {
-                str(json.loads(row["metadata"]).get("source_id") or row["id"])
-                for row in conn.execute("SELECT id,metadata FROM documents")
-            }
-
     def eligible_source_ids(self) -> set[str]:
         with self.connection() as conn:
             result = set()
