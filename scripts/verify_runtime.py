@@ -3,6 +3,7 @@
 import argparse
 import json
 import os
+import shutil
 import socket
 import subprocess
 import sys
@@ -58,13 +59,19 @@ def verify(output: Path) -> dict:
         )
         report["installed_package"] = json.loads(smoke.stdout)
         report["checks"].append("隔离解释器从 site-packages 加载 wheel，数据根目录为工作目录")
+        source = working / "source"
+        shutil.copytree(
+            ROOT / "src/biokb", source / "src/biokb", ignore=shutil.ignore_patterns("__pycache__")
+        )
+        for name in ("app.py", "pyproject.toml"):
+            shutil.copy2(ROOT / name, source / name)
         for label in ("wheel_cli", "source_app"):
             port = free_port()
             environment.update(BIOKB_PORT=str(port), BIOKB_DATA_DIR=str(working / label))
             if label == "wheel_cli":
                 command = [sys.executable, "-I", "-m", "biokb", "serve"]
             else:
-                command = [sys.executable, str(ROOT / "app.py")]
+                command = [sys.executable, str(source / "app.py")]
             process = subprocess.Popen(
                 command,
                 cwd=working,

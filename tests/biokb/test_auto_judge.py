@@ -90,9 +90,13 @@ def test_auto_judge_binds_inputs_blinds_arms_and_keeps_failures(tmp_path, monkey
         json.dumps(
             {
                 "configuration": {"llm_model": "generator"},
-                "planned_answers": 2,
+                "planned_answers": 3,
                 "question_ids": ["q1"],
-                "arms": [{"name": "secret_arm"}, {"name": "failed_arm"}],
+                "arms": [
+                    {"name": "secret_arm"},
+                    {"name": "failed_arm"},
+                    {"name": "fallback_arm"},
+                ],
                 "dataset": {"sha256": hashlib.sha256(dataset.read_bytes()).hexdigest()},
             }
         ),
@@ -101,6 +105,7 @@ def test_auto_judge_binds_inputs_blinds_arms_and_keeps_failures(tmp_path, monkey
     rows = [
         {"qid": "q1", "arm": "secret_arm", "answer": "ABC", "mode": "generated"},
         {"qid": "q1", "arm": "failed_arm", "error_type": "ProviderError"},
+        {"qid": "q1", "arm": "fallback_arm", "answer": "ABC", "mode": "provider_fallback"},
     ]
     (run / "results.jsonl").write_text("\n".join(json.dumps(r) for r in rows), encoding="utf-8")
     monkeypatch.setattr(
@@ -134,5 +139,8 @@ def test_auto_judge_binds_inputs_blinds_arms_and_keeps_failures(tmp_path, monkey
     assert report["arms"]["secret_arm"]["scored"] == 1
     assert report["arms"]["failed_arm"]["failed"] == 1
     assert report["arms"]["failed_arm"]["fully_correct_rate"] is None
+    assert report["arms"]["fallback_arm"]["provider_fallbacks"] == 1
+    assert report["arms"]["fallback_arm"]["scored"] == 0
+    assert report["arms"]["fallback_arm"]["fully_correct_rate"] is None
     assert len(list((tmp_path / "judged").glob("raw-*.json"))) == 1
     assert report["human_review_status"] is None

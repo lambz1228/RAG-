@@ -1,0 +1,112 @@
+{
+  "scope": "首评一致性核查与定向复评。题目状态和引用可用性按实际答卷核对。辅助筛选不改写原始得分。",
+  "initial_judgments_sha256": "71d31ce644697fa142a6c2b095675b2cd08d306b6c0ae15755d589be1a267798",
+  "initial_refusal_not_applicable": 36,
+  "full_scores_on_supported_empty_refusals": [
+    {
+      "qid": "QA-04",
+      "arm": "basic_rag"
+    },
+    {
+      "qid": "QA-09",
+      "arm": "basic_rag"
+    },
+    {
+      "qid": "QA-09",
+      "arm": "optimized_rag"
+    }
+  ],
+  "support_subset": {
+    "no_rag": {
+      "answer_without_used_citations": 12,
+      "inapplicable_citation_scored": 10,
+      "supported_questions": 10,
+      "status_answered": 9,
+      "status_answered_and_initial_full": 9
+    },
+    "basic_rag": {
+      "answer_without_used_citations": 9,
+      "inapplicable_citation_scored": 9,
+      "supported_questions": 10,
+      "status_answered": 3,
+      "status_answered_and_initial_full": 2
+    },
+    "optimized_rag": {
+      "answer_without_used_citations": 4,
+      "inapplicable_citation_scored": 4,
+      "supported_questions": 10,
+      "status_answered": 8,
+      "status_answered_and_initial_full": 6
+    }
+  },
+  "diagnostic_model": "gemma3:4b",
+  "diagnostic_judgments_sha256": "0248f9d921ae3a5f3229b69f1e8a0d9971497bb516b226aa71164bd3c5319bdc",
+  "diagnostic_cases": [
+    {
+      "id": "D01",
+      "qid": "QA-09",
+      "arm": "basic_rag",
+      "judgment": {
+        "correctness": 1,
+        "completeness": 1,
+        "observation": "明确说明",
+        "reason": "回答准确地描述了泛素标记后蛋白的命运（被降解）以及该过程调节的性质（蛋白寿命或稳定性），并且明确指出参考资料中提供了相关信息。因此，评分是1分，属于明确说明。"
+      }
+    },
+    {
+      "id": "D02",
+      "qid": "QA-07",
+      "arm": "optimized_rag",
+      "judgment": {
+        "correctness": 2,
+        "completeness": 2,
+        "observation": "明确说明",
+        "reason": "The answer correctly identifies the G2 and M checkpoints and their roles. The G2 checkpoint is accurately described as checking for DNA replication completion and damage, while the M checkpoint (spindle checkpoint) is correctly identified as ensuring sister chromatid attachment to the spindle microtubules. The answer draws on multiple references to support these points. However, the answer doesn't provide any detail beyond the basic function of each checkpoint. The references provide more detailed explanations of the mechanisms involved, which are not included in the answer. Therefore, while the answer is correct, it is not complete and lacks detail. Specifically, the answer does not mention the SAC pathway, which is a key component of the M checkpoint. The answer correctly identifies the relevant sources and provides accurate information based on those sources. The answer does not fabricate any information."
+      }
+    },
+    {
+      "id": "D03",
+      "qid": "QA-06",
+      "arm": "no_rag",
+      "judgment": {
+        "correctness": 2,
+        "completeness": 2,
+        "observation": "明确说明",
+        "reason": "回答准确地指出了问题的前提存在事实性错误，即细胞骨架中不存在由α和β两种微管蛋白构成的独立纤维类。同时，正确地解释了微管的组成（α/β微管蛋白二聚体）以及微管在囊泡移动和细胞分裂中的作用。 答案清晰地说明了问题的前提错误，并提供了关于微管组成和功能的解释，与提供的参考资料一致。"
+      }
+    },
+    {
+      "id": "D04",
+      "qid": "QA-04",
+      "arm": "basic_rag",
+      "judgment": {
+        "correctness": 1,
+        "completeness": 1,
+        "observation": "明确说明",
+        "reason": "回答准确地描述了受体介导的内吞中细胞如何选择要摄入的物质（通过结合亲和力），以及 LDL 受体缺失时血液中 LDL 清除能力降低导致 LDL 滞留在血液中的情况。同时，明确说明了使用了参考文献中的信息，因此评分是1分。"
+      }
+    },
+    {
+      "id": "D05",
+      "qid": "QA-12",
+      "arm": "optimized_rag",
+      "judgment": {
+        "correctness": 0,
+        "completeness": 2,
+        "observation": "仅通用提示",
+        "reason": "答案仅表示证据不足，没有明确说明文献未收录。虽然表达了无法根据文献核实，但缺乏更具体的说明，因此评分较低。明确说明缺失文献的程度应更高，因此给出2分。"
+      }
+    },
+    {
+      "id": "D06",
+      "qid": "QA-09",
+      "arm": "optimized_rag",
+      "judgment": {
+        "correctness": 1,
+        "completeness": 1,
+        "observation": "明确说明",
+        "reason": "回答准确地描述了泛素标记后蛋白的命运（被降解）以及该过程调节的性质（蛋白寿命或稳定性），并且明确指出参考资料中提供了相关信息。因此，评分是1分，属于明确说明。"
+      }
+    }
+  ]
+}

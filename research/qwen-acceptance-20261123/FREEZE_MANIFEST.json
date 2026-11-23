@@ -1,0 +1,61 @@
+{
+  "frozen_at_utc": "2026-11-23T03:06:35.032129+00:00",
+  "dataset_sha256": "0249be86dd91c8d47af7b0517550839d4633205acb5437cfc0e766fce9ed19d6",
+  "database_sha256": "f5fb78394376fdd507a1a78f9d548e58a4cf96064758fc52a23e7f2445b7c6c7",
+  "planned_answers": 36,
+  "supported": 10,
+  "specified_source_missing": 2,
+  "profile": "taskbook",
+  "runtime": "Ollama 本地 127.0.0.1:11435，Qwen 单题三组顺序按固定种子打乱",
+  "generator": {
+    "name": "qwen3.5:4b-q4_K_M",
+    "manifest_digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04"
+  },
+  "configuration": {
+    "max_tokens": 1024,
+    "max_context_chars": 6000,
+    "query_translation": true,
+    "query_term_expansion": true,
+    "top_k": 5
+  },
+  "judge": {
+    "model": "gemma3:4b",
+    "manifest_digest": null,
+    "protocol": "evidence-quality-v2-source-scope"
+  },
+  "implementation_sha256": {
+    "config/ollama.env.example": "099284ba0cf215c7367bcda756c3dd5b22d96febfa74aa822cea81e077f4cd4d",
+    "scripts/evaluate_answers_auto.py": "c3337ca1a53aee23e38cae483334eb9e57fb1dff4b8f7030ab22fb8b6a2494dd",
+    "scripts/run_answer_experiment.py": "db1f3a23d3409712acaea5ce207e0889a095ccb1a5ff98c84ff4744249196747",
+    "scripts/run_taskbook_retrieval.py": "8c794a2c6378f47f4a185be44d8b8d6124d6e1d5d932a72c137204ecc535ad0f",
+    "src/biokb/__init__.py": "5263bb53da870ff5cde0e0c83cdd69cc0af209d6308c51e5b9ce9fa18e0930f6",
+    "src/biokb/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "src/biokb/answer_evaluation.py": "c9ef39fc6746a0feac6704b86033fedcdc0b00837f9de30aff6bfaf604c2c020",
+    "src/biokb/bibliography.py": "95ee07f747ad0930d7b35748abf966a95b9007ad6c4db8612ae6cec57453a0f1",
+    "src/biokb/cli.py": "7279eb3305e40facf32968156f3bd7e4fb2cbad95a8f0e6619b2369f92e561a5",
+    "src/biokb/config.py": "c414d6b2486de690ed05499f7022437c01c0a7d3704215e4caac97fa1374ae3f",
+    "src/biokb/container.py": "59bcea0e9372d126441d17a6604b1cb5f7459a9675cc4fec36c0c73423d370b3",
+    "src/biokb/corpus.py": "14ebef647bacb68bce70b2ce4f85ac0be07227e6136a7a597ef4b66b2517cc3a",
+    "src/biokb/errors.py": "b830a09021b6a4961572f0c8d17c0895650d83730cf0fb628080eef8f5a2e070",
+    "src/biokb/evaluation.py": "f05133b41e511b00a6bf32f011df225078ea743553416a998c59c863800002a9",
+    "src/biokb/experiments.py": "173513d599ed89e8a46187fffe0ab725b8a1ce73cb675e63f16ecac0c25a2e1d",
+    "src/biokb/ingestion.py": "f28af47a9dd7ffd900034dcc3050abf97272dea8c6feac72c41d22ff76016a7e",
+    "src/biokb/jobs.py": "d1dab8c6f928a257f4204f1aacb535d1c7c0452763c704790d190a2f7fc05f8c",
+    "src/biokb/literature.py": "3138dc06ed186047e523e9e179dd90205f7888822fab54043b3cb68f5dce1d08",
+    "src/biokb/literature_records.py": "92e9d8911aa51eeb089d71f56e1ee8a751171623ee9313a2faeb3523b2456336",
+    "src/biokb/local_embedding.py": "134570e6eb7f6102ff5564fdd0f187756d3bbfee45aaef013f7a845983da215b",
+    "src/biokb/papers.py": "3e342e6b4081aafc32f1ed608b223cd76074a079605718e56a5287ad4ddd4068",
+    "src/biokb/providers.py": "f68bd76b0b660baa4c048a022bbe3c98d3f87d1e160ba23f393898cb822738f4",
+    "src/biokb/pubmed.py": "a60319238ef00f81f955a0ed934bcf7c762954fc21b0b972ac1b10a6d983e0e4",
+    "src/biokb/quality.py": "b0d6e5025e9e718df890e5de8db6be0c00759b6d82ec994e472ae16344d80b68",
+    "src/biokb/query_translation.py": "ff9ff2c14b88a73bb768402ed3e9b7dfe52da82fc5bffe18933161d1ae3de75d",
+    "src/biokb/rag.py": "4c2407c141b77615d034c024413953eff3fdd7a07313928393d54f98d3f224d4",
+    "src/biokb/reranking.py": "6ce80634a5d02897eb1ff1f1e8b526e753aed898fffb620c0102a476e04df127",
+    "src/biokb/retrieval.py": "df3bbae5c469d5bc4c67b98aa50961ae385349272d0d7079c5c652b635962465",
+    "src/biokb/revisions.py": "e326dc2a88def0729e359fc1aeddcd6db6800130d147318f8188e09f403a6834",
+    "src/biokb/storage.py": "a0208f1919a1171c1d09a91e33918f0163f8b7b67fd055d741f05334e5bba98d",
+    "src/biokb/text.py": "6696a2f772490576b1b5df6567e71db1162ffa4e4f1db41d73ab0e01e5a44326",
+    "src/biokb/textbooks.py": "a7b616c903e631e12bcdf8007e8131ee8b0325e46f650a9832b1c9ac37f101bc"
+  },
+  "human_review_status": null
+}

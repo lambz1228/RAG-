@@ -14,7 +14,7 @@ EXAMPLES = ROOT / "examples/open_demo"
 
 
 def official_record():
-    sample = json.loads((EXAMPLES / "PMC12142011.json").read_text())
+    sample = json.loads((EXAMPLES / "PMC12142011.json").read_text(encoding="utf-8"))
     return {
         "id": sample["pmid"],
         "pmid": sample["pmid"],

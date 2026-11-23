@@ -80,15 +80,15 @@ def test_offline_experiment_preserves_source_and_blinds_arms(services, corpus, t
     )
     assert summary["errors"] == 0 and summary["completed_records"] == 3
     assert summary["source_unchanged"] and summary["academic_correctness_rate"] is None
-    protocol = json.loads((output / "protocol.json").read_text())
+    protocol = json.loads((output / "protocol.json").read_text(encoding="utf-8"))
     assert protocol["human_review_required"] is False
     assert file_sha256(services.settings.database_path) == before
     with (output / "盲评表.csv").open(encoding="utf-8-sig") as handle:
         rows = list(csv.DictReader(handle))
     assert len(rows) == 3
     assert all("arm" not in row and not row["评分者"] for row in rows)
-    assert secret not in (output / "results.jsonl").read_text()
-    assert secret in (output / "协调者密钥_勿分发给盲评者.json").read_text()
+    assert secret not in (output / "results.jsonl").read_text(encoding="utf-8")
+    assert secret in (output / "协调者密钥_勿分发给盲评者.json").read_text(encoding="utf-8")
     with pytest.raises(FileExistsError):
         run_experiment(
             services.settings.database_path, dataset, output, services.settings, offline=True

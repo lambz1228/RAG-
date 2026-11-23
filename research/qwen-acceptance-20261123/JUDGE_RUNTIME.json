@@ -1,0 +1,11 @@
+{
+  "registered_at_utc": "2026-11-23T03:18:50.833089+00:00",
+  "run_stage": "生成进行中，评分前登记已安装权重",
+  "answer_freeze_sha256": "6f9d10398aeefe4e0aca3ad344da0875201a938ee20d29fe54e57597063df337",
+  "name": "gemma3:4b",
+  "manifest_digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+  "format": "gguf",
+  "quantization": "Q4_K_M",
+  "registry": "https://ollama.com/library/gemma3:4b",
+  "prompt_version": "evidence-quality-v2-source-scope"
+}

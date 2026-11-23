@@ -157,6 +157,8 @@ def evaluate(run, dataset, output, judge_model):
             write_json(output / f"input-{index:03d}.json", data)
             if "error_type" in record:
                 outcome["error_type"] = "GenerationFailed"
+            elif record.get("mode") == "provider_fallback":
+                outcome["error_type"] = "ProviderFallback"
             else:
                 try:
                     raw, content = request_chat(

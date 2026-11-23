@@ -1,0 +1,287 @@
+{
+  "origin": "为本轮依据冻结教材编制，用于同库小样本验证。题目未用于本轮提示与检索调参，主题可能与开发集重叠。",
+  "split": "in_corpus_holdout",
+  "human_review_status": null,
+  "database_sha256": "f5fb78394376fdd507a1a78f9d548e58a4cf96064758fc52a23e7f2445b7c6c7",
+  "corpus_manifest_sha256": "65dfe3bd83efc45523a2527860036688ef569c1af6157e6cebf43b882b0d5a70",
+  "items": [
+    {
+      "qid": "QA-01",
+      "question": "显微镜下图像看上去更大，为什么仍可能看不清原先挨得很近的两处结构？请分别说明放大倍数和分辨能力所描述的现象。",
+      "topic": "显微观察",
+      "type": "概念辨析",
+      "language": "zh",
+      "answerable": true,
+      "reference_answer": "放大使目标看起来更大。分辨能力指把彼此相邻的两个结构区分开的能力。只增加放大倍数而未改善分辨能力，原先无法区分的细节仍不会变清楚。",
+      "evidence": [
+        {
+          "document_id": "doc_a916934eec562b3928de8055",
+          "title": "Biology 2e 4.1 — Studying Cells",
+          "source_id": "openstax-biology-2e-m66445@5ae2f953cfe9",
+          "url": "https://github.com/openstax/osbooks-biology-bundle/blob/5ae2f953cfe924469a6618578a00b3160439fc43/modules/m66445/index.cnxml",
+          "start_offset": 3023,
+          "end_offset": 3255,
+          "sha256": "a1fc9059dd4eacfc9fed4c40aa28b258c1f3a76199652812f340ff3261966fa4"
+        }
+      ],
+      "human_review_status": null
+    },
+    {
+      "qid": "QA-02",
+      "question": "细胞表面糖萼在识别与组织形成中各有什么作用？",
+      "topic": "细胞膜",
+      "type": "功能解释",
+      "language": "zh",
+      "answerable": true,
+      "reference_answer": "糖萼参与细胞身份识别和自身／非自身识别，并可参与细胞间附着以帮助形成组织。",
+      "evidence": [
+        {
+          "document_id": "doc_4798b32558258972762d9107",
+          "title": "Biology 2e 5.1 — Components and Structure",
+          "source_id": "openstax-biology-2e-m66373@5ae2f953cfe9",
+          "url": "https://github.com/openstax/osbooks-biology-bundle/blob/5ae2f953cfe924469a6618578a00b3160439fc43/modules/m66373/index.cnxml",
+          "start_offset": 9441,
+          "end_offset": 9611,
+          "sha256": "b8acbc36a33eb22da4d54022ee000012ed1d8e5f2f5cd3f9cc41ffd1f5264674"
+        }
+      ],
+      "human_review_status": null
+    },
+    {
+      "qid": "QA-03",
+      "question": "都属于易化扩散时，膜通道与载体蛋白各通过什么方式把溶质从膜的一侧带到另一侧？",
+      "topic": "膜运输",
+      "type": "机制比较",
+      "language": "zh",
+      "answerable": true,
+      "reference_answer": "通道形成亲水孔道，允许适合的溶质扩散通过。载体蛋白先特异结合底物，再通过构象变化使底物通过膜。此处讨论的是易化扩散。",
+      "evidence": [
+        {
+          "document_id": "doc_3a78ac7795ef4fa8594fee76",
+          "title": "Biology 2e 5.2 — Passive Transport",
+          "source_id": "openstax-biology-2e-m66374@5ae2f953cfe9",
+          "url": "https://github.com/openstax/osbooks-biology-bundle/blob/5ae2f953cfe924469a6618578a00b3160439fc43/modules/m66374/index.cnxml",
+          "start_offset": 9013,
+          "end_offset": 9453,
+          "sha256": "64ab2ada576cadbd7a9923f2c395461df1bbb6fc4956af9093973bb7ae1781f3"
+        },
+        {
+          "document_id": "doc_3a78ac7795ef4fa8594fee76",
+          "title": "Biology 2e 5.2 — Passive Transport",
+          "source_id": "openstax-biology-2e-m66374@5ae2f953cfe9",
+          "url": "https://github.com/openstax/osbooks-biology-bundle/blob/5ae2f953cfe924469a6618578a00b3160439fc43/modules/m66374/index.cnxml",
+          "start_offset": 10926,
+          "end_offset": 11176,
+          "sha256": "1683c8032d1a407f7534ea91e5cc3e65c0a3c8dd0596de24caafbf55124e5384"
+        }
+      ],
+      "human_review_status": null
+    },
+    {
+      "qid": "QA-04",
+      "question": "在受体介导的内吞中，细胞如何选择要摄入的物质？如果 LDL 受体缺失，血液中的 LDL 清除会怎样？",
+      "topic": "膜运输",
+      "type": "机制与后果",
+      "language": "zh",
+      "answerable": true,
+      "reference_answer": "质膜受体通过对特定配体的结合亲和力选择摄入物。LDL 受体缺失时细胞清除 LDL 的能力降低，LDL 易滞留在血液中并升高。",
+      "evidence": [
+        {
+          "document_id": "doc_54686aaedb8d74e594892d49",
+          "title": "Biology 2e 5.4 — Bulk Transport",
+          "source_id": "openstax-biology-2e-m66376@5ae2f953cfe9",
+          "url": "https://github.com/openstax/osbooks-biology-bundle/blob/5ae2f953cfe924469a6618578a00b3160439fc43/modules/m66376/index.cnxml",
+          "start_offset": 3307,
+          "end_offset": 3572,
+          "sha256": "cfe52b7de07213f6bf02e2206cd3615911bf5accde5d9c30e1b9fa706c0963d9"
+        },
+        {
+          "document_id": "doc_54686aaedb8d74e594892d49",
+          "title": "Biology 2e 5.4 — Bulk Transport",
+          "source_id": "openstax-biology-2e-m66376@5ae2f953cfe9",
+          "url": "https://github.com/openstax/osbooks-biology-bundle/blob/5ae2f953cfe924469a6618578a00b3160439fc43/modules/m66376/index.cnxml",
+          "start_offset": 3895,
+          "end_offset": 4250,
+          "sha256": "7f0b8bbecac61aa1219d1c062875b84c5efa4b0f54bca77042150c1a616cce13"
+        }
+      ],
+      "human_review_status": null
+    },
+    {
+      "qid": "QA-05",
+      "question": "在动物上皮中，阻止液体从相邻细胞之间漏过与抵抗组织拉伸分别依靠哪种连接？这两种连接各通过什么结构发挥作用？",
+      "topic": "细胞连接",
+      "type": "机制比较",
+      "language": "zh",
+      "answerable": true,
+      "reference_answer": "紧密连接封闭细胞间隙，典型蛋白包括 claudin 和 occludin。桥粒通过跨膜钙黏蛋白连接相邻细胞，胞内与中间丝相连，帮助组织承受拉伸。",
+      "evidence": [
+        {
+          "document_id": "doc_d9cf7651b95a626dc42cb032",
+          "title": "Biology 2e 4.6 — Connections between Cells and Cellular Activities",
+          "source_id": "openstax-biology-2e-m66455@5ae2f953cfe9",
+          "url": "https://github.com/openstax/osbooks-biology-bundle/blob/5ae2f953cfe924469a6618578a00b3160439fc43/modules/m66455/index.cnxml",
+          "start_offset": 3033,
+          "end_offset": 3291,
+          "sha256": "fb2d1954ebb6b2f2caa5eb24c22b5d4916f171ca10a0070a3d8f2d1949afbee6"
+        },
+        {
+          "document_id": "doc_d9cf7651b95a626dc42cb032",
+          "title": "Biology 2e 4.6 — Connections between Cells and Cellular Activities",
+          "source_id": "openstax-biology-2e-m66455@5ae2f953cfe9",
+          "url": "https://github.com/openstax/osbooks-biology-bundle/blob/5ae2f953cfe924469a6618578a00b3160439fc43/modules/m66455/index.cnxml",
+          "start_offset": 3629,
+          "end_offset": 3952,
+          "sha256": "8d4adf31b7914ff4b6982b423a22acd3a079c0399373efaf8465a66f4fee62df"
+        }
+      ],
+      "human_review_status": null
+    },
+    {
+      "qid": "QA-06",
+      "question": "细胞骨架中，哪类纤维由 α 和 β 两种微管蛋白构成？它在囊泡移动和细胞分裂时分别做什么？",
+      "topic": "细胞骨架",
+      "type": "结构与功能",
+      "language": "zh",
+      "answerable": true,
+      "reference_answer": "微管由 α/β 微管蛋白二聚体聚合形成，为囊泡运动提供轨道，并在分裂时参与把复制后的染色体拉向细胞两极。",
+      "evidence": [
+        {
+          "document_id": "doc_153a026b6441345009c8c614",
+          "title": "Biology 2e 4.5 — The Cytoskeleton",
+          "source_id": "openstax-biology-2e-m66454@5ae2f953cfe9",
+          "url": "https://github.com/openstax/osbooks-biology-bundle/blob/5ae2f953cfe924469a6618578a00b3160439fc43/modules/m66454/index.cnxml",
+          "start_offset": 2650,
+          "end_offset": 3007,
+          "sha256": "01632e4199db1fb4077695f9fa5d4ca7476a7eb6ac0e0390d2cc0e9b729669e8"
+        }
+      ],
+      "human_review_status": null
+    },
+    {
+      "qid": "QA-07",
+      "question": "如果 DNA 尚未复制完成，细胞通常在哪个检查点停下？姐妹染色单体没有正确接上纺锤体时，负责把关的是哪一个检查点？",
+      "topic": "细胞周期",
+      "type": "机制比较",
+      "language": "zh",
+      "answerable": true,
+      "reference_answer": "G2 检查点在有丝分裂前核查 DNA 是否已复制且没有损伤。M 检查点（纺锤体检查点）在中期检查姐妹染色单体是否正确附着于纺锤体，合格后才进入后期。",
+      "evidence": [
+        {
+          "document_id": "doc_de30299468643cce0551ba8f",
+          "title": "Biology 2e 10.3 — Control of the Cell Cycle",
+          "source_id": "openstax-biology-2e-m66479@5ae2f953cfe9",
+          "url": "https://github.com/openstax/osbooks-biology-bundle/blob/5ae2f953cfe924469a6618578a00b3160439fc43/modules/m66479/index.cnxml",
+          "start_offset": 3898,
+          "end_offset": 4383,
+          "sha256": "7d6c0dbf87eaadf4dde93c038eb614ac6863a452838839ef4ba723abdf3421aa"
+        },
+        {
+          "document_id": "doc_de30299468643cce0551ba8f",
+          "title": "Biology 2e 10.3 — Control of the Cell Cycle",
+          "source_id": "openstax-biology-2e-m66479@5ae2f953cfe9",
+          "url": "https://github.com/openstax/osbooks-biology-bundle/blob/5ae2f953cfe924469a6618578a00b3160439fc43/modules/m66479/index.cnxml",
+          "start_offset": 4403,
+          "end_offset": 4709,
+          "sha256": "b446dbc391b9986cc7fe08b970d326d69bfe6cb734533c382e336728fe254083"
+        }
+      ],
+      "human_review_status": null
+    },
+    {
+      "qid": "QA-08",
+      "question": "真核前体 mRNA 的 3′ 端切割后，哪种酶添加 poly(A) 尾？教材列出的这段尾巴的两个作用是什么？",
+      "topic": "基因表达",
+      "type": "机制与功能",
+      "language": "zh",
+      "answerable": true,
+      "reference_answer": "poly(A) 聚合酶添加腺苷酸尾。它有助于防止前体 mRNA 降解，并为参与成熟 mRNA 向细胞质输出的蛋白提供结合位点。",
+      "evidence": [
+        {
+          "document_id": "doc_c2f10c6145d578532295efa3",
+          "title": "Biology 2e 15.4 — RNA Processing in Eukaryotes",
+          "source_id": "openstax-biology-2e-m66500@5ae2f953cfe9",
+          "url": "https://github.com/openstax/osbooks-biology-bundle/blob/5ae2f953cfe924469a6618578a00b3160439fc43/modules/m66500/index.cnxml",
+          "start_offset": 1755,
+          "end_offset": 2034,
+          "sha256": "4c047c772f5f07c0ef88f4c16aa4b359bbb16263bb5aadf61d25c49060647573"
+        }
+      ],
+      "human_review_status": null
+    },
+    {
+      "qid": "QA-09",
+      "question": "按教材所述的蛋白周转机制，给蛋白加上泛素标记后会发生什么？这一过程调节了蛋白质的哪项性质？",
+      "topic": "蛋白质调控",
+      "type": "机制解释",
+      "language": "zh",
+      "answerable": true,
+      "reference_answer": "在该途径中，泛素标记指示蛋白应被降解，被标记的蛋白由蛋白酶体降解。该过程调节蛋白在细胞中的寿命或稳定性。",
+      "evidence": [
+        {
+          "document_id": "doc_38528dcfe40a0ef6eb364084",
+          "title": "Biology 2e 16.6 — Eukaryotic Translational and Post-translational Gene Regulation",
+          "source_id": "openstax-biology-2e-m66508@5ae2f953cfe9",
+          "url": "https://github.com/openstax/osbooks-biology-bundle/blob/5ae2f953cfe924469a6618578a00b3160439fc43/modules/m66508/index.cnxml",
+          "start_offset": 3353,
+          "end_offset": 3712,
+          "sha256": "b0ac6db99c5b33e8109d9a46bbd5731fc23d0a6ad69f75c38db2784986c9025a"
+        }
+      ],
+      "human_review_status": null
+    },
+    {
+      "qid": "QA-10",
+      "question": "酵母乙醇发酵中，丙酮酸在放出二氧化碳后变成哪种中间产物？下一步产生乙醇时，NADH 的氧化还原状态如何变化？",
+      "topic": "细胞代谢",
+      "type": "过程比较",
+      "language": "zh",
+      "answerable": true,
+      "reference_answer": "丙酮酸脱羧形成乙醛和二氧化碳。乙醛被还原为乙醇时，NADH 被氧化成 NAD⁺。",
+      "evidence": [
+        {
+          "document_id": "doc_e2e166f365bf77cc7ccad3ab",
+          "title": "Biology 2e 7.5 — Metabolism without Oxygen",
+          "source_id": "openstax-biology-2e-m66469@5ae2f953cfe9",
+          "url": "https://github.com/openstax/osbooks-biology-bundle/blob/5ae2f953cfe924469a6618578a00b3160439fc43/modules/m66469/index.cnxml",
+          "start_offset": 3136,
+          "end_offset": 3434,
+          "sha256": "aaf005b1315322ba21bed588cec46b4e8f295e2ff39e86d1f3e5d5bcc8fd10c5"
+        }
+      ],
+      "human_review_status": null
+    },
+    {
+      "qid": "QA-11",
+      "question": "仅依据 DOI 为 10.0000/biokb-acceptance-11 的指定文献，该文的显微图像倍率和样本数量是多少？若库中缺少指定文献，请说明。",
+      "topic": "细胞骨架",
+      "type": "指定文献缺失",
+      "language": "zh",
+      "answerable": false,
+      "reference_answer": "知识库未收录该指定 DOI 的文献，无法根据该文核实所问数据。",
+      "absence_basis": {
+        "kind": "虚构 DOI 的精确目录缺失",
+        "doi": "10.0000/biokb-acceptance-11",
+        "checked_documents": 134
+      },
+      "evidence": [],
+      "human_review_status": null
+    },
+    {
+      "qid": "QA-12",
+      "question": "仅依据 DOI 为 10.0000/biokb-acceptance-12 的指定文献，该文记录的膜运输测量指标及其单位是什么？若库中缺少指定文献，请说明。",
+      "topic": "膜运输",
+      "type": "指定文献缺失",
+      "language": "zh",
+      "answerable": false,
+      "reference_answer": "知识库未收录该指定 DOI 的文献，无法根据该文核实所问数据。",
+      "absence_basis": {
+        "kind": "虚构 DOI 的精确目录缺失",
+        "doi": "10.0000/biokb-acceptance-12",
+        "checked_documents": 134
+      },
+      "evidence": [],
+      "human_review_status": null
+    }
+  ]
+}

@@ -115,7 +115,7 @@ def test_partial_or_invalid_rating_is_rejected(review_run):
 
 
 def test_fallback_is_visible_and_cannot_be_scored_as_model_success(review_run):
-    bundle = json.loads((review_run / "评分运行包_协调者保管.json").read_text())
+    bundle = json.loads((review_run / "评分运行包_协调者保管.json").read_text(encoding="utf-8"))
     results = bundle["results"]
     results[1]["mode"] = "provider_fallback"
     questions = [
@@ -138,8 +138,9 @@ def test_review_from_another_run_or_modified_output_is_rejected(review_run):
     with pytest.raises(KnowledgeError, match="不属于"):
         summarize_reviews(review_run, path)
     result = review_run / "results.jsonl"
-    result.write_text(result.read_text().replace("generated", "generated") + "\n")
-    (review_run / "protocol.json").write_text((review_run / "protocol.json").read_text() + "\n")
+    result.write_text(result.read_text(encoding="utf-8") + "\n", encoding="utf-8")
+    protocol = review_run / "protocol.json"
+    protocol.write_text(protocol.read_text(encoding="utf-8") + "\n", encoding="utf-8")
     with pytest.raises(KnowledgeError, match="协议已变化"):
         summarize_reviews(review_run, path)
 
@@ -150,7 +151,7 @@ def test_review_bundle_and_web_upload_preserve_pending_status(review_run, servic
     from biokb.answer_evaluation import summarize_bundle
     from biokb.web.app import create_app
 
-    bundle = json.loads((review_run / "评分运行包_协调者保管.json").read_text())
+    bundle = json.loads((review_run / "评分运行包_协调者保管.json").read_text(encoding="utf-8"))
     reviews = (review_run / "盲评表.csv").read_bytes()
     assert summarize_bundle(bundle, reviews)["reviewed_answers"] == 0
     client = create_app(services.settings, services).test_client()
@@ -233,7 +234,7 @@ def test_claims_cannot_hide_uncited_factual_text_in_insufficient_answer():
 def test_partial_run_cannot_be_mistaken_for_complete_review(review_run):
     from biokb.answer_evaluation import summarize_bundle
 
-    bundle = json.loads((review_run / "评分运行包_协调者保管.json").read_text())
+    bundle = json.loads((review_run / "评分运行包_协调者保管.json").read_text(encoding="utf-8"))
     bundle["results"] = bundle["results"][:-1]
     bundle["keys"] = bundle["keys"][:-1]
     with pytest.raises(KnowledgeError, match="不完整"):
